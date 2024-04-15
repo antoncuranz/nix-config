@@ -15,4 +15,7 @@
       address = "192.168.1.4";
       prefixLength = 24;
   }];
+
+  networking.nameservers = [ "192.168.1.1" ];
+  networking.defaultGateway = { address = "192.168.1.1"; interface = "br0"; };
 }
