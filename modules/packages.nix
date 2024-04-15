@@ -13,7 +13,7 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     lshw
-    git
+    git-crypt
     powertop
     cockpit
     lm_sensors
@@ -23,5 +23,6 @@
     unzip
     gnumake
     tree
+    tmux
   ];
 }

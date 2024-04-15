@@ -20,6 +20,7 @@
       ./modules/k3s.nix
       ./modules/msmtp.nix
       ./modules/cockpit.nix
+      ./modules/git.nix
     ];
 
   networking.hostName = "nixos";
