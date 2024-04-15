@@ -9,8 +9,9 @@
     [
       ./hardware-configuration.nix
       ./modules/zfs.nix
-      ./modules/zsh.nix
+      ./modules/networking.nix
       ./modules/ssh.nix
+      ./modules/zsh.nix
       ./modules/sanoid.nix
       ./modules/users.nix
       ./modules/firewall.nix
@@ -22,9 +23,6 @@
       ./modules/cockpit.nix
       ./modules/git.nix
     ];
-
-  networking.hostName = "nixos";
-  networking.hostId = "7bdc28b5";
 
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "de_DE.UTF-8";
