@@ -12,6 +12,8 @@
     "--disable=servicelb"
     "--node-ip=192.168.1.4"
     "--write-kubeconfig-mode=644"
+    "--disable-cloud-controller"
+    "--datastore-endpoint=etcd"
     # "--kubelet-arg=v=4" # Optionally add additional args to k3s
   ];
 
