@@ -7,7 +7,7 @@ sudo passwd root # via KVM
 ssh root@192.168.x.y
 
 # format disk
-curl https://raw.githubusercontent.com/ant0ncuranz/nix-config/main/disko.nix -o /tmp/disko.nix
+curl https://raw.githubusercontent.com/ant0ncuranz/nix-config/main/disko/zroot.nix -o /tmp/disko.nix
 nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /tmp/disko.nix
 
 mkdir -p /mnt/etc/nixos /mnt/etc/secrets/initrd
