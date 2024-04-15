@@ -12,10 +12,12 @@ nix --experimental-features "nix-command flakes" run github:nix-community/disko 
 
 mkdir -p /mnt/etc/nixos /mnt/etc/secrets/initrd
 
+# install git and git-crypt
+nix-env -f '<nixpkgs>' -iA git
+nix-env -f '<nixpkgs>' -iA git-crypt
+
 # clone and unlock configuration
 git clone https://github.com/ant0ncuranz/nix-config.git /mnt/etc/nixos
-
-nix-env -f '<nixpkgs>' -iA git-crypt
 echo """<PASTE_BASE64_ENCODED_KEY>""" | base64 --decode > /tmp/git-crypt-key
 (cd /mnt/etc/nixos && git-crypt unlock /tmp/git-crypt-key)
 
