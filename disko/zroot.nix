@@ -65,6 +65,16 @@
             options.mountpoint = "legacy";
             mountpoint = "/home";
           };
+          bitcoin = { # TODO
+            type = "zfs_fs";
+            options.mountpoint = "legacy";
+            mountpoint = "/home/ant0n/bitcoin";
+          };
+          k3s = { # TODO
+            type = "zfs_fs";
+            options.mountpoint = "legacy";
+            mountpoint = "/var/lib/rancher/k3s";
+          };
         };
       };
     };
