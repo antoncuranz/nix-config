@@ -11,7 +11,7 @@
     ./firewall.nix
     ./packages.nix
     ./samba.nix
-    ./libvirt.nix
+    ./libvirt
     ./k3s.nix
     ./msmtp.nix
     ./cockpit.nix
