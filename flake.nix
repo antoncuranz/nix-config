@@ -9,9 +9,15 @@
     # };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, ... }@inputs:
+  let
+    secrets = builtins.fromJSON (builtins.readFile "${self}/secrets.json");
+  in {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
+      specialArgs = {
+        inherit inputs;
+        inherit secrets;
+      };
       modules = [
         ./hosts/serverton
         ./modules

@@ -1,2 +1,2 @@
-secrets.nix filter=git-crypt diff=git-crypt
+secrets.json filter=git-crypt diff=git-crypt
 scripts/** filter=git-crypt diff=git-crypt

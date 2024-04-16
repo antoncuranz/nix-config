@@ -26,5 +26,6 @@
     tmux
     iperf3
     neofetch
+    lazygit
   ];
 }

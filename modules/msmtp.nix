@@ -1,8 +1,5 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, secrets, ... }:
 
-let
-  secrets = import ../secrets.nix;
-in
 {
   programs.msmtp = {
     enable = true;

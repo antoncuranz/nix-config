@@ -1,8 +1,5 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, secrets, ... }:
 
-let
-  secrets = import ../secrets.nix;
-in
 {
   services.zfs.autoScrub.enable = true;
   services.zfs.trim.enable = true;
