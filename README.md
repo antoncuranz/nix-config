@@ -24,7 +24,7 @@ echo """<PASTE_BASE64_ENCODED_KEY>""" | base64 --decode > /tmp/git-crypt-key
 ssh-keygen -t ed25519 -N "" -f /mnt/etc/secrets/initrd/ssh_host_ed25519_key
 ssh-keygen -t rsa -N "" -f /mnt/etc/secrets/initrd/ssh_host_rsa_key
 
-nixos-install
+nixos-install --flake "/mnt/etc/nixos#default"
 
 # run init scripts
 ```
