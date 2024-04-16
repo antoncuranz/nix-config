@@ -8,24 +8,34 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-darwin = {
+      url = "github:wegank/nix-darwin/mddoc-remove"; # TODO
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # home-manager = {
     #   url = "github:nix-community/home-manager";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, nix-darwin, ... }@inputs:
   let
     secrets = builtins.fromJSON (builtins.readFile "${self}/secrets.json");
   in {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-      specialArgs = {
-        inherit inputs;
-        inherit secrets;
-      };
+      specialArgs = { inherit inputs secrets; };
       modules = [
         ./hosts/serverton
         ./modules
+        # inputs.home-manager.nixosModules.default
+      ];
+    };
+
+    darwinConfigurations.macbook = nix-darwin.lib.darwinSystem {
+      # specialArgs = { }
+      modules = [
+        ./hosts/macbook
         # inputs.home-manager.nixosModules.default
       ];
     };

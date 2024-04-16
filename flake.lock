@@ -1,5 +1,26 @@
 {
   "nodes": {
+    "nix-darwin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1713128552,
+        "narHash": "sha256-6R+TPgT6W65RTW8dmqaKa/cjMxpxb4ZKPpMKrlFKGK8=",
+        "owner": "wegank",
+        "repo": "nix-darwin",
+        "rev": "ebfb593ddbffa771b648522bfa5d575231813f0c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wegank",
+        "ref": "mddoc-remove",
+        "repo": "nix-darwin",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1713206306,
@@ -54,6 +75,7 @@
     },
     "root": {
       "inputs": {
+        "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
         "nixvirt": "nixvirt"
       }
