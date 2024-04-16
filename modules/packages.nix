@@ -24,5 +24,7 @@
     gnumake
     tree
     tmux
+    iperf3
+    neofetch
   ];
 }
