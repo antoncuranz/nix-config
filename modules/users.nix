@@ -20,4 +20,5 @@
   };
 
   users.groups.serverton_users.gid = 1010;
+  users.defaultUserShell = pkgs.zsh;
 }
