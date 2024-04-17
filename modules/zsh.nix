@@ -9,4 +9,8 @@
     zstyle ':prompt:grml:left:items:user' pre '%F{green}%B'
   '';
   programs.zsh.promptInit = ""; # otherwise it'll override the grml prompt
+
+  programs.zsh.shellAliases = {
+    rebuild = "sudo nixos-rebuild switch --flake '/home/ant0n/nix-config#default'";
+  };
 }
