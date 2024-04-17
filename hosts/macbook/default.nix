@@ -5,16 +5,6 @@
   # $ nix-env -qaP | grep wget
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [
-    vim
-    colima
-    docker
-    docker-compose
-    spotify
-    iterm2
-    virt-manager
-  ];
-
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
@@ -24,7 +14,6 @@
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true;  # default shell on catalina
-  # programs.fish.enable = true;
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
@@ -50,16 +39,30 @@
     };
   };
 
+  environment.systemPackages = with pkgs; [
+    vim
+    colima
+    docker
+    docker-compose
+    iterm2
+    k9s
+    virt-manager
+    karabiner-elements
+    goku
+    spotify
+    _1password-gui
+    firefox-bin
+  ];
+
   homebrew = {
     enable = true;
 
     # casks = [
-    #   "1password"
-    #   "firefox"
-    #   "karabiner-elements"
     #   "obsidian"
     #   "telegram"
     #   "signal"
+    #   "timemachineeditor"
+    #   "openlens"
     # ];
 
      masApps = {
