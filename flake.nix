@@ -5,6 +5,11 @@
 
     nur.url = "github:nix-community/nur";
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixvirt = {
       url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,7 +31,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nix-darwin, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nix-darwin, disko, home-manager, ... }@inputs:
   let
     secrets = builtins.fromJSON (builtins.readFile "${self}/secrets.json");
   in {
@@ -34,8 +39,10 @@
       specialArgs = { inherit inputs secrets; };
       modules = [
         ./hosts/serverton
+        ./disko/zroot.nix
         ./modules
-        # inputs.home-manager.nixosModules.default
+
+        disko.nixosModules.disko
       ];
     };
 
@@ -44,7 +51,7 @@
       modules = [
         ./hosts/macbook
         ./modules/zsh.nix
-        #home-manager.darwinModules.default
+
         home-manager.darwinModules.home-manager
         {
           nixpkgs.overlays = [
@@ -54,9 +61,6 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.ant0n = import ./hosts/macbook/home.nix;
-
-          # Optionally, use home-manager.extraSpecialArgs to pass
-          # arguments to home.nix
         }
       ];
     };

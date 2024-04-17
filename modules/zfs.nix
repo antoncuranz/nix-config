@@ -4,45 +4,18 @@
   services.zfs.autoScrub.enable = true;
   services.zfs.trim.enable = true;
 
-  boot.loader.grub = {
-    enable = true;
-    zfsSupport = true;
-    efiSupport = true;
-    efiInstallAsRemovable = true;
-    mirroredBoots = [
-      { devices = [ "nodev" ]; path = "/boot"; }
-    ];
-  };
-
-  fileSystems."/" =
-    { device = "zroot/root";
-      fsType = "zfs";
-    };
-
-  fileSystems."/nix" =
-    { device = "zroot/nix";
-      fsType = "zfs";
-    };
-
-  fileSystems."/var" =
-    { device = "zroot/var";
-      fsType = "zfs";
-    };
-
-  fileSystems."/home" =
-    { device = "zroot/home";
-      fsType = "zfs";
-    };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-id/nvme-SAMSUNG_MZVLB256HAHQ-000H1_S425NA1M917993-part1";
-      fsType = "vfat";
-    };
-
-  swapDevices = [ ];
-  
-  # ZFS Remote unlock (https://nixos.wiki/wiki/ZFS)
   boot = {
+    loader.grub = {
+      enable = true;
+      zfsSupport = true;
+      efiSupport = true;
+      efiInstallAsRemovable = true;
+      mirroredBoots = [
+        { devices = [ "nodev" ]; path = "/boot"; }
+      ];
+    };
+
+    # ZFS Remote unlock (https://nixos.wiki/wiki/ZFS)
     initrd.kernelModules = [ "e1000e" ];
     initrd.network = {
       enable = true;
