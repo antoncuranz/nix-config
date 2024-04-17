@@ -18,7 +18,7 @@
   home.shellAliases = {
     vim = "nvim";
     rebuild = "darwin-rebuild switch --flake '/Users/ant0n/Developer/non-TUB/nix-config#macbook'";
-    "virt-manager" = "virt-manager --no-fork -c qemu+ssh://192.168.1.4/system";
+    "virt-manager" = "GSETTINGS_BACKEND=keyfile virt-manager --no-fork -c qemu+ssh://192.168.1.4/system";
     ibrew = "arch -x86_64 /usr/local/bin/brew";
     izsh = "arch -x86_64 zsh";
     ipython = "arch -x86_64 /usr/local/bin/python3";
