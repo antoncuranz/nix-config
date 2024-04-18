@@ -3,9 +3,9 @@
 {
   imports = [
     ./virtualization
-    ./kubernetes.nix
-    ./email.nix
-    ./samba.nix
+    ./kubernetes
+    ./email
+    ./samba
 
     ./users.nix
     ./firewall.nix
@@ -18,13 +18,6 @@
     ./zsh.nix
     ./git.nix
   ];
-
-  # modules
-  kubernetes.enable = lib.mkDefault true;
-  virtualization.enable = lib.mkDefault true;
-  email.enable = lib.mkDefault true;
-  samba.enable = lib.mkDefault true;
-
 
   # general stuff
   time.timeZone = "Europe/Berlin";
