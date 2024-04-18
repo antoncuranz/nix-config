@@ -14,6 +14,7 @@
   # modules
   kubernetes.enable = false;
   virtualization.enable = false;
+  virtualization.network-bridge.enable = false;
   email.enable = false;
   samba.enable = false;
   boot.remote-unlock.enable = false;
