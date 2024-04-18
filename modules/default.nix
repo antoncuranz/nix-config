@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./boot
     ./virtualization
     ./kubernetes
     ./email
@@ -11,9 +12,7 @@
     ./firewall.nix
     ./packages.nix
 
-    ./zfs.nix
     ./sanoid.nix
-
     ./ssh.nix
     ./zsh.nix
     ./git.nix

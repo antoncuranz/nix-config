@@ -16,4 +16,5 @@
   virtualization.enable = false;
   email.enable = false;
   samba.enable = false;
+  boot.remote-unlock.enable = false;
 }
