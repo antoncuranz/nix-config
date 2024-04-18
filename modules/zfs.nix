@@ -15,6 +15,9 @@
       ];
     };
 
+    # fix boot issues in VMs
+    zfs.devNodes = "/dev/disk/by-partuuid";
+
     # ZFS Remote unlock (https://nixos.wiki/wiki/ZFS)
     initrd.kernelModules = [ "e1000e" ];
     initrd.network = {
