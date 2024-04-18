@@ -15,7 +15,7 @@ nix-env -f '<nixpkgs>' -iA git-crypt
 git clone https://github.com/ant0ncuranz/nix-config.git /mnt/etc/nixos
 
 echo "Paste base64 encoded git-crypt key: "
-read base64key
+read -r base64key
 echo $base64key | base64 --decode > /tmp/git-crypt-key
 
 (cd /mnt/etc/nixos && git-crypt unlock /tmp/git-crypt-key)
@@ -25,4 +25,4 @@ cp /tmp/disko.nix /mnt/etc/nixos/disko/zroot.nix
 ssh-keygen -t ed25519 -N "" -f /mnt/etc/secrets/initrd/ssh_host_ed25519_key
 ssh-keygen -t rsa -N "" -f /mnt/etc/secrets/initrd/ssh_host_rsa_key
 
-nixos-install --flake "/mnt/etc/nixos#testvm"
+nixos-install --flake "/mnt/etc/nixos#default"
