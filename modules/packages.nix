@@ -1,12 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  #nixpkgs.config.packageOverrides = pkgs: {
-  #  nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-  #    inherit pkgs;
-  #  };
-  #};
-
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
@@ -28,4 +22,9 @@
     neofetch
     lazygit
   ];
+
+  # services.cockpit = {
+  #   enable = true;
+  #   port = 9090;
+  # };
 }

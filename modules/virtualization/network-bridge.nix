@@ -1,11 +1,6 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 {
-  networking.hostName = "nixos";
-  networking.hostId = "7bdc28b5";
-
-  networking.useDHCP = lib.mkDefault true;
-
   networking.interfaces.eno1.useDHCP = false;
   networking.interfaces.br0.useDHCP = false;
   networking.bridges = {

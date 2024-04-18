@@ -46,8 +46,18 @@
       ];
     };
 
+    nixosConfigurations.testvm = nixpkgs.lib.nixosSystem {
+      specialArgs = { inherit inputs; };
+      modules = [
+        ./hosts/testvm
+        ./disko/zroot.nix
+        ./modules
+
+        disko.nixosModules.disko
+      ];
+    };
+
     darwinConfigurations.macbook = nix-darwin.lib.darwinSystem {
-      # specialArgs = { }
       modules = [
         ./hosts/macbook
         ./modules/zsh.nix

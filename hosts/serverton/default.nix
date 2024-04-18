@@ -1,11 +1,6 @@
 { config, lib, pkgs, inputs, ... }:
 
 {
-  time.timeZone = "Europe/Berlin";
-  i18n.defaultLocale = "de_DE.UTF-8";
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   nix.gc = {
     automatic = true;
     dates = "weekly";
@@ -25,8 +20,12 @@
     randomizedDelaySec = "45min";
   };
 
+  networking.hostName = "nixos";
+  networking.hostId = "7bdc28b5";
+
   # hardware
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+  boot.kernelModules = [ "kvm-intel" ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
