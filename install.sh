@@ -14,6 +14,7 @@ nix-env -f '<nixpkgs>' -iA git-crypt
 # clone and unlock configuration
 git clone https://github.com/ant0ncuranz/nix-config.git /mnt/etc/nixos
 
+echo "Paste base64 encoded git-crypt key: "
 read base64key
 echo $base64key | base64 --decode > /tmp/git-crypt-key
 
