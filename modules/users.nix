@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, secrets, ... }:
 
 {
   users.users.ant0n = {
@@ -9,6 +9,7 @@
       "libvirtd"
       "serverton_users"
     ];
+    hashedPassword = "${secrets.hashedPassword}";
   };
 
   users.users.faye = {

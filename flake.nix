@@ -3,6 +3,8 @@
     nixpkgs.url = "github:nixos/nixpkgs?rev=2a4bcf18e656cceedd40a01c38fccaf8aff75239"; # https://github.com/NixOS/nixpkgs/issues/304511
     # nixpkgs.url = "github:nixos/nixpkgs/release-23.11";
 
+    impermanence.url = "github:nix-community/impermanence";
+
     nur.url = "github:nix-community/nur";
 
     disko = {
@@ -31,7 +33,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nix-darwin, disko, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nix-darwin, disko, impermanence, home-manager, ... }@inputs:
   let
     secrets = builtins.fromJSON (builtins.readFile "${self}/secrets.json");
   in {

@@ -55,25 +55,20 @@
             options.mountpoint = "legacy";
             mountpoint = "/nix";
           };
-          var = {
-            type = "zfs_fs";
-            options.mountpoint = "legacy";
-            mountpoint = "/var";
-          };
           home = {
             type = "zfs_fs";
             options.mountpoint = "legacy";
             mountpoint = "/home";
           };
-          bitcoin = { # TODO
+          bitcoin = {
             type = "zfs_fs";
             options.mountpoint = "legacy";
             mountpoint = "/home/ant0n/bitcoin";
           };
-          k3s = { # TODO
+          persist = {
             type = "zfs_fs";
             options.mountpoint = "legacy";
-            mountpoint = "/var/lib/rancher/k3s";
+            mountpoint = "/persist";
           };
         };
       };
