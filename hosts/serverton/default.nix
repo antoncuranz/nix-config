@@ -23,6 +23,10 @@
   networking.hostName = "nixos";
   networking.hostId = "7bdc28b5";
 
+  programs.zsh.shellAliases = {
+    rebuild = "sudo nixos-rebuild switch --flake '/home/ant0n/nix-config#default'";
+  };
+
   # hardware
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.kernelModules = [ "kvm-intel" ];

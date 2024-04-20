@@ -18,7 +18,7 @@
     };
 
     nix-darwin = {
-      url = "github:wegank/nix-darwin/mddoc-remove"; # TODO
+      url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -60,20 +60,12 @@
     };
 
     darwinConfigurations.macbook = nix-darwin.lib.darwinSystem {
+      specialArgs = { inherit inputs; };
       modules = [
         ./hosts/macbook
         ./modules/zsh.nix
 
         home-manager.darwinModules.home-manager
-        {
-          nixpkgs.overlays = [
-            inputs.nixpkgs-firefox-darwin.overlay
-            inputs.nur.overlay
-          ];
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.ant0n = import ./hosts/macbook/home.nix;
-        }
       ];
     };
   };

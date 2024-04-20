@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   # List packages installed in system profile. To search by name, run:
@@ -23,7 +23,16 @@
   nixpkgs.hostPlatform = "aarch64-darwin";
 
   # Playground
+  nixpkgs.overlays = [
+    inputs.nixpkgs-firefox-darwin.overlay
+    inputs.nur.overlay
+  ];
+
   users.users.ant0n.home = "/Users/ant0n";
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+  home-manager.users.ant0n = import ./home.nix;
+
   system.activationScripts.postUserActivation.text = ''
     # Following line should allow us to avoid a logout/login cycle
     /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
@@ -72,4 +81,5 @@
        "Magnet" = 441258766;
     };
   };
+
 }
