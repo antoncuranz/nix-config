@@ -8,7 +8,7 @@ nix --experimental-features "nix-command flakes" run github:nix-community/disko 
 # create snapshot for impermanence
 zfs snapshot zroot/root@blank
 
-mkdir -p /mnt/etc/nixos /mnt/persist/secrets/initrd
+mkdir -p /mnt/etc/nixos /mnt/persist/secrets/initrd /mnt/persist/var/lib/libvirt/images
 
 # install git and git-crypt
 nix-env -f '<nixpkgs>' -iA git

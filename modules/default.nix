@@ -24,4 +24,8 @@
   i18n.defaultLocale = "de_DE.UTF-8";
   networking.useDHCP = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  security.sudo.extraConfig = ''
+    Defaults lecture = never
+  '';
 }
