@@ -4,6 +4,9 @@ curl https://raw.githubusercontent.com/ant0ncuranz/nix-config/main/disko/zroot.n
 vim /tmp/disko.nix
 nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /tmp/disko.nix
 
+# create snapshot for impermanence
+zfs snapshot zroot/root@blank
+
 mkdir -p /mnt/etc/nixos
 nix-env -f '<nixpkgs>' -iA git
 git clone https://github.com/ant0ncuranz/nix-config.git /mnt/etc/nixos

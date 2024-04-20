@@ -3,7 +3,12 @@
 {
   services.sanoid.enable = true;
 
-  services.sanoid.datasets.zroot = {
+  services.sanoid.datasets."zroot/home" = {
+    useTemplate = [ "main" ];
+    recursive = true;
+  };
+
+  services.sanoid.datasets."zroot/persist" = {
     useTemplate = [ "main" ];
     recursive = true;
   };
@@ -21,12 +26,6 @@
   services.sanoid.datasets.Backup = {
     useTemplate = [ "main" ];
     recursive = true;
-  };
-
-  services.sanoid.datasets."zroot/bitcoin" = {
-    autosnap = false;
-    autoprune = false;
-    monitor = false;
   };
 
   services.sanoid.templates.main = {

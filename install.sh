@@ -5,6 +5,9 @@ curl https://raw.githubusercontent.com/ant0ncuranz/nix-config/main/disko/zroot.n
 vim /tmp/disko.nix
 nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /tmp/disko.nix
 
+# create snapshot for impermanence
+zfs snapshot zroot/root@blank
+
 mkdir -p /mnt/etc/nixos /mnt/etc/secrets/initrd
 
 # install git and git-crypt
