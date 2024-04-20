@@ -3,7 +3,7 @@
     disk = {
       one = {
         type = "disk";
-        device = "/dev/vda";
+        device = "/dev/disk/by-id/virtio-eins";
         content = {
           type = "gpt";
           partitions = {
@@ -19,7 +19,7 @@
       };
       two = {
         type = "disk";
-        device = "/dev/vdb";
+        device = "/dev/disk/by-id/virtio-zwei";
         content = {
           type = "gpt";
           partitions = {
@@ -35,7 +35,7 @@
       };
       three = {
         type = "disk";
-        device = "/dev/vdc";
+        device = "/dev/disk/by-id/virtio-drei";
         content = {
           type = "gpt";
           partitions = {
@@ -51,7 +51,7 @@
       };
       four = {
         type = "disk";
-        device = "/dev/vdd";
+        device = "/dev/disk/by-id/virtio-vier";
         content = {
           type = "gpt";
           partitions = {
@@ -79,9 +79,10 @@
           compression = "lz4";
           relatime = "on";
           xattr = "sa";
+          mountpoint = "/mnt/nvme";
           encryption = "aes-256-gcm";
-          keyformat = "passphrase";
-          keylocation = "file:///tmp/TODO.key";
+          keyformat = "raw";
+          keylocation = "file:///persist/secrets/zfs/nvme.key";
         };
         datasets = {
           Samba = {

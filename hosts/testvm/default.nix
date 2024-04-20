@@ -10,6 +10,8 @@
     initialPassword = "ant0n";
   };
 
+  # boot.zfs.extraPools = [ "nvme" ];
+
   networking.hostName = "nixvm";
   networking.hostId = "e0f98c6d";
   system.stateVersion = "23.11";
