@@ -1,7 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?rev=2a4bcf18e656cceedd40a01c38fccaf8aff75239"; # https://github.com/NixOS/nixpkgs/issues/304511
-    # nixpkgs.url = "github:nixos/nixpkgs/release-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/release-23.11";
 
     impermanence.url = "github:nix-community/impermanence";
 
