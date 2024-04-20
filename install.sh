@@ -8,7 +8,7 @@ nix --experimental-features "nix-command flakes" run github:nix-community/disko 
 # create snapshot for impermanence
 zfs snapshot zroot/root@blank
 
-mkdir -p /mnt/etc/nixos /mnt/etc/secrets/initrd
+mkdir -p /mnt/etc/nixos /mnt/persist/secrets/initrd
 
 # install git and git-crypt
 nix-env -f '<nixpkgs>' -iA git
@@ -25,7 +25,7 @@ echo $base64key | base64 --decode > /tmp/git-crypt-key
 
 cp /tmp/disko.nix /mnt/etc/nixos/disko/zroot.nix
 
-ssh-keygen -t ed25519 -N "" -f /mnt/etc/secrets/initrd/ssh_host_ed25519_key
-ssh-keygen -t rsa -N "" -f /mnt/etc/secrets/initrd/ssh_host_rsa_key
+ssh-keygen -t ed25519 -N "" -f /mnt/persist/secrets/initrd/ssh_host_ed25519_key
+ssh-keygen -t rsa -N "" -f /mnt/persist/secrets/initrd/ssh_host_rsa_key
 
 nixos-install --flake "/mnt/etc/nixos#default"

@@ -4,15 +4,16 @@ let
   cfg = config.impermanence;
 in
 {
-  options.boot.impermanence = {
+  options.impermanence = {
     enable = lib.mkEnableOption "enable impermanence";
   };
 
   config = lib.mkIf cfg.enable {
     boot.initrd.postDeviceCommands = lib.mkAfter ''
-      zfs rollback -r zpool/root@blank
+      zfs rollback -r zroot/root@blank
     '';
 
+    fileSystems."/persist".neededForBoot = true;
     environment.persistence."/persist" = {
       hideMounts = true;
       directories = [

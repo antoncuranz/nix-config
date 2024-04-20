@@ -7,6 +7,7 @@
     ./kubernetes
     ./email
     ./samba
+    ./impermanence
 
     ./users.nix
     ./firewall.nix
