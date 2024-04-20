@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, secrets, ... }:
 
 {
   nix.gc = {
@@ -23,8 +23,30 @@
   networking.hostName = "nixos";
   networking.hostId = "7bdc28b5";
 
+  users.users.ant0n = {
+    isNormalUser = true;
+    uid = 1000;
+    extraGroups = [
+      "wheel" # Enable ‘sudo’ for the user.
+      "libvirtd"
+      "serverton_users"
+    ];
+    hashedPassword = "${secrets.hashedPassword}";
+  };
+
+  users.users.faye = {
+    isNormalUser = true;
+    uid = 1001;
+    extraGroups = [
+      "serverton_users"
+    ];
+  };
+
+  users.groups.serverton_users.gid = 1010;
+
   programs.zsh.shellAliases = {
     rebuild = "sudo nixos-rebuild switch --flake '/home/ant0n/nix-config#default'";
+    k9s = "k9s --kubeconfig /etc/rancher/k3s/k3s.yaml";
   };
 
   # hardware

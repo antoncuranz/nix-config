@@ -1,6 +1,15 @@
 { config, lib, pkgs, inputs, ... }:
 
 {
+  users.users.ant0n = {
+    isNormalUser = true;
+    uid = 1000;
+    extraGroups = [
+      "wheel" # Enable ‘sudo’ for the user.
+    ];
+    initialPassword = "ant0n";
+  };
+
   networking.hostName = "nixvm";
   networking.hostId = "e0f98c6d";
   system.stateVersion = "23.11";
