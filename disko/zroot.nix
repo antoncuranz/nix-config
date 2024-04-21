@@ -3,7 +3,7 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/disk/by-id/nvme-SAMSUNG_MZVLB256HAHQ-000H1_S425NA1M917993";
+        device = "/dev/disk/by-id/ata-Samsung_SSD_870_EVO_4TB_S758NS0W801194W";
         content = {
           type = "gpt";
           partitions = {
@@ -64,6 +64,11 @@
             type = "zfs_fs";
             options.mountpoint = "legacy";
             mountpoint = "/home/ant0n/bitcoin";
+          };
+          mediarr = {
+            type = "zfs_fs";
+            options.mountpoint = "legacy";
+            mountpoint = "/home/ant0n/mediarr";
           };
           persist = {
             type = "zfs_fs";

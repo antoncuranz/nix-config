@@ -3,7 +3,7 @@
     disk = {
       one = {
         type = "disk";
-        device = "/dev/disk/by-id/virtio-eins";
+        device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_2TB_S4J4NM0W413915A";
         content = {
           type = "gpt";
           partitions = {
@@ -19,7 +19,7 @@
       };
       two = {
         type = "disk";
-        device = "/dev/disk/by-id/virtio-zwei";
+        device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_2TB_S4J4NM0W706699P";
         content = {
           type = "gpt";
           partitions = {
@@ -35,7 +35,7 @@
       };
       three = {
         type = "disk";
-        device = "/dev/disk/by-id/virtio-drei";
+        device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_2TB_S6P1NF0WA55869R";
         content = {
           type = "gpt";
           partitions = {
@@ -51,7 +51,7 @@
       };
       four = {
         type = "disk";
-        device = "/dev/disk/by-id/virtio-vier";
+        device = "/dev/disk/by-id/nvme-WD_BLACK_SN770_2TB_232612800422";
         content = {
           type = "gpt";
           partitions = {
@@ -113,9 +113,6 @@
             type = "zfs_fs";
           };
           "Kubernetes/immich" = {
-            type = "zfs_fs";
-          };
-          "Kubernetes/mediarr" = {
             type = "zfs_fs";
           };
           "Kubernetes/paperless" = {

@@ -30,9 +30,14 @@
       url = "github:bandithedoge/nixpkgs-firefox-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-23.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nix-darwin, disko, impermanence, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nix-darwin, disko, impermanence, home-manager, nixvim, ... }@inputs:
   let
     secrets = builtins.fromJSON (builtins.readFile "${self}/secrets.json");
   in {
@@ -65,6 +70,7 @@
         ./modules/zsh.nix
 
         home-manager.darwinModules.home-manager
+        nixvim.nixDarwinModules.nixvim
       ];
     };
   };

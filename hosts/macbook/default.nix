@@ -82,4 +82,26 @@
     };
   };
 
+  programs.nixvim = {
+    enable = true;
+    plugins = {
+      commentary.enable = true;
+      surround.enable = true;
+      tmux-navigator.enable = true;
+      nvim-tree.enable = true;
+      nix.enable = true;
+    };
+
+    options = {
+      mouse = "a";
+      number = true;
+      relativenumber = true;
+      tabstop = 2;
+      shiftwidth = 0; # match tabstop
+      expandtab = true;
+      ignorecase = true;
+      smartcase = true;
+    };
+  };
+
 }

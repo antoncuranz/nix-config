@@ -20,7 +20,7 @@
     randomizedDelaySec = "45min";
   };
 
-  networking.hostName = "nixos";
+  networking.hostName = "serverton";
   networking.hostId = "7bdc28b5";
 
   users.users.ant0n = {
