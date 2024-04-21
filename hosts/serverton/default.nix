@@ -1,6 +1,8 @@
 { config, lib, pkgs, inputs, secrets, ... }:
 
 {
+  boot.zfs.extraPools = [ "nvme" ];
+
   nix.gc = {
     automatic = true;
     dates = "weekly";

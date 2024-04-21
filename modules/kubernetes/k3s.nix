@@ -18,7 +18,7 @@ in
       "--disable=local-storage"
       "--disable=metrics-server"
       "--disable=servicelb"
-      "--node-ip=192.168.1.4"
+      "--node-ip=192.168.1.2"
       "--write-kubeconfig-mode=644"
       "--disable-cloud-controller"
       "--datastore-endpoint=etcd"
