@@ -88,34 +88,10 @@
           Samba = {
             type = "zfs_fs";
           };
-          "Samba/Anton" = {
-            type = "zfs_fs";
-          };
-          "Samba/Faye" = {
-            type = "zfs_fs";
-          };
-          "Samba/Shared" = {
-            type = "zfs_fs";
-          };
           Backup = {
             type = "zfs_fs";
           };
-          "Backup/Anton" = {
-            type = "zfs_fs";
-          };
-          "Backup/Faye" = {
-            type = "zfs_fs";
-          };
-          "Backup/TimeMachine" = {
-            type = "zfs_fs";
-          };
           Kubernetes = {
-            type = "zfs_fs";
-          };
-          "Kubernetes/immich" = {
-            type = "zfs_fs";
-          };
-          "Kubernetes/paperless" = {
             type = "zfs_fs";
           };
         };
@@ -123,5 +99,3 @@
     };
   };
 }
-
-

@@ -21,6 +21,7 @@
     iperf3
     neofetch
     lazygit
+    lsof
   ];
 
   # services.cockpit = {

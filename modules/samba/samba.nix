@@ -72,9 +72,9 @@ in {
             server role = active directory domain controller
             workgroup = ${adWorkgroup}
             idmap_ldb:use rfc2307 = yes
-            # tls certfile = /home/ant0n/certs/ad.crt
-            # tls keyfile = /home/ant0n/certs/ad.key
-            # tls cafile =
+            tls certfile = /home/ant0n/certs/ad.crt
+            tls keyfile = /home/ant0n/certs/ad.key
+            tls cafile =
 
             # File Sharing
             server string = Serverton
@@ -88,7 +88,7 @@ in {
             access based share enum = yes
             
         [Anton]
-            path = /mnt/Samba/Anton
+            path = /mnt/nvme/Samba/Anton
             guest ok = no
             comment =
             valid users = ant0n
@@ -96,7 +96,7 @@ in {
             browseable = yes
             
         [Faye]
-            path = /mnt/Samba/Faye
+            path = /mnt/nvme/Samba/Faye
             guest ok = no
             comment =
             valid users = faye
@@ -104,7 +104,7 @@ in {
             browseable = yes
             
         [Shared]
-            path = /mnt/Samba/Shared
+            path = /mnt/nvme/Samba/Shared
             guest ok = no
             comment =
             valid users = ant0n faye
@@ -112,7 +112,7 @@ in {
             browseable = yes
             
         [TimeMachine]
-            path = /mnt/Backup/TimeMachine
+            path = /mnt/nvme/Backup/TimeMachine
             guest ok = no
             comment =
             valid users = ant0n
@@ -122,7 +122,7 @@ in {
             fruit:time machine max size = 1T
             
         [Faye Backup]
-            path = /mnt/Backup/Faye
+            path = /mnt/nvme/Backup/Faye
             guest ok = no
             comment =
             valid users = faye
@@ -130,7 +130,7 @@ in {
             browseable = yes
             
         [Backup]
-            path = /mnt/Backup/Anton
+            path = /mnt/nvme/Backup/Anton
             guest ok = no
             comment =
             valid users = ant0n
@@ -138,7 +138,7 @@ in {
             browseable = yes
             
         [Mediarr]
-            path = /mnt/SSD/k8s/mediarr
+            path = /home/ant0n/mediarr
             guest ok = no
             comment =
             browseable = yes

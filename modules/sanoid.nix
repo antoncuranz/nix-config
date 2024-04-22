@@ -1,6 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
+  environment.systemPackages = with pkgs; [
+    sanoid
+  ];
+
   services.sanoid.enable = true;
 
   services.sanoid.datasets."zroot/home" = {
@@ -13,20 +17,20 @@
     recursive = true;
   };
 
-  services.sanoid.datasets.SSD = {
-    useTemplate = [ "main" ];
-    recursive = true;
-  };
-
-  services.sanoid.datasets.Samba = {
-    useTemplate = [ "main" ];
-    recursive = true;
-  };
-
-  services.sanoid.datasets.Backup = {
-    useTemplate = [ "main" ];
-    recursive = true;
-  };
+  #services.sanoid.datasets.SSD = {
+  #  useTemplate = [ "main" ];
+  #  recursive = true;
+  #};
+#
+#  services.sanoid.datasets.Samba = {
+#    useTemplate = [ "main" ];
+#    recursive = true;
+#  };
+#
+#  services.sanoid.datasets.Backup = {
+#    useTemplate = [ "main" ];
+#    recursive = true;
+#  };
 
   services.sanoid.templates.main = {
     hourly = 24;

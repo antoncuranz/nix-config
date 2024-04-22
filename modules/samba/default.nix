@@ -3,6 +3,7 @@
 {
   imports = [
     ./samba.nix
+    ./avahi.nix
   ];
 
   samba.enable = lib.mkDefault true;

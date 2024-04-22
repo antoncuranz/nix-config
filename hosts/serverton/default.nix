@@ -3,6 +3,11 @@
 {
   boot.zfs.extraPools = [ "nvme" ];
 
+  environment.systemPackages = with pkgs; [
+    intel-media-driver
+    intel-gpu-tools
+  ];
+
   nix.gc = {
     automatic = true;
     dates = "weekly";
@@ -29,7 +34,8 @@
     isNormalUser = true;
     uid = 1000;
     extraGroups = [
-      "wheel" # Enable ‘sudo’ for the user.
+      "ant0n"
+      "wheel"
       "libvirtd"
       "serverton_users"
     ];
@@ -40,10 +46,13 @@
     isNormalUser = true;
     uid = 1001;
     extraGroups = [
+      "faye"
       "serverton_users"
     ];
   };
 
+  users.groups.ant0n.gid = 1000;
+  users.groups.faye.gid = 1001;
   users.groups.serverton_users.gid = 1010;
 
   programs.zsh.shellAliases = {
