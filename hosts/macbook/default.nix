@@ -90,7 +90,24 @@
       tmux-navigator.enable = true;
       nvim-tree.enable = true;
       nix.enable = true;
+      treesitter.enable = true;
+
+      alpha = {
+        enable = true;
+        #theme = "startify";
+      };
+      illuminate.enable = true;
     };
+
+    extraPlugins = [(pkgs.vimUtils.buildVimPlugin {
+      name = "vim-colors-xcode";
+      src = pkgs.fetchFromGitHub {
+        owner = "vismaybhargav"; # https://github.com/lunacookies/vim-colors-xcode/pull/36
+        repo = "vim-colors-xcode";
+        rev = "0f96f664c200eec54f311e7e0640aebaee6402df";
+        hash = "sha256-GV057QK32yBRPD883V8xtS2Lu1wlnADxzuKsU743nYg=";
+      };
+    })];
 
     options = {
       mouse = "a";
@@ -102,6 +119,8 @@
       ignorecase = true;
       smartcase = true;
     };
+
+    extraConfigLua = (builtins.readFile ./theming.lua);
   };
 
 }
