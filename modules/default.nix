@@ -17,6 +17,7 @@
     ./ssh.nix
     ./zsh.nix
     ./git.nix
+    ./power.nix
   ];
 
   # general stuff

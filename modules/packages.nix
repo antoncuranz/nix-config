@@ -23,6 +23,7 @@
     lazygit
     lsof
     pciutils
+    bc
   ];
 
   # services.cockpit = {
