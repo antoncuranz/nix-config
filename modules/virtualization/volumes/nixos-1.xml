@@ -1,8 +1,0 @@
-<volume type='file'>
-  <name>nixos-1.qcow2</name>
-  <capacity>21474836480</capacity>
-  <allocation>0</allocation>
-  <target>
-    <format type="qcow2"/>
-  </target>
-</volume>

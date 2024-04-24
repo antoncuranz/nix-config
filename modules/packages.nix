@@ -22,6 +22,7 @@
     neofetch
     lazygit
     lsof
+    pciutils
   ];
 
   # services.cockpit = {

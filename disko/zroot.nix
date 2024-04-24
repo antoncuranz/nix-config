@@ -70,6 +70,11 @@
             options.mountpoint = "legacy";
             mountpoint = "/home/ant0n/mediarr";
           };
+          k8s = {
+            type = "zfs_fs";
+            options.mountpoint = "legacy";
+            mountpoint = "/k8s";
+          };
           persist = {
             type = "zfs_fs";
             options.mountpoint = "legacy";

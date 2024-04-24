@@ -25,9 +25,6 @@ in
           definition = ./pool.xml;
           volumes = [
             { definition = ./volumes/nixos.xml; }
-            { definition = ./volumes/nixos-1.xml; }
-            { definition = ./volumes/nixos-2.xml; }
-            { definition = ./volumes/nixos-3.xml; }
           ];
         }];
       };
