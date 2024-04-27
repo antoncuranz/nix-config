@@ -24,6 +24,9 @@ in
         "/var/lib/samba"
         "/var/cache/samba"
         "/var/lib/libvirt"
+
+        "/root/.config/rclone"
+        "/root/.cache/restic"
       ];
       files = [
         "/etc/machine-id"

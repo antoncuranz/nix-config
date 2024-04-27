@@ -9,9 +9,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [ pkgs.k3s ];
+    environment.systemPackages = [ pkgs.unstable.k3s ];
 
     services.k3s.enable = true;
+    services.k3s.package = pkgs.unstable.k3s;
     services.k3s.role = "server";
     services.k3s.extraFlags = toString [
       "--disable=traefik"
@@ -26,11 +27,19 @@ in
     ];
 
     # required for democratic csi
-    system.activationScripts.csi-symlinks.text = ''
-      vars="zfs zpool mount umount"
-      for x in $vars; do
-        ln -sf /run/current-system/sw/bin/$x /usr/bin/$x
-      done
-    '';
+    systemd.services."csi-symlink@" = {
+      description = "Create a symlink in /usr/bin";
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "/run/current-system/sw/bin/ln -sf /run/current-system/sw/bin/%I /usr/bin/%I";
+      };
+    };
+    
+    systemd.services."k3s".wants = [
+      "csi-symlink@zfs.service"
+      "csi-symlink@zpool.service"
+      "csi-symlink@mount.service"
+      "csi-symlink@umount.service"
+    ];
   };
 }
