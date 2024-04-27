@@ -24,6 +24,7 @@
     lsof
     pciutils
     bc
+    jq
   ];
 
   # services.cockpit = {

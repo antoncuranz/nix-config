@@ -8,6 +8,7 @@
 
   networking.firewall.allowedTCPPorts = [
     6443 # k3s API server
+    51017 # Homebridge
   ];
 
   networking.firewall.allowedUDPPorts = [

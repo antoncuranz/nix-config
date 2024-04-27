@@ -18,10 +18,19 @@ in
       "--disable=local-storage"
       "--disable=metrics-server"
       "--disable=servicelb"
+      "--disable-cloud-controller"
+      "--disable-helm-controller"
       "--node-ip=192.168.1.2"
       "--write-kubeconfig-mode=644"
-      "--disable-cloud-controller"
       "--datastore-endpoint=etcd"
     ];
+
+    # required for democratic csi
+    system.activationScripts.csi-symlinks.text = ''
+      vars="zfs zpool mount umount"
+      for x in $vars; do
+        ln -sf /run/current-system/sw/bin/$x /usr/bin/$x
+      done
+    '';
   };
 }
