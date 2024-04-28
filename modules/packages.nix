@@ -40,6 +40,7 @@
     jq
     restic
     rclone
+    buildah
   ];
 
   # services.cockpit = {

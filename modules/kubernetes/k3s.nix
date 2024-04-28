@@ -6,6 +6,9 @@ in
 {
   options.kubernetes = {
     enable = lib.mkEnableOption "enable kubernetes";
+    nodeIp = lib.mkOption {
+      type = lib.types.str;
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -21,7 +24,7 @@ in
       "--disable=servicelb"
       "--disable-cloud-controller"
       "--disable-helm-controller"
-      "--node-ip=192.168.1.2"
+      "--node-ip=${cfg.nodeIp}"
       "--write-kubeconfig-mode=644"
       "--datastore-endpoint=etcd"
     ];

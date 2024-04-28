@@ -60,6 +60,10 @@
     k9s = "k9s --kubeconfig /etc/rancher/k3s/k3s.yaml";
   };
 
+  # modules
+  kubernetes.enable = true;
+  kubernetes.nodeIp = "192.168.1.2";
+
   # hardware
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.kernelModules = [ "kvm-intel" ];
