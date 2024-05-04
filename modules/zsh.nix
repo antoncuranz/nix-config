@@ -1,12 +1,19 @@
 { config, lib, pkgs, ... }:
 
 {
-  programs.zsh.enable = true;
-  programs.zsh.interactiveShellInit = ''
-    source ${pkgs.grml-zsh-config}/etc/zsh/zshrc
+  programs.zsh = {
+    enable = true;
+    interactiveShellInit = ''
+      source ${pkgs.grml-zsh-config}/etc/zsh/zshrc
 
-    # Make user colour green in prompt instead of default blue
-    zstyle ':prompt:grml:left:items:user' pre '%F{green}%B'
-  '';
-  programs.zsh.promptInit = ""; # otherwise it'll override the grml prompt
+      # Make user colour green in prompt instead of default blue
+      zstyle ':prompt:grml:left:items:user' pre '%F{green}%B'
+    '';
+    promptInit = ""; # otherwise it'll override the grml prompt
+  };
+
+  environment.sessionVariables = {
+    EDITOR = "vim";
+    KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
+  };
 }

@@ -57,7 +57,6 @@
 
   programs.zsh.shellAliases = {
     rebuild = "sudo nixos-rebuild switch --flake '/home/ant0n/nix-config#default'";
-    k9s = "k9s --kubeconfig /etc/rancher/k3s/k3s.yaml";
   };
 
   # modules

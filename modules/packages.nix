@@ -3,11 +3,6 @@
 {
   nixpkgs.config.allowUnfree = true;
   
-  #overlay-unstable = final: prev: {
-  #  unstable = import inputs.nixpkgs-unstable {
-  #    system = prev.system;
-  #  };
-  #};
   nixpkgs.overlays = [ 
     (final: prev: {
       unstable = import inputs.nixpkgs-unstable {
@@ -42,9 +37,4 @@
     rclone
     buildah
   ];
-
-  # services.cockpit = {
-  #   enable = true;
-  #   port = 9090;
-  # };
 }

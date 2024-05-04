@@ -8,12 +8,12 @@
     ./email
     ./samba
     ./impermanence
+    ./backup
 
     ./users.nix
     ./firewall.nix
     ./packages.nix
 
-    ./sanoid.nix
     ./ssh.nix
     ./zsh.nix
     ./git.nix

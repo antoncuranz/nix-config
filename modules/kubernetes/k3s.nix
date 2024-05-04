@@ -12,7 +12,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [ pkgs.unstable.k3s ];
+    environment.systemPackages = with pkgs; [ unstable.k3s kubectx ];
 
     services.k3s.enable = true;
     services.k3s.package = pkgs.unstable.k3s;
