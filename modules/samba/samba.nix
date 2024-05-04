@@ -15,6 +15,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    services.samba.openFirewall = true;
+
     # Disable resolveconf, we're using Samba internal DNS backend
     systemd.services.resolvconf.enable = false;
     environment.etc = {

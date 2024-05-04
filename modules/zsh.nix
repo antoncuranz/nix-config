@@ -11,9 +11,4 @@
     '';
     promptInit = ""; # otherwise it'll override the grml prompt
   };
-
-  environment.sessionVariables = {
-    EDITOR = "vim";
-    KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
-  };
 }

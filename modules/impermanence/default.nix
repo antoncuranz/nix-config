@@ -6,5 +6,5 @@
     ./impermanence.nix
   ];
 
-  impermanence.enable = lib.mkDefault true;
+  impermanence.enable = lib.mkDefault false;
 }

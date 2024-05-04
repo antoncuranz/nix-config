@@ -1,67 +1,24 @@
 { config, lib, pkgs, inputs, secrets, ... }:
 
 {
-  boot.zfs.extraPools = [ "nvme" ];
-
-  environment.systemPackages = with pkgs; [
-    intel-media-driver
-    intel-gpu-tools
+  imports = [
+    ./users.nix
+    ./firewall.nix
+    ./packages.nix
+    ./misc.nix
   ];
-
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 14d";
-  };
-
-  system.autoUpgrade = {
-    enable = true;
-    flake = inputs.self.outPath;
-    flags = [
-      "--update-input"
-      "nixpkgs"
-      "-L" # print build logs
-      "--commit-lock-file"
-    ];
-    dates = "06:00";
-    randomizedDelaySec = "45min";
-  };
-
-  networking.hostName = "serverton";
-  networking.hostId = "7bdc28b5";
-
-  users.users.ant0n = {
-    isNormalUser = true;
-    uid = 1000;
-    extraGroups = [
-      "ant0n"
-      "wheel"
-      "libvirtd"
-      "serverton_users"
-    ];
-    hashedPassword = "${secrets.hashedPassword}";
-  };
-
-  users.users.faye = {
-    isNormalUser = true;
-    uid = 1001;
-    extraGroups = [
-      "faye"
-      "serverton_users"
-    ];
-  };
-
-  users.groups.ant0n.gid = 1000;
-  users.groups.faye.gid = 1001;
-  users.groups.serverton_users.gid = 1010;
-
-  programs.zsh.shellAliases = {
-    rebuild = "sudo nixos-rebuild switch --flake '/home/ant0n/nix-config#default'";
-  };
 
   # modules
   kubernetes.enable = true;
   kubernetes.nodeIp = "192.168.1.2";
+  power.enable = true;
+  backup.enable = true;
+  boot.remote-unlock.enable = true;
+  samba.enable = true;
+  email.enable = true;
+  impermanence.enable = true;
+  virtualization.enable = true;
+  virtualization.network-bridge.enable = true;
 
   # hardware
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];

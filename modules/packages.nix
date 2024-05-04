@@ -20,8 +20,6 @@
     cockpit
     lm_sensors
     htop
-    k9s
-    kubernetes-helm
     unzip
     gnumake
     tree
@@ -31,10 +29,6 @@
     lazygit
     lsof
     pciutils
-    bc
     jq
-    restic
-    rclone
-    buildah
   ];
 }

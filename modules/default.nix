@@ -9,15 +9,15 @@
     ./samba
     ./impermanence
     ./backup
+    ./power
 
     ./users.nix
-    ./firewall.nix
     ./packages.nix
 
     ./ssh.nix
     ./zsh.nix
+    ./zfs.nix
     ./git.nix
-    ./power.nix
   ];
 
   # general stuff
@@ -25,6 +25,9 @@
   i18n.defaultLocale = "de_DE.UTF-8";
   networking.useDHCP = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  environment.sessionVariables = {
+    EDITOR = "vim";
+  };
 
   security.sudo.extraConfig = ''
     Defaults lecture = never

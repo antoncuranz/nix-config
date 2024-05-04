@@ -7,5 +7,5 @@
     ./syncoid.nix
   ];
 
-  backup.enable = lib.mkDefault true;
+  backup.enable = lib.mkDefault false;
 }

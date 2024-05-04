@@ -6,6 +6,6 @@
     ./network-bridge.nix
   ];
 
-  virtualization.enable = lib.mkDefault true;
-  virtualization.network-bridge.enable = lib.mkDefault true;
+  virtualization.enable = lib.mkDefault false;
+  virtualization.network-bridge.enable = lib.mkDefault false;
 }

@@ -5,5 +5,5 @@
     ./msmtp.nix
   ];
 
-  email.enable = lib.mkDefault true;
+  email.enable = lib.mkDefault false;
 }

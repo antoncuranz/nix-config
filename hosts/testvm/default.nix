@@ -30,10 +30,4 @@
   # modules
   kubernetes.enable = true;
   kubernetes.nodeIp = "192.168.1.3";
-
-  virtualization.enable = false;
-  virtualization.network-bridge.enable = false;
-  email.enable = false;
-  samba.enable = false;
-  boot.remote-unlock.enable = false;
 }

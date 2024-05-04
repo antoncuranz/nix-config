@@ -12,7 +12,18 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ unstable.k3s kubectx ];
+    networking.firewall.allowedTCPPorts = [
+      6443 # k3s API server
+    ];
+
+    environment.systemPackages = with pkgs; [
+      unstable.k3s
+      kubectx
+      k9s
+      kubernetes-helm
+    ];
+
+    environment.sessionVariables.KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
 
     services.k3s.enable = true;
     services.k3s.package = pkgs.unstable.k3s;

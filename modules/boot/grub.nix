@@ -1,10 +1,6 @@
 { config, lib, secrets, ... }:
 
 {
-  # TODO: move this
-  services.zfs.autoScrub.enable = true;
-  services.zfs.trim.enable = true;
-
   boot = {
     loader.grub = {
       enable = true;

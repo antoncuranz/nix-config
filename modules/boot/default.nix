@@ -7,5 +7,5 @@
     ./sysctl.nix
   ];
 
-  boot.remote-unlock.enable = lib.mkDefault true;
+  boot.remote-unlock.enable = lib.mkDefault false;
 }

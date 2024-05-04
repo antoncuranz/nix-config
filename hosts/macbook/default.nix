@@ -1,6 +1,11 @@
 { config, lib, pkgs, inputs, ... }:
 
 {
+  imports = [
+    ./vim.nix
+    ./packages.nix
+  ];
+
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   nixpkgs.config.allowUnfree = true;
@@ -47,80 +52,4 @@
       tilesize = 42;
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    vim
-    colima
-    docker
-    docker-compose
-    iterm2
-    k9s
-    virt-manager
-    karabiner-elements
-    goku
-    spotify
-    _1password-gui
-    firefox-bin
-  ];
-
-  homebrew = {
-    enable = true;
-
-    # casks = [
-    #   "obsidian"
-    #   "telegram"
-    #   "signal"
-    #   "timemachineeditor"
-    #   "openlens"
-    # ];
-
-     masApps = {
-       "1Password for Safari" = 1569813296;
-       "The Unarchiver" = 425424353;
-       "WireGuard" = 1451685025;
-       "Magnet" = 441258766;
-    };
-  };
-
-  programs.nixvim = {
-    enable = true;
-    plugins = {
-      commentary.enable = true;
-      surround.enable = true;
-      tmux-navigator.enable = true;
-      nvim-tree.enable = true;
-      nix.enable = true;
-      treesitter.enable = true;
-
-      alpha = {
-        enable = true;
-        #theme = "startify";
-      };
-      illuminate.enable = true;
-    };
-
-    extraPlugins = [(pkgs.vimUtils.buildVimPlugin {
-      name = "vim-colors-xcode";
-      src = pkgs.fetchFromGitHub {
-        owner = "vismaybhargav"; # https://github.com/lunacookies/vim-colors-xcode/pull/36
-        repo = "vim-colors-xcode";
-        rev = "0f96f664c200eec54f311e7e0640aebaee6402df";
-        hash = "sha256-GV057QK32yBRPD883V8xtS2Lu1wlnADxzuKsU743nYg=";
-      };
-    })];
-
-    options = {
-      mouse = "a";
-      number = true;
-      relativenumber = true;
-      tabstop = 2;
-      shiftwidth = 0; # match tabstop
-      expandtab = true;
-      ignorecase = true;
-      smartcase = true;
-    };
-
-    extraConfigLua = (builtins.readFile ./theming.lua);
-  };
-
 }

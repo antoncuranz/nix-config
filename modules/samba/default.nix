@@ -6,5 +6,5 @@
     ./avahi.nix
   ];
 
-  samba.enable = lib.mkDefault true;
+  samba.enable = lib.mkDefault false;
 }
