@@ -53,6 +53,17 @@
       ];
     };
 
+    nixosConfigurations.vps = nixpkgs.lib.nixosSystem {
+      specialArgs = { inherit inputs; };
+      modules = [
+        ./hosts/vps
+        ./disko/vps.nix
+        ./modules
+
+        disko.nixosModules.disko
+      ];
+    };
+
     nixosConfigurations.testvm = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [

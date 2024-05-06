@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, secrets, lib, pkgs, inputs, ... }:
 
 {
   users.users.ant0n = {
@@ -13,6 +13,15 @@
   programs.zsh.shellAliases = {
     rebuild = "sudo nixos-rebuild switch --flake '/home/ant0n/nix-config#vps'";
   };
+
+  # Configure network IP and DNS
+  systemd.network.networks.ens3 = {
+    address = ["${secrets.vps.networking.ip}"];
+    gateway = ["${secrets.vps.networking.gateway}"];
+  };
+  networking.nameservers = [
+    "${secrets.vps.networking.DNSv4[0]}"
+  ];
 
   # modules
   impermanence.enable = true;
