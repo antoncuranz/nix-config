@@ -2,6 +2,7 @@
   disko.devices = {
     disk = {
       main = {
+        imageSize = "10G";
         type = "disk";
         device = "/dev/disk/by-id/ata-QEMU_DVD-ROM_QM00002";
         content = {
