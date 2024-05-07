@@ -11,6 +11,20 @@ bash <(curl -s https://raw.githubusercontent.com/ant0ncuranz/nix-config/main/ins
 # run init scripts
 ```
 
+## Low memory VPS Installation
+
+```bash
+# verify disk and image size
+vim disko/vps.nix
+
+# build disk image
+nix build .#nixosConfigurations.vps.config.system.build.diskoImagesScript
+sudo ./result
+
+# transfer image to VPS (boot live system, e.g. nix minimal)
+cat main.raw | ssh root@<VPS_IP> "dd of=/dev/xyz"
+```
+
 ## Test VM Installation
 
 ```bash
@@ -19,3 +33,4 @@ ssh root@192.168.x.y
 
 bash <(curl -s https://raw.githubusercontent.com/ant0ncuranz/nix-config/main/vminstall.sh)
 ```
+
