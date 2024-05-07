@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, ... }:
+{ secrets, lib, pkgs, ... }:
 
 {
   users.users.ant0n = {

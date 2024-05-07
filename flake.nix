@@ -54,7 +54,7 @@
     };
 
     nixosConfigurations.vps = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
+      specialArgs = { inherit inputs secrets; };
       modules = [
         ./hosts/vps
         ./disko/vps.nix

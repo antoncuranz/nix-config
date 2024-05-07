@@ -1,13 +1,19 @@
 {
+  disko.extraRootModules = [ "zfs" ];
   disko.devices = {
     disk = {
       main = {
         imageSize = "10G";
         type = "disk";
-        device = "/dev/disk/by-id/ata-QEMU_DVD-ROM_QM00002";
+        device = "/dev/disk/by-path/pci-0000:00:05.0";
         content = {
           type = "gpt";
           partitions = {
+            boot = {
+              size = "1M";
+              type = "EF02"; # for grub MBR
+              priority = 0;
+            };
             ESP = {
               size = "1G";
               type = "EF00";

@@ -20,14 +20,14 @@
     gateway = ["${secrets.vps.networking.gateway}"];
   };
   networking.nameservers = [
-    "${secrets.vps.networking.DNSv4[0]}"
+    "${secrets.vps.networking.dns}"
   ];
 
   # modules
   impermanence.enable = true;
 
-  networking.hostName = "cura.nz";
-  networking.hostId = "e0f98c6d";
+  networking.hostName = "cloudton";
+  networking.hostId = "af1cdddd";
   system.stateVersion = "23.11";
 
   # hardware
