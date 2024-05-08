@@ -4,8 +4,8 @@
   users.users.ant0n = {
     isNormalUser = true;
     uid = 1000;
+    group = "ant0n";
     extraGroups = [
-      "ant0n"
       "wheel"
       "libvirtd"
       "serverton_users"
@@ -20,8 +20,8 @@
   users.users.faye = {
     isNormalUser = true;
     uid = 1001;
+    group = "faye";
     extraGroups = [
-      "faye"
       "serverton_users"
     ];
   };
