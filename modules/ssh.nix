@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ secrets, config, lib, pkgs, ... }:
 
 {
   services.openssh.enable = true;
@@ -7,4 +7,9 @@
     X11Forwarding = true;
     PasswordAuthentication = false;
   };
+  
+  users.users.ant0n.openssh.authorizedKeys.keys = [
+    "${secrets.sshKeys.a}"
+    "${secrets.sshKeys.b}"
+  ];
 }
