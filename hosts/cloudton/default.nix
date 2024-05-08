@@ -1,10 +1,15 @@
 { config, secrets, lib, pkgs, inputs, ... }:
 
 {
+  imports = [
+    ./containers.nix
+    ./caddy.nix
+  ];
   users.users.ant0n = {
     isNormalUser = true;
     uid = 1000;
     extraGroups = [
+      "ant0n"
       "wheel"
     ];
     hashedPassword = "${secrets.hashedPassword}";
@@ -13,7 +18,6 @@
       "${secrets.sshKeys.b}"
     ];
   };
-
 
   programs.zsh.shellAliases = {
     rebuild = "sudo nixos-rebuild switch --flake '/home/ant0n/nix-config#cloudton'";

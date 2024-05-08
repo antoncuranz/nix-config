@@ -3,6 +3,9 @@
     nixpkgs.url = "github:nixos/nixpkgs/release-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+    # until https://github.com/NixOS/nixpkgs/pull/259275
+    nixpkgs-caddy.url = "github:jpds/nixpkgs/caddy-external-plugins";
+
     impermanence.url = "github:nix-community/impermanence";
 
     nur.url = "github:nix-community/nur";
@@ -38,7 +41,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nix-darwin, disko, impermanence, home-manager, nixvim, ... }@inputs:
+  outputs = { self, nixpkgs, nix-darwin, disko, home-manager, nixvim, ... }@inputs:
   let
     secrets = builtins.fromJSON (builtins.readFile "${self}/secrets.json");
   in {
