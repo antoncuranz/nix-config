@@ -28,7 +28,6 @@
   environment.sessionVariables = {
     EDITOR = "vim";
   };
-  networking.nftables.enable = true;
 
   security.sudo.extraConfig = ''
     Defaults lecture = never
