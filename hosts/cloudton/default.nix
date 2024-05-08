@@ -14,8 +14,9 @@
     ];
     hashedPassword = "${secrets.hashedPassword}";
     openssh.authorizedKeys.keys = [
-      "${secrets.sshKeys.a}"
-      "${secrets.sshKeys.b}"
+      "${secrets.sshKeys.am}"
+      "${secrets.sshKeys.at}"
+      "${secrets.sshKeys.rs}"
     ];
   };
 

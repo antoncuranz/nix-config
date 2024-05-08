@@ -22,8 +22,8 @@ in
             /persist/secrets/initrd/ssh_host_ed25519_key
           ];
           authorizedKeys = [
-            "${secrets.sshKeys.a}"
-            "${secrets.sshKeys.b}"
+            "${secrets.sshKeys.am}"
+            "${secrets.sshKeys.at}"
           ];
         };
         postCommands = ''
