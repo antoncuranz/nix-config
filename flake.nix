@@ -53,11 +53,11 @@
       ];
     };
 
-    nixosConfigurations.vps = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.cloudton = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs secrets; };
       modules = [
-        ./hosts/vps
-        ./disko/vps.nix
+        ./hosts/cloudton
+        ./disko/cloudton.nix
         ./modules
 
         disko.nixosModules.disko

@@ -7,37 +7,37 @@
     extraGroups = [
       "wheel"
     ];
-    initialPassword = "ant0n";
+    hashedPassword = "${secrets.hashedPassword}";
+    openssh.authorizedKeys.keys = [
+      "${secrets.sshKeys.a}"
+      "${secrets.sshKeys.b}"
+    ];
   };
+
 
   programs.zsh.shellAliases = {
-    rebuild = "sudo nixos-rebuild switch --flake '/home/ant0n/nix-config#vps'";
+    rebuild = "sudo nixos-rebuild switch --flake '/home/ant0n/nix-config#cloudton'";
   };
-
-  # Configure network IP and DNS
-  #systemd.network.networks.ens3 = {
-  #  address = ["${secrets.vps.networking.ip}"];
-  #  gateway = ["${secrets.vps.networking.gateway}"];
-  #};
 
   boot.zfs.devNodes = "/dev/disk/by-path";
 
   networking = {
     interfaces.ens3 = {
       ipv4.addresses = [{
-        address = "${secrets.vps.networking.ip}";
+        address = "${secrets.cloudton.networking.ip}";
         prefixLength = 24;
       }];
       ipv6.addresses = [{
-        address = "${secrets.vps.networking.ip6}";
+        address = "${secrets.cloudton.networking.ip6}";
         prefixLength = 64;
       }];
     };
-    defaultGateway.address = "${secrets.vps.networking.gateway}";
-    defaultGateway6.address = "${secrets.vps.networking.gateway6}";
-    nameservers = [
-      "${secrets.vps.networking.dns}"
-    ];
+    defaultGateway.address = "${secrets.cloudton.networking.gateway}";
+    defaultGateway6 = {
+      address = "${secrets.cloudton.networking.gateway6}";
+      interface = "ens3";
+    };
+    nameservers = ["1.1.1.1" "1.0.0.1"];
   };
 
   # modules

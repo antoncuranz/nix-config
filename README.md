@@ -15,10 +15,10 @@ bash <(curl -s https://raw.githubusercontent.com/ant0ncuranz/nix-config/main/ins
 
 ```bash
 # verify disk and image size
-vim disko/vps.nix
+vim disko/cloudton.nix
 
 # build disk image
-nix build .#nixosConfigurations.vps.config.system.build.diskoImagesScript
+nix build .#nixosConfigurations.cloudton.config.system.build.diskoImagesScript
 sudo ./result
 
 # transfer image to VPS (boot live system, e.g. nix minimal)
