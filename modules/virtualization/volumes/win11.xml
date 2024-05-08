@@ -1,0 +1,9 @@
+<volume type='file'>
+  <name>win11.qcow2</name>
+  <capacity>42949672960</capacity>
+  <allocation>0</allocation>
+  <target>
+    <format type="qcow2"/>
+  </target>
+</volume>
+
