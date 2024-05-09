@@ -11,14 +11,14 @@
 
   system.autoUpgrade = {
     enable = true;
-    flake = inputs.self.outPath;
+    flake = "/home/ant0n/nix-config";
     flags = [
       "--update-input"
       "nixpkgs"
       "-L" # print build logs
       "--commit-lock-file"
     ];
-    dates = "06:00";
+    dates = "weekly";
     randomizedDelaySec = "45min";
   };
 
