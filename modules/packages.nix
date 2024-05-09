@@ -9,11 +9,6 @@
         system = prev.system;
       };
     })
-    (final: prev: {
-      pkgs-caddy = import inputs.nixpkgs-caddy {
-        system = prev.system;
-      };
-    })
   ];
 
   environment.systemPackages = with pkgs; [

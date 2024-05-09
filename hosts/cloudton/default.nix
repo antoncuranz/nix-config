@@ -3,7 +3,7 @@
 {
   imports = [
     ./containers.nix
-    ./caddy.nix
+    ./cloudflared.nix
   ];
   users.users.ant0n = {
     isNormalUser = true;

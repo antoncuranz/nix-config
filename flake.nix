@@ -3,9 +3,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/release-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
-    # until https://github.com/NixOS/nixpkgs/pull/259275
-    nixpkgs-caddy.url = "github:jpds/nixpkgs/caddy-external-plugins";
-
     impermanence.url = "github:nix-community/impermanence";
 
     nur.url = "github:nix-community/nur";
