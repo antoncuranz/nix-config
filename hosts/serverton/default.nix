@@ -19,6 +19,7 @@
   impermanence.enable = true;
   virtualization.enable = true;
   virtualization.network-bridge.enable = true;
+  auto-upgrade.enable = true;
 
   # hardware
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];

@@ -10,8 +10,8 @@
     ./impermanence
     ./backup
     ./power
+    ./auto-upgrade
 
-    ./users.nix
     ./packages.nix
 
     ./ssh.nix
@@ -28,8 +28,18 @@
   environment.sessionVariables = {
     EDITOR = "vim";
   };
+  programs.zsh.shellAliases = {
+    rebuild = "sudo nixos-rebuild switch --flake '/home/ant0n/nix-config'";
+  };
+  users.defaultUserShell = pkgs.zsh;
 
   security.sudo.extraConfig = ''
     Defaults lecture = never
   '';
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
 }
