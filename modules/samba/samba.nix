@@ -28,20 +28,6 @@ in {
       };
     };
 
-    # Rebuild Samba with LDAP, MDNS and Domain Controller support
-    nixpkgs.overlays = [ (self: super: {
-      samba = (super.samba.override {
-        enableLDAP = true;
-        enableMDNS = true;
-        enableDomainController = true;
-        enableProfiling = true; # Optional for logging
-         # Set pythonpath manually (bellow with overrideAttrs) as it is not set on 22.11 due to bug
-      });
-        #.overrideAttrs (finalAttrs: previousAttrs: {
-        #  pythonPath = with super; [ python3Packages.dnspython tdb ldb talloc ];
-        #});
-    })];
-
     # Disable default Samba `smbd` service, we will be using the `samba` server binary
     systemd.services.samba-smbd.enable = false;  
     systemd.services.samba = {
@@ -63,6 +49,7 @@ in {
 
     services.samba = {
       enable = true;
+      package = pkgs.samba4Full;
       enableNmbd = false;
       enableWinbindd = false;
       configText = ''

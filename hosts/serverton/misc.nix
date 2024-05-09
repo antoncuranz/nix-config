@@ -26,7 +26,6 @@
   networking.hostId = "7bdc28b5";
 
   programs.zsh.shellAliases = {
-    rebuild = "sudo nixos-rebuild switch --flake '/home/ant0n/nix-config#default'";
+    rebuild = "sudo nixos-rebuild switch --flake '/home/ant0n/nix-config'";
   };
-
 }

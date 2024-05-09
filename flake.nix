@@ -42,7 +42,7 @@
   let
     secrets = builtins.fromJSON (builtins.readFile "${self}/secrets.json");
   in {
-    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.serverton = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs secrets; };
       modules = [
         ./hosts/serverton
