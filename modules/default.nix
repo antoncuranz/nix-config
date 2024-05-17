@@ -18,6 +18,7 @@
     ./zsh.nix
     ./zfs.nix
     ./git.nix
+    ./buildah.nix
   ];
 
   # general stuff
