@@ -5,7 +5,7 @@ let
 in
 {
   options.auto-upgrade = {
-    enable = lib.mkEnableOption "enable powerManagement";
+    enable = lib.mkEnableOption "enable autoUpgrade";
   };
 
   config = lib.mkIf cfg.enable {
