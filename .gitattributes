@@ -1,2 +1,2 @@
-secrets.json filter=/run/current-system/sw/bin/git-crypt diff=/run/current-system/sw/bin/git-crypt
-scripts/** filter=/run/current-system/sw/bin/git-crypt diff=/run/current-system/sw/bin/git-crypt
+secrets.json filter=git-crypt diff=git-crypt
+scripts/** filter=git-crypt diff=git-crypt
