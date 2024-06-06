@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, secrets, ... }:
 
 let
   cfg = config.backup.cloudton;
@@ -21,8 +21,17 @@ in
     };
     systemd.services."cloudton-backup" = {
       script = ''
-        /run/current-system/sw/bin/syncoid syncoid@5.255.126.130:zroot/home nvme/cloudton/home
-        /run/current-system/sw/bin/syncoid syncoid@5.255.126.130:zroot/persist nvme/cloudton/persist
+        function handle_error() {
+          /run/current-system/sw/bin/curl -s "${secrets.healthchecks.cloudton}/fail" > /dev/null
+          exit 1
+        }
+        trap handle_error ERR
+
+        /run/current-system/sw/bin/syncoid syncoid@${secrets.cloudton.networking.ip}:zroot/home nvme/cloudton/home
+        /run/current-system/sw/bin/syncoid syncoid@${secrets.cloudton.networking.ip}:zroot/persist nvme/cloudton/persist
+
+        # Ping healthcheck
+        /run/current-system/sw/bin/curl -s "${secrets.healthchecks.cloudton}" > /dev/null
       '';
       serviceConfig = {
         Type = "oneshot";
