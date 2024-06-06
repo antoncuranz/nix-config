@@ -13,7 +13,7 @@
 
       alpha = {
         enable = true;
-        #theme = "startify";
+        theme = "startify";
       };
       illuminate.enable = true;
     };
@@ -28,7 +28,7 @@
       };
     })];
 
-    options = {
+    opts = {
       mouse = "a";
       number = true;
       relativenumber = true;
