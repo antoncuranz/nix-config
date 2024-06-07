@@ -2,6 +2,7 @@
 
 let
   cfg = config.backup.systemd-pushover;
+  hostname = config.networking.hostName;
 in
 {
   # https://pascal-wittmann.de/entry/systemd-failure-notification
@@ -30,7 +31,7 @@ in
         /run/current-system/sw/bin/curl -s \
           --form-string "token=${secrets.pushover.token}" \
 	  --form-string "user=${secrets.pushover.user}" \
-	  --form-string "title=Service $1 failed" \
+	  --form-string "title=$1 failed (${hostname})" \
 	  --form-string "message=$(/run/current-system/sw/bin/systemctl status --full "$1")" \
 	  https://api.pushover.net/1/messages.json
       '';

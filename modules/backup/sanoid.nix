@@ -9,6 +9,11 @@ in
       type = lib.types.bool;
       default = config.backup.enable;
     };
+    datasets = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = ["zroot/home" "zroot/persist"];
+      description = "Datasets to create automatic snapshots of.";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -19,33 +24,11 @@ in
     services.sanoid = {
       enable = true;
 
-      datasets = {
-        "zroot/home" = {
-          useTemplate = [ "main" ];
-          recursive = true;
-        };
-  
-        "zroot/persist" = {
-          useTemplate = [ "main" ];
-          recursive = true;
-        };
-    
-        "zroot/mediarr" = {
-          useTemplate = [ "main" ];
-          recursive = true;
-        };
-  
-        "zroot/k8s" = {
-          useTemplate = [ "main" ];
-          recursive = true;
-        };
-  
-        "nvme" = {
-          useTemplate = [ "main" ];
-          recursive = true;
-        };
-      };
-  
+      datasets = builtins.foldl' (acc: dataset: { "${dataset}" = {
+        useTemplate = [ "main" ];
+        recursive = true;
+      }; } // acc) {} cfg.datasets;
+
       templates.main = {
         hourly = 24;
         daily = 30;

@@ -5,7 +5,7 @@
     ./restic.nix
     ./sanoid.nix
     ./syncoid.nix
-    ./cloudton.nix
+    ./cloudton-backup.nix
     ./systemd-pushover.nix
   ];
 

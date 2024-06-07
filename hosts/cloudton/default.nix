@@ -10,6 +10,7 @@
 
   # modules
   impermanence.enable = true;
+  backup.enable = true;
 
   boot.zfs.devNodes = "/dev/disk/by-path";
 

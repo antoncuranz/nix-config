@@ -7,7 +7,7 @@ in
   options.backup.syncoid = {
     enable = lib.mkOption {
       type = lib.types.bool;
-      default = config.backup.enable;
+      default = false;
     };
   };
 

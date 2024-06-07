@@ -12,7 +12,20 @@
   kubernetes.enable = true;
   kubernetes.nodeIp = "192.168.1.2";
   power.enable = true;
-  backup.enable = true;
+
+  backup = {
+    enable = true;
+    sanoid.datasets = [
+      "zroot/home"
+      "zroot/persist"
+      "zroot/mediarr"
+      "zroot/k8s"
+      "nvme"
+    ];
+    syncoid.enable = true;
+    cloudton-backup.enable = true;
+  };
+
   boot.remote-unlock.enable = true;
   samba.enable = true;
   email.enable = true;
