@@ -28,11 +28,11 @@ in
       description = "Sends a pushover notification on service failures.";
       onFailure = lib.mkForce [ ];
       script = ''
-        /run/current-system/sw/bin/curl -s \
+        ${pkgs.curl}/bin/curl -s \
           --form-string "token=${secrets.pushover.token}" \
 	  --form-string "user=${secrets.pushover.user}" \
 	  --form-string "title=$1 failed (${hostname})" \
-	  --form-string "message=$(/run/current-system/sw/bin/systemctl status --full "$1")" \
+	  --form-string "message=$(${pkgs.systemd}/bin/systemctl status --full "$1")" \
 	  https://api.pushover.net/1/messages.json
       '';
       scriptArgs = "%i";

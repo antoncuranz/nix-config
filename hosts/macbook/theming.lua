@@ -26,11 +26,12 @@ end
 changeColorscheme()
 
 cmd [[
+  autocmd Signal * lua changeColorscheme()
+
   hi! Normal guibg=none
   hi! link LspReferenceText CursorColumn
   hi! link LspReferenceRead CursorColumn
   hi! link LspReferenceWrite CursorColumn
-  autocmd Signal * lua changeColorscheme()
 ]]
 
 -- STATUSLINE

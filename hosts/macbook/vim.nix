@@ -1,6 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
+  imports = [ ./dark-mode-notify.nix ];
+
   programs.nixvim = {
     enable = true;
     plugins = {
@@ -40,27 +42,5 @@
     };
 
     extraConfigLua = (builtins.readFile ./theming.lua);
-  };
-
-  environment.userLaunchAgents."ke.bou.dark-mode-notify.plist" = {
-    enable = true;
-    text = ''
-      <?xml version="1.0" encoding="UTF-8"?>
-      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
-      "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-      <plist version="1.0">
-      <dict>
-          <key>Label</key>
-          <string>ke.bou.dark-mode-notify</string>
-          <key>KeepAlive</key>
-          <true/>
-          <key>ProgramArguments</key>
-          <array>
-             <string>/Users/ant0n/macOS_darkMode/dark-mode-notify.swift</string>
-             <string>/Users/ant0n/macOS_darkMode/onDarkModeChanged.sh</string>
-          </array>
-      </dict>
-      </plist>
-    '';
   };
 }

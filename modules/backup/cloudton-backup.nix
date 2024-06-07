@@ -22,15 +22,15 @@ in
     systemd.services."cloudton-backup" = {
       script = ''
         function handle_error() {
-          /run/current-system/sw/bin/curl -s "${secrets.healthchecks.cloudton}/fail" > /dev/null
+          ${pkgs.curl}/bin/curl -s "${secrets.healthchecks.cloudton}/fail" > /dev/null
           exit 1
         }
         trap handle_error ERR
 
-        /run/current-system/sw/bin/syncoid -r --skip-parent --exclude=zroot/root --exclude=zroot/nix syncoid@${secrets.cloudton.networking.ip}:zroot nvme/cloudton
+        ${pkgs.sanoid}/bin/syncoid -r --skip-parent --exclude=zroot/root --exclude=zroot/nix syncoid@${secrets.cloudton.networking.ip}:zroot nvme/cloudton
 
         # Ping healthcheck
-        /run/current-system/sw/bin/curl -s "${secrets.healthchecks.cloudton}" > /dev/null
+        ${pkgs.curl}/bin/curl -s "${secrets.healthchecks.cloudton}" > /dev/null
       '';
       serviceConfig = {
         Type = "simple";

@@ -23,7 +23,7 @@
       "nvme/Backup"
       "nvme/Samba"
     ];
-    syncoid.enable = true;
+    hdd-replication.enable = true;
     cloudton-backup.enable = true;
   };
 

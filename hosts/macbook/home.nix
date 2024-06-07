@@ -11,8 +11,8 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     # TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE = "/var/run/docker.sock";
-    # DOCKER_HOST = "unix://$HOME/.colima/default/docker.sock";
-    DOCKER_HOST = "unix:///Users/ant0n/.docker/run/docker.sock";
+    DOCKER_HOST = "unix://$HOME/.colima/default/docker.sock";
+    # DOCKER_HOST = "unix:///Users/ant0n/.docker/run/docker.sock";
     #DISPLAY = ":0"
   };
 

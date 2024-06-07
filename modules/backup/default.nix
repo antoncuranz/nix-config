@@ -4,7 +4,7 @@
   imports = [
     ./restic.nix
     ./sanoid.nix
-    ./syncoid.nix
+    ./hdd-replication.nix
     ./cloudton-backup.nix
     ./systemd-pushover.nix
   ];
