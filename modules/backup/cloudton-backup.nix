@@ -1,4 +1,4 @@
-{ config, lib, secrets, ... }:
+{ pkgs, config, lib, secrets, ... }:
 
 let
   cfg = config.backup.cloudton-backup;
