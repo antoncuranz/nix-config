@@ -20,7 +20,8 @@
       "zroot/persist"
       "zroot/mediarr"
       "zroot/k8s"
-      "nvme"
+      "nvme/Backup"
+      "nvme/Samba"
     ];
     syncoid.enable = true;
     cloudton-backup.enable = true;

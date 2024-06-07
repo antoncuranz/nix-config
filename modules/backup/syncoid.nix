@@ -61,7 +61,7 @@ in
         /run/current-system/sw/bin/curl -s "${secrets.healthchecks.hdd-replication}" > /dev/null
       '';
       serviceConfig = {
-        Type = "oneshot";
+        Type = "simple";
       };
     };
   };

@@ -27,15 +27,13 @@ in
         }
         trap handle_error ERR
 
-        /run/current-system/sw/bin/syncoid -r --skip-parent syncoid@${secrets.cloudton.networking.ip}:zroot/home nvme/cloudton/home
-        # /run/current-system/sw/bin/syncoid syncoid@${secrets.cloudton.networking.ip}:zroot/home nvme/cloudton/home
-        # /run/current-system/sw/bin/syncoid syncoid@${secrets.cloudton.networking.ip}:zroot/persist nvme/cloudton/persist
+        /run/current-system/sw/bin/syncoid -r --skip-parent --exclude=zroot/root --exclude=zroot/nix syncoid@${secrets.cloudton.networking.ip}:zroot nvme/cloudton
 
         # Ping healthcheck
         /run/current-system/sw/bin/curl -s "${secrets.healthchecks.cloudton}" > /dev/null
       '';
       serviceConfig = {
-        Type = "oneshot";
+        Type = "simple";
       };
     };
   };
