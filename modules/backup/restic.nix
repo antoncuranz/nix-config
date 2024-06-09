@@ -1,11 +1,11 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.backup;
+  cfg = config.backup.restic;
 in
 {
-  options.backup = {
-    enable = lib.mkEnableOption "enable backup jobs";
+  options.backup.restic = {
+    enable = lib.mkEnableOption "enable restic jobs";
   };
 
   config = lib.mkIf cfg.enable {

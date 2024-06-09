@@ -25,6 +25,7 @@
     ];
     hdd-replication.enable = true;
     cloudton-backup.enable = true;
+    restic.enable = true;
   };
 
   boot.remote-unlock.enable = true;

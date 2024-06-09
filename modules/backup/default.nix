@@ -9,5 +9,8 @@
     ./systemd-pushover.nix
   ];
 
-  backup.enable = lib.mkDefault false;
+  options.backup.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+  };
 }
