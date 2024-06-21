@@ -23,7 +23,7 @@
       "nvme/Backup"
       "nvme/Samba"
     ];
-    hdd-replication.enable = true;
+    hdd-replication.enable = false; # https://github.com/openzfs/zfs/issues/11688
     cloudton-backup.enable = true;
     restic.enable = true;
   };
