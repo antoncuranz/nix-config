@@ -11,6 +11,7 @@
     ./backup
     ./power
     ./auto-upgrade
+    ./vim
 
     ./packages.nix
 

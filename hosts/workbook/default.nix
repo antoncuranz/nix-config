@@ -14,7 +14,7 @@
     inputs.nur.overlay
   ];
 
-  users.users.ant0n.home = "/Users/ant0n";
+  users.users."anton.curanz".home = "/Users/anton.curanz";
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users.ant0n = import ./home.nix;

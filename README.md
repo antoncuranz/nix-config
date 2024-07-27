@@ -11,6 +11,19 @@ bash <(curl -s https://raw.githubusercontent.com/ant0ncuranz/nix-config/main/ins
 # run init scripts
 ```
 
+## macOS Installation
+
+```bash
+# install nix
+curl -L https://nixos.org/nix/install | sh
+
+# bootstrap
+nix --extra-experimental-features nix-command --extra-experimental-features flakes run nix-darwin -- switch --flake '/Users/ant0n/Developer/non-TUB/nix-config#macbook'
+
+# update
+rebuild
+```
+
 ## Low memory VPS Installation
 
 ```bash

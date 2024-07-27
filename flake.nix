@@ -33,8 +33,7 @@
     };
 
     nixvim = {
-      url = "github:nix-community/nixvim"; # TODO: move to 24.05 branch when available
-      #url = "github:nix-community/nixvim/nixos-24.05";
+      url = "github:nix-community/nixvim/nixos-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -81,6 +80,19 @@
       modules = [
         ./hosts/macbook
         ./modules/zsh.nix
+        ./modules/vim
+
+        home-manager.darwinModules.home-manager
+        nixvim.nixDarwinModules.nixvim
+      ];
+    };
+
+    darwinConfigurations.workbook = nix-darwin.lib.darwinSystem {
+      specialArgs = { inherit inputs; };
+      modules = [
+        ./hosts/workbook
+        ./modules/zsh.nix
+        ./modules/vim
 
         home-manager.darwinModules.home-manager
         nixvim.nixDarwinModules.nixvim
