@@ -9,7 +9,6 @@
     iterm2
     k9s
     virt-manager
-    karabiner-elements
     goku
     spotify
     _1password-gui

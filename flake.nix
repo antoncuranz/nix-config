@@ -47,7 +47,7 @@
       modules = [
         ./hosts/serverton
         ./disko/zroot.nix
-        ./modules
+        ./nixos
 
         disko.nixosModules.disko
       ];
@@ -58,7 +58,7 @@
       modules = [
         ./hosts/cloudton
         ./disko/cloudton.nix
-        ./modules
+        ./nixos
 
         disko.nixosModules.disko
       ];
@@ -69,7 +69,7 @@
       modules = [
         ./hosts/testvm
         ./disko/zroot.nix
-        ./modules
+        ./nixos
 
         disko.nixosModules.disko
       ];
@@ -79,8 +79,7 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./hosts/macbook
-        ./modules/zsh.nix
-        ./modules/vim
+        ./darwin
 
         home-manager.darwinModules.home-manager
         nixvim.nixDarwinModules.nixvim
@@ -91,8 +90,7 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./hosts/workbook
-        ./modules/zsh.nix
-        ./modules/vim
+        ./darwin
 
         home-manager.darwinModules.home-manager
         nixvim.nixDarwinModules.nixvim
