@@ -21,7 +21,7 @@
   users.users."anton.curanz".home = "/Users/anton.curanz";
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  home-manager.users.ant0n = import ./home.nix;
+  home-manager.users."anton.curanz" = import ./home.nix;
 
   system.stateVersion = 4;
   nixpkgs.hostPlatform = "aarch64-darwin";
