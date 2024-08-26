@@ -24,6 +24,7 @@
     #   "signal"
     #   "timemachineeditor"
     #   "openlens"
+    #   "scroll-reverser"
     # ];
 
      masApps = {

@@ -7,6 +7,7 @@
     docker
     docker-compose
     iterm2
+    kubernetes-helm
     k9s
     karabiner-elements
     goku
@@ -20,6 +21,7 @@
     casks = [
       "obsidian"
       "openlens"
+      "scroll-reverser"
     ];
 
      masApps = {
