@@ -5,7 +5,7 @@
     ./vim
     ./karabiner
     ./zsh.nix
-    ./dock.nix
+    ./system-defaults.nix
   ];
 
   programs.zsh.enable = true;  # default shell on catalina

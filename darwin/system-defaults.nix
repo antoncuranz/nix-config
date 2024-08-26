@@ -7,5 +7,9 @@
       show-recents = false;
       tilesize = 42;
     };
+    NSGlobalDomain = {
+      InitialKeyRepeat = 25;
+      KeyRepeat = 2;
+    };
   };
 }
