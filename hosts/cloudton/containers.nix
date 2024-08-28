@@ -1,8 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ secrets, ... }:
 
 {
-  virtualisation.podman.enable = true;
-  virtualisation.podman.dockerCompat = true;
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+    defaultNetwork.settings.dns_enabled = true;
+  };
 
   virtualisation.oci-containers = {
     backend = "podman";
@@ -22,6 +25,33 @@
           "/persist/containers/backplate/images:/app/images"
           "/persist/containers/backplate/inbox:/app/inbox"
         ];
+      };
+      firefox_mariadb = {
+        # sudo podman exec -it firefox_mariadb mysql -uroot -p -e "CREATE DATABASE IF NOT EXISTS syncstorage_rs;CREATE DATABASE IF NOT EXISTS tokenserver_rs;GRANT ALL PRIVILEGES on syncstorage_rs.* to sync@'%';GRANT ALL PRIVILEGES on tokenserver_rs.* to sync@'%';"
+        image = "docker.io/linuxserver/mariadb:10.11.8";
+        ports = ["127.0.0.1:3306:3306"];
+        volumes = [
+          "/persist/containers/firefox/mariadb:/config"
+        ];
+        environment = {
+          MYSQL_DATABASE = "syncstorage";
+          MYSQL_USER = "sync";
+          MYSQL_PASSWORD = "${secrets.cloudton.firefoxSync.dbPassword}";
+          MYSQL_ROOT_PASSWORD = "${secrets.cloudton.firefoxSync.dbPassword}";
+        };
+      };
+      firefox_syncserver = {
+        image = "ghcr.io/antoncuranz/syncstorage-rs:0.17.1";
+        ports = ["127.0.0.1:8000:8000"];
+        dependsOn = ["firefox_mariadb"];
+        environment = {
+          SYNC_HOST = "0.0.0.0";
+          SYNC_MASTER_SECRET = "${secrets.cloudton.firefoxSync.syncMasterSecret}";
+          METRICS_HASH_SECRET = "${secrets.cloudton.firefoxSync.metricsHashSecret}";
+          SYNC_SYNCSTORAGE__DATABASE_URL = "mysql://sync:${secrets.cloudton.firefoxSync.dbPassword}@firefox_mariadb:3306/syncstorage_rs";
+          SYNC_TOKENSERVER__DATABASE_URL = "mysql://sync:${secrets.cloudton.firefoxSync.dbPassword}@firefox_mariadb:3306/tokenserver_rs";
+          SYNC_TOKENSERVER__RUN_MIGRATIONS = "true";
+        };
       };
     };
   };
