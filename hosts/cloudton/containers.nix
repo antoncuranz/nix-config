@@ -28,6 +28,7 @@
       };
       firefox_mariadb = {
         # sudo podman exec -it firefox_mariadb mysql -uroot -p -e "CREATE DATABASE IF NOT EXISTS syncstorage_rs;CREATE DATABASE IF NOT EXISTS tokenserver_rs;GRANT ALL PRIVILEGES on syncstorage_rs.* to sync@'%';GRANT ALL PRIVILEGES on tokenserver_rs.* to sync@'%';"
+        # also insert a service and node! See https://github.com/dan-r/syncstorage-rs-docker/blob/main/entrypoint.sh or https://artemis.sh/2023/03/27/firefox-syncstorage-rs.html
         image = "docker.io/linuxserver/mariadb:10.11.8";
         ports = ["127.0.0.1:3306:3306"];
         volumes = [
@@ -47,10 +48,16 @@
         environment = {
           SYNC_HOST = "0.0.0.0";
           SYNC_MASTER_SECRET = "${secrets.cloudton.firefoxSync.syncMasterSecret}";
-          METRICS_HASH_SECRET = "${secrets.cloudton.firefoxSync.metricsHashSecret}";
           SYNC_SYNCSTORAGE__DATABASE_URL = "mysql://sync:${secrets.cloudton.firefoxSync.dbPassword}@firefox_mariadb:3306/syncstorage_rs";
           SYNC_TOKENSERVER__DATABASE_URL = "mysql://sync:${secrets.cloudton.firefoxSync.dbPassword}@firefox_mariadb:3306/tokenserver_rs";
           SYNC_TOKENSERVER__RUN_MIGRATIONS = "true";
+          SYNC_TOKENSERVER__ENABLED = "true";
+          SYNC_TOKENSERVER__FXA_EMAIL_DOMAIN = "true";
+          SYNC_TOKENSERVER__FXA_METRICS_HASH_SECRET = "${secrets.cloudton.firefoxSync.metricsHashSecret}";
+          SYNC_TOKENSERVER__FXA_OAUTH_SERVER_URL = "https://oauth.accounts.firefox.com";
+          SYNC_TOKENSERVER__FXA_BROWSERID_AUDIENCE = "https://token.services.mozilla.com";
+          SYNC_TOKENSERVER__FXA_BROWSERID_ISSUER = "https://api.accounts.firefox.com";
+          SYNC_TOKENSERVER__FXA_BROWSERID_SERVER_URL = "https://verifier.accounts.firefox.com/v2";
         };
       };
     };
