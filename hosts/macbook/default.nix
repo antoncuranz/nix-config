@@ -8,6 +8,7 @@
   # modules
   vim.enable = true;
   karabiner.enable = true;
+  firefox.enable = true;
 
   # playground
   nixpkgs.overlays = [
@@ -19,6 +20,7 @@
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users.ant0n = import ./home.nix;
+  home-manager.backupFileExtension = "backup";
 
   system.stateVersion = 4;
   nixpkgs.hostPlatform = "aarch64-darwin";

@@ -1,5 +1,15 @@
 { config, pkgs, ... }:
 
+  let
+    lock-false = {
+      Value = false;
+      Status = "locked";
+    };
+    lock-true = {
+      Value = true;
+      Status = "locked";
+    };
+  in
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -31,23 +41,6 @@
       user.name = "Anton Curanz";
       user.email = "anton@curanz.de";
       init.defaultBranch = "main";
-    };
-  };
-
-  programs.firefox = {
-    enable = false; # TODO
-    package = pkgs.firefox-bin;
-    profiles = {
-      default = {
-        name = "nix-config";
-        isDefault = true;
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-          ublock-origin
-          multi-account-containers
-          onepassword-password-manager
-          sponsorblock
-        ];
-      };
     };
   };
 

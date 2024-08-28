@@ -12,7 +12,6 @@
     goku
     spotify
     _1password-gui
-    firefox-bin
   ];
 
   homebrew = {

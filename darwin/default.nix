@@ -3,6 +3,7 @@
 {
   imports = [
     ./vim
+    ./firefox
     ./karabiner
     ./zsh.nix
     ./system-defaults.nix
