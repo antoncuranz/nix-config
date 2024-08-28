@@ -4,5 +4,6 @@
   virtualisation.containers.enable = true;
   environment.systemPackages = with pkgs; [
     buildah
+    passt
   ];
 }
