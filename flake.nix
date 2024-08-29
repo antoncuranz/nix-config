@@ -4,6 +4,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     impermanence.url = "github:nix-community/impermanence";
+    arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
 
     nur.url = "github:nix-community/nur";
 
@@ -38,7 +39,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nix-darwin, disko, home-manager, nixvim, ... }@inputs:
+  outputs = { self, nixpkgs, nix-darwin, disko, home-manager, nixvim, arkenfox, ... }@inputs:
   let
     secrets = builtins.fromJSON (builtins.readFile "${self}/secrets.json");
   in {
