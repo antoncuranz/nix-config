@@ -106,7 +106,12 @@ in
             "1700".enable = true; # containers
             "2000".enable = true; # plugins / media
             "2400".enable = true; # dom
-            "2600".enable = true; # misc
+            "2600" = { # misc
+              enable = true;
+              # do not ask for download location
+              "2651".enable = false;
+              "2652".enable = false;
+            };
             "2700".enable = true; # enhanced tracking protection
             "2800".enable = false; # shutdown sanitizing
             "4500".enable = false; # letterboxing

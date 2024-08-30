@@ -3,13 +3,13 @@
 {
   nixpkgs.config.allowUnfree = true;
   
-  nixpkgs.overlays = [ 
-    (final: prev: {
-      unstable = import inputs.nixpkgs-unstable {
-        system = prev.system;
-      };
-    })
-  ];
+  # nixpkgs.overlays = [ 
+  #   (final: prev: {
+  #     unstable = import inputs.nixpkgs-unstable {
+  #       system = prev.system;
+  #     };
+  #   })
+  # ];
 
   environment.systemPackages = with pkgs; [
     vim

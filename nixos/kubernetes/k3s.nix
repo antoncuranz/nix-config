@@ -17,7 +17,7 @@ in
     ];
 
     environment.systemPackages = with pkgs; [
-      unstable.k3s
+      k3s
       kubectx
       k9s
       kubernetes-helm
@@ -26,7 +26,6 @@ in
     environment.sessionVariables.KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
 
     services.k3s.enable = true;
-    services.k3s.package = pkgs.unstable.k3s;
     services.k3s.role = "server";
     services.k3s.extraFlags = toString [
       "--disable=traefik"
