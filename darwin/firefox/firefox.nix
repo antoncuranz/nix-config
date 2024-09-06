@@ -2,14 +2,6 @@
 
 let
   cfg = config.firefox;
-  lock-false = {
-    Value = false;
-    Status = "locked";
-  };
-  lock-true = {
-    Value = true;
-    Status = "locked";
-  };
   policies = {
     policies = {
       DisableTelemetry = true;
@@ -25,6 +17,8 @@ let
       OverrideFirstRunPage = "";
       OverridePostUpdatePage = "";
       DontCheckDefaultBrowser = true;
+      AutofillAddressEnabled = false;
+      AutofillCreditCardEnabled = false;
 
       ExtensionSettings = {
         "*".installation_mode = "blocked";
@@ -101,7 +95,10 @@ in
             "0700".enable = true; # dns / doh
             "0800".enable = false; # search bar
             "1000".enable = true; # disk avoidance
-            "1200".enable = true; # https
+            "1200" = { # https
+              enable = true;
+              "1244".enable = false; # allow http
+            };
             "1600".enable = true; # referers
             "1700".enable = true; # containers
             "2000".enable = true; # plugins / media
@@ -111,6 +108,7 @@ in
               # do not ask for download location
               "2651".enable = false;
               "2652".enable = false;
+              "2654".enable = false;
             };
             "2700".enable = true; # enhanced tracking protection
             "2800".enable = false; # shutdown sanitizing
@@ -120,8 +118,11 @@ in
           };
           settings = {
             "identity.sync.tokenserver.uri" = "https://ffsync.cura.nz/1.0/sync/1.5";
+            "intl.accept_languages" = "de-DE, en-US, en";
             "browser.translations.neverTranslateLanguages" = "de";
             "browser.warnOnQuit" = false;
+            "signon.rememberSignons" = false;
+            "signon.management.page.breach-alerts.enabled" = false;
             "browser.uiCustomization.state" = "{\"placements\":{\"widget-overflow-fixed-list\":[],\"unified-extensions-area\":[\"_testpilot-containers-browser-action\",\"sponsorblocker_ajay_app-browser-action\"],\"nav-bar\":[\"back-button\",\"forward-button\",\"stop-reload-button\",\"urlbar-container\",\"save-to-pocket-button\",\"downloads-button\",\"_d634138d-c276-4fc8-924b-40a0ea21d284_-browser-action\",\"ublock0_raymondhill_net-browser-action\",\"unified-extensions-button\"],\"TabsToolbar\":[\"tabbrowser-tabs\",\"new-tab-button\",\"alltabs-button\"],\"PersonalToolbar\":[\"personal-bookmarks\"]},\"seen\":[\"_testpilot-containers-browser-action\",\"ublock0_raymondhill_net-browser-action\",\"sponsorblocker_ajay_app-browser-action\",\"_d634138d-c276-4fc8-924b-40a0ea21d284_-browser-action\",\"developer-button\"],\"dirtyAreaCache\":[\"unified-extensions-area\",\"nav-bar\",\"TabsToolbar\",\"PersonalToolbar\"],\"currentVersion\":20,\"newElementCount\":4}";
           };
         };
