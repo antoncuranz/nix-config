@@ -14,6 +14,7 @@
     openssh.authorizedKeys.keys = [
       "${secrets.sshKeys.am}"
       "${secrets.sshKeys.at}"
+      "${secrets.sshKeys.aw}"
     ];
   };
 
