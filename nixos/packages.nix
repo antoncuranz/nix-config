@@ -32,5 +32,6 @@
     jq
     inetutils
     dig
+    usbutils
   ];
 }
