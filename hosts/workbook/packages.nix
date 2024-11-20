@@ -26,7 +26,6 @@
 
      masApps = {
        "The Unarchiver" = 425424353;
-       "Magnet" = 441258766;
     };
   };
 }
