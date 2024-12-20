@@ -6,6 +6,7 @@
     ./cloudflared.nix
     ./networking.nix
     ./users.nix
+    ./postfix.nix
   ];
 
   # modules

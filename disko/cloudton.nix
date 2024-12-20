@@ -1,5 +1,4 @@
 {
-  disko.extraRootModules = [ "zfs" ];
   disko.devices = {
     disk = {
       main = {

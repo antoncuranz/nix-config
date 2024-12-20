@@ -26,6 +26,18 @@
           "/persist/containers/backplate/inbox:/app/inbox"
         ];
       };
+      mosquitto = {
+        image = "docker.io/library/eclipse-mosquitto";
+        ports = [
+          "127.0.0.1:1883:1883"
+          "127.0.0.1:9001:9001"
+        ];
+        volumes = [
+          "/persist/containers/mosquitto/config:/mosquitto/config"
+          "/persist/containers/mosquitto/data:/mosquitto/data"
+          "/persist/containers/mosquitto/log:/mosquitto/log"
+        ];
+      };
       firefox_mariadb = {
         # sudo podman exec -it firefox_mariadb mysql -uroot -p -e "CREATE DATABASE IF NOT EXISTS syncstorage_rs;CREATE DATABASE IF NOT EXISTS tokenserver_rs;GRANT ALL PRIVILEGES on syncstorage_rs.* to sync@'%';GRANT ALL PRIVILEGES on tokenserver_rs.* to sync@'%';"
         # also insert a service and node! See https://github.com/dan-r/syncstorage-rs-docker/blob/main/entrypoint.sh or https://artemis.sh/2023/03/27/firefox-syncstorage-rs.html

@@ -13,6 +13,9 @@
         "baikal.cura.nz" = {
           service = "http://localhost:8080";
         };
+        "mqtt.cura.nz" = {
+          service = "ws://localhost:9001";
+        };
         "www.cura.nz" = {
           service = "http://localhost:8090";
         };
