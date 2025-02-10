@@ -8,7 +8,6 @@ let
   adDomain = "dc.serverton.de";
   adWorkgroup = "DC";
   adNetbiosName = "SERVERTON";
-  staticIp = "192.168.1.1";
 in {
   options.samba = {
     enable = lib.mkEnableOption "enable samba";
@@ -16,17 +15,6 @@ in {
 
   config = lib.mkIf cfg.enable {
     services.samba.openFirewall = true;
-
-    # Disable resolveconf, we're using Samba internal DNS backend
-    systemd.services.resolvconf.enable = false;
-    environment.etc = {
-      resolvconf = {
-        text = ''
-          search ${adDomain}
-          nameserver ${staticIp}
-        '';
-      };
-    };
 
     # Disable default Samba `smbd` service, we will be using the `samba` server binary
     systemd.services.samba-smbd.enable = false;  
@@ -55,10 +43,10 @@ in {
       configText = ''
         # Global parameters
         [global]
-            dns forwarder = ${staticIp}
             netbios name = ${adNetbiosName}
             realm = ${toUpper adDomain}
             server role = active directory domain controller
+            server services = -dns, -dnsupdate
             workgroup = ${adWorkgroup}
             idmap_ldb:use rfc2307 = yes
             tls certfile = /home/ant0n/certs/ad.crt
@@ -73,7 +61,7 @@ in {
             fruit:metadata = stream
             fruit:zero_file_id = yes
             fruit:nfs_aces = no
-            vfs objects = catia fruit streams_xattr
+            vfs objects = catia fruit streams_xattr acl_xattr dfs_samba4
             access based share enum = yes
             
         [Anton]
