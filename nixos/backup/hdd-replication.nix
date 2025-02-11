@@ -35,7 +35,7 @@ in
 
         ${pkgs.zfs}/bin/zpool import HDD1
         ${pkgs.zfs}/bin/zpool import HDD2
-        ${pkgs.zfs}/bin/zfs load-key -a
+        # ${pkgs.zfs}/bin/zfs load-key -a
         sleep 3
 
 
