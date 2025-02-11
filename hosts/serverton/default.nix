@@ -23,7 +23,7 @@
       "nvme/Backup"
       "nvme/Samba"
     ];
-    hdd-replication.enable = false; # https://github.com/openzfs/zfs/issues/11688, but "If you only do raw encrypted zfs sends, the problem does not occur.", so maybe like this? https://github.com/jimsalterjrs/sanoid/issues/614#issuecomment-774776134
+    hdd-replication.enable = true; # https://github.com/openzfs/zfs/issues/11688, but "If you only do raw encrypted zfs sends, the problem does not occur.", so maybe like this? https://github.com/jimsalterjrs/sanoid/issues/614#issuecomment-774776134
     cloudton-backup.enable = true;
     restic.enable = true;
   };
