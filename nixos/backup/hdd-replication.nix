@@ -40,17 +40,18 @@ in
 
 
         # zroot -> HDD2
-        ${pkgs.sanoid}/bin/syncoid --sendoptions="w" -r --skip-parent --no-sync-snap --exclude=zroot/bitcoin --exclude=zroot/root --exclude=zroot/nix zroot HDD2/zroot
+        ${pkgs.sanoid}/bin/syncoid --sendoptions="w" --recvoptions="u" --compress=none -r --no-sync-snap --exclude=zroot/bitcoin --exclude=zroot/root --exclude=zroot/nix zroot HDD2/zroot
         # --exclude will be deprecated in favor of --exclude-datasets
+        # Use --delete-target-snapshots if space requires it
 
         # nvme/Samba -> HDD1
-        ${pkgs.sanoid}/bin/syncoid --sendoptions="w" -r --skip-parent --no-sync-snap nvme/Samba HDD1/Samba
+        ${pkgs.sanoid}/bin/syncoid --sendoptions="w" --recvoptions="u" --compress=none -r --no-sync-snap nvme/Samba HDD1/Samba
 
         # nvme/Backup -> HDD1
-        ${pkgs.sanoid}/bin/syncoid --sendoptions="w" -r --skip-parent --no-sync-snap nvme/Backup HDD1/Backup
+        ${pkgs.sanoid}/bin/syncoid --sendoptions="w" --recvoptions="u" --compress=none -r --no-sync-snap nvme/Backup HDD1/Backup
 
         # nvme/cloudton -> HDD1
-        ${pkgs.sanoid}/bin/syncoid --sendoptions="w" -r --skip-parent --no-sync-snap nvme/cloudton HDD1/cloudton
+        ${pkgs.sanoid}/bin/syncoid --sendoptions="w" --recvoptions="u" --compress=none -r --no-sync-snap nvme/cloudton HDD1/cloudton
 
 
         sleep 3

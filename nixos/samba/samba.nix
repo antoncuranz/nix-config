@@ -38,99 +38,109 @@ in {
     services.samba = {
       enable = true;
       package = pkgs.samba4Full;
-      enableNmbd = false;
-      enableWinbindd = false;
-      configText = ''
+      nmbd.enable = false;
+      winbindd.enable = false;
+      settings = {
         # Global parameters
-        [global]
-            netbios name = ${adNetbiosName}
-            realm = ${toUpper adDomain}
-            server role = active directory domain controller
-            server services = -dns, -dnsupdate
-            workgroup = ${adWorkgroup}
-            idmap_ldb:use rfc2307 = yes
-            tls certfile = /home/ant0n/certs/ad.crt
-            tls keyfile = /home/ant0n/certs/ad.key
-            tls cafile =
+        global = {
+            "netbios name" = "${adNetbiosName}";
+            realm = "${toUpper adDomain}";
+            "server role" = "active directory domain controller";
+            "server services" = "-dns, -dnsupdate";
+            workgroup = "${adWorkgroup}";
+            "idmap_ldb:use rfc2307" = "yes";
+            "tls certfile" = "/home/ant0n/certs/ad.crt";
+            "tls keyfile" = "/home/ant0n/certs/ad.key";
+            "tls cafile" = "";
 
             # File Sharing
-            server string = Serverton
-            fruit:model = RackMac
-            mdns name = mdns
-            fruit:encoding = native
-            fruit:metadata = stream
-            fruit:zero_file_id = yes
-            fruit:nfs_aces = no
-            vfs objects = catia fruit streams_xattr acl_xattr dfs_samba4
-            access based share enum = yes
+            "server string" = "Serverton";
+            "fruit:model" = "RackMac";
+            "mdns name" = "mdns";
+            "fruit:encoding" = "native";
+            "fruit:metadata" = "stream";
+            "fruit:zero_file_id" = "yes";
+            "fruit:nfs_aces" = "no";
+            "vfs objects" = "catia fruit streams_xattr acl_xattr dfs_samba4";
+            "access based share enum" = "yes";
+	};
             
-        [Anton]
-            path = /mnt/nvme/Samba/Anton
-            guest ok = no
-            comment =
-            valid users = ant0n
-            read only = no
-            browseable = yes
+        "Anton" = {
+            path = "/mnt/nvme/Samba/Anton";
+            "guest ok" = "no";
+            comment = "";
+            "valid users" = ["ant0n"];
+            "read only" = "no";
+            browseable = "yes";
+	};
             
-        [Faye]
-            path = /mnt/nvme/Samba/Faye
-            guest ok = no
-            comment =
-            valid users = faye
-            read only = no
-            browseable = yes
+        "Faye" = {
+            path = "/mnt/nvme/Samba/Faye";
+            "guest ok" = "no";
+            comment = "";
+            "valid users" = ["faye"];
+            "read only" = "no";
+            browseable = "yes";
+	};
             
-        [Shared]
-            path = /mnt/nvme/Samba/Shared
-            guest ok = no
-            comment =
-            valid users = ant0n faye
-            read only = no
-            browseable = yes
+        "Shared" = {
+            path = "/mnt/nvme/Samba/Shared";
+            "guest ok" = "no";
+            comment = "";
+            "valid users" = ["ant0n" "faye"];
+            "read only" = "no";
+            browseable = "yes";
+	};
             
-        [TimeMachine]
-            path = /mnt/nvme/Backup/TimeMachine
-            guest ok = no
-            comment =
-            valid users = ant0n
-            read only = no
-            browseable = yes
-            fruit:time machine = yes
-            fruit:time machine max size = 1T
+        "TimeMachine" = {
+            path = "/mnt/nvme/Backup/TimeMachine";
+            "guest ok" = "no";
+            comment = "";
+            "valid users" = ["ant0n"];
+            "read only" = "no";
+            browseable = "yes";
+            "fruit:time machine" = "yes";
+            "fruit:time machine max size" = "1T";
+	};
             
-        [Faye Backup]
-            path = /mnt/nvme/Backup/Faye
-            guest ok = no
-            comment =
-            valid users = faye
-            read only = no
-            browseable = yes
+        "Faye Backup" = {
+            path = "/mnt/nvme/Backup/Faye";
+            "guest ok" = "no";
+            comment = "";
+            "valid users" = ["faye"];
+            "read only" = "no";
+            browseable = "yes";
+	};
             
-        [Backup]
-            path = /mnt/nvme/Backup/Anton
-            guest ok = no
-            comment =
-            valid users = ant0n
-            read only = no
-            browseable = yes
+        "Backup" = {
+            path = "/mnt/nvme/Backup/Anton";
+            "guest ok" = "no";
+            comment = "";
+            "valid users" = ["ant0n"];
+            "read only" = "no";
+            browseable = "yes";
+	};
             
-        [Mediarr]
-            path = /home/ant0n/mediarr
-            guest ok = no
-            comment =
-            browseable = yes
-            valid users = ant0n faye
-            read only = yes
+        "Mediarr" = {
+            "path" = "/home/ant0n/mediarr";
+            "guest ok" = "no";
+            comment = "";
+            browseable = "yes";
+            "valid users" = ["ant0n" "faye"];
+            "read only" = "yes";
+	};
 
         # Required for AD setup
-        [sysvol]
-            path = /var/lib/samba/sysvol
-            read only = No
+        sysvol = {
+            path = "/var/lib/samba/sysvol";
+            "read only" = "no";
+	};
 
-        [netlogon]
-            path = /var/lib/samba/sysvol/${adDomain}/scripts
-            read only = No
-      '';
+        netlogon = {
+            path = "/var/lib/samba/sysvol/${adDomain}/scripts";
+            "read only" = "no";
+	};
+      };
     };
   };
 }

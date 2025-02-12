@@ -1,6 +1,10 @@
-{ config, lib, secrets, ... }:
+{ pkgs, ... }:
 
 {
   services.zfs.autoScrub.enable = true;
   services.zfs.trim.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    zfs-prune-snapshots
+  ];
 }
