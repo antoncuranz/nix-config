@@ -40,7 +40,7 @@ in
 
 
         # zroot -> HDD2
-        ${pkgs.sanoid}/bin/syncoid --sendoptions="w" --recvoptions="u" --compress=none -r --no-sync-snap --exclude=zroot/bitcoin --exclude=zroot/root --exclude=zroot/nix zroot HDD2/zroot
+        ${pkgs.sanoid}/bin/syncoid --sendoptions="w" --recvoptions="u" --compress=none -r --no-sync-snap --skip-parent --exclude=zroot/bitcoin --exclude=zroot/root --exclude=zroot/nix zroot HDD2/zroot
         # --exclude will be deprecated in favor of --exclude-datasets
         # Use --delete-target-snapshots if space requires it
 
