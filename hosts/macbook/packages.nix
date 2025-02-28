@@ -11,7 +11,7 @@
     virt-manager
     goku
     spotify
-    _1password-gui
+    # _1password-gui
   ];
 
   homebrew = {

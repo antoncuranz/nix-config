@@ -15,7 +15,7 @@ in
       enable = true;
       plugins = {
         commentary.enable = true;
-        surround.enable = true;
+        vim-surround.enable = true;
         tmux-navigator.enable = true;
         nvim-tree.enable = true;
         nix.enable = true;
