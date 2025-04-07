@@ -19,7 +19,29 @@ in
         tmux-navigator.enable = true;
         nvim-tree.enable = true;
         nix.enable = true;
-        treesitter.enable = true;
+        treesitter = {
+          enable = true;
+          grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+            markdown
+            markdown_inline
+            latex
+            html
+          ];
+          settings = {
+            highlight = {
+              enable = true;
+            };
+          };
+        };
+        web-devicons.enable = true;
+        render-markdown = {
+          enable = true;
+          settings = {
+            sign = {
+              enabled = false;
+            };
+          };
+        };
 
         alpha = {
           enable = true;
@@ -47,6 +69,7 @@ in
         expandtab = true;
         ignorecase = true;
         smartcase = true;
+        conceallevel = 2;
       };
 
       extraConfigLua = (builtins.readFile ./theming.lua);

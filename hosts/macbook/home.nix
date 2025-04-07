@@ -29,7 +29,7 @@
   home.shellAliases = {
     vim = "nvim";
     rebuild = "darwin-rebuild switch --flake '/Users/ant0n/Developer/non-TUB/nix-config#macbook'";
-    update = "nix flake update '/Users/ant0n/Developer/non-TUB/nix-config'";
+    update = "nix flake update --flake '/Users/ant0n/Developer/non-TUB/nix-config'";
     "virt-manager" = "GSETTINGS_BACKEND=keyfile virt-manager --no-fork -c qemu+ssh://192.168.1.2/system";
     # ibrew = "arch -x86_64 /usr/local/bin/brew";
     # izsh = "arch -x86_64 zsh";

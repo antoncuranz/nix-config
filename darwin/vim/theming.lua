@@ -13,6 +13,11 @@ function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+-- MAPPINGS
+cmd [[
+  vnoremap <C-c> "*y
+]]
+
 -- THEMING
 opt.termguicolors = true
 function changeColorscheme()
@@ -24,6 +29,7 @@ function changeColorscheme()
   end
 end
 changeColorscheme()
+
 
 cmd [[
   autocmd Signal * lua changeColorscheme()
