@@ -10,6 +10,8 @@ in
     enable = lib.mkEnableOption "enable vim";
   };
 
+  # to fix strikethrough: https://github.com/mhinz/dotfiles/blob/master/bin/fix-term
+
   config = lib.mkIf cfg.enable {
     programs.nixvim = {
       enable = true;

@@ -13,17 +13,23 @@ function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+function CalendarToggle()
+  local buf_nr = vim.fn.bufnr("__Calendar")
+  if buf_nr > 0 then
+    vim.api.nvim_buf_delete(buf_nr, {force=true})
+  else
+    vim.cmd(":Telekasten show_calendar")
+  end
+end
+
 -- MAPPINGS
--- cmd [[
---   vnoremap <C-c> "*y
--- ]]
 map("v", "<C-c>", '"*y')
-map("n", "<C-t>", ":Telekasten show_calendar<cr>")
+map("n", "<C-t>", ":lua CalendarToggle()<cr>")
 
 -- THEMING
 opt.termguicolors = true
 function changeColorscheme()
-    macOS_darkmode = fn.systemlist("defaults read -g AppleInterfaceStyle")[1] == "Dark"
+  macOS_darkmode = fn.systemlist("defaults read -g AppleInterfaceStyle")[1] == "Dark"
   if macOS_darkmode then
     cmd("colorscheme xcodedarkhc")
   else
