@@ -13,7 +13,7 @@
   # playground
   nixpkgs.overlays = [
     inputs.nixpkgs-firefox-darwin.overlay
-    inputs.nur.overlay
+    inputs.nur.overlays.default
   ];
 
   users.users.ant0n.home = "/Users/ant0n";

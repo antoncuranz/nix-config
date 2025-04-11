@@ -15,7 +15,7 @@
   # playground
   nixpkgs.overlays = [
     inputs.nixpkgs-firefox-darwin.overlay
-    inputs.nur.overlay
+    inputs.nur.overlays.default
   ];
 
   users.users."anton.curanz".home = "/Users/anton.curanz";

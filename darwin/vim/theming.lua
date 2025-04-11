@@ -14,9 +14,11 @@ function map(mode, lhs, rhs, opts)
 end
 
 -- MAPPINGS
-cmd [[
-  vnoremap <C-c> "*y
-]]
+-- cmd [[
+--   vnoremap <C-c> "*y
+-- ]]
+map("v", "<C-c>", '"*y')
+map("n", "<C-t>", ":Telekasten show_calendar<cr>")
 
 -- THEMING
 opt.termguicolors = true

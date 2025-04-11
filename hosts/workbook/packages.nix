@@ -6,7 +6,7 @@
     colima
     docker
     docker-compose
-    iterm2
+    unstable.iterm2
     kubernetes-helm
     k9s
     karabiner-elements

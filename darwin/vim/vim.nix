@@ -19,46 +19,71 @@ in
         tmux-navigator.enable = true;
         nvim-tree.enable = true;
         nix.enable = true;
+        illuminate.enable = true;
+        web-devicons.enable = true;
+        telescope.enable = true;
+        telekasten.enable = true;
+        telekasten.settings = {
+          home.__raw = "vim.fn.expand(\"~/zettelkasten\")";
+          templates.__raw = "vim.fn.expand(\"~/zettelkasten/templates\")";
+          template_new_note.__raw = "vim.fn.expand(\"~/zettelkasten/templates/basenote.md\")";
+          template_new_daily.__raw = "vim.fn.expand(\"~/zettelkasten/templates/daily.md\")";
+          template_new_weekly.__raw = "vim.fn.expand(\"~/zettelkasten/templates/weekly.md\")";
+          take_over_my_home = false;
+          auto_set_filetype = false;
+          auto_set_syntax = false;
+          journal_auto_open = true;
+        };
+        alpha = {
+          enable = true;
+          theme = "startify";
+        };
         treesitter = {
           enable = true;
-          grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+          grammarPackages = with pkgs.unstable.vimPlugins.nvim-treesitter.builtGrammars; [
             markdown
             markdown_inline
             latex
             html
           ];
-          settings = {
-            highlight = {
-              enable = true;
-            };
-          };
+          settings.highlight.enable = true;
         };
-        web-devicons.enable = true;
         render-markdown = {
           enable = true;
           settings = {
-            sign = {
-              enabled = false;
+            sign.enabled = false;
+            heading.enabled = false;
+            bullet.enabled = false;
+            link.custom = {
+              jira = { pattern = "atlassian%.net/browse"; icon = " "; highlight = "RenderMarkdownLink"; };
+              confluence = { pattern = "atlassian%.net/wiki"; icon = " "; highlight = "RenderMarkdownLink"; };
+              kibana = { pattern = "kibana%..*%.com"; icon = " "; highlight = "RenderMarkdownLink"; };
+              grafana = { pattern = "grafana%..*%.com"; icon = " "; highlight = "RenderMarkdownLink"; };
+              gitlab = { pattern = "gitlab%..*%.de"; icon = " "; highlight = "RenderMarkdownLink"; };
+              gitlabmiele = { pattern = "appme%.miele%.com/dvcs"; icon = " "; highlight = "RenderMarkdownLink"; };
+            };
+            checkbox = {
+              checked = { icon = "󰱒"; scope_highlight = "@markup.strikethrough"; };
+              unchecked.icon = "󰄱";
+              custom.todo.rendered = "󰥔";
             };
           };
         };
-
-        alpha = {
-          enable = true;
-          theme = "startify";
-        };
-        illuminate.enable = true;
       };
 
-      extraPlugins = [(pkgs.vimUtils.buildVimPlugin {
-        name = "vim-colors-xcode";
-        src = pkgs.fetchFromGitHub {
-          owner = "vismaybhargav"; # https://github.com/lunacookies/vim-colors-xcode/pull/36
-          repo = "vim-colors-xcode";
-          rev = "0f96f664c200eec54f311e7e0640aebaee6402df";
-          hash = "sha256-GV057QK32yBRPD883V8xtS2Lu1wlnADxzuKsU743nYg=";
-        };
-      })];
+      extraPlugins = [
+        (pkgs.vimUtils.buildVimPlugin {
+          name = "vim-colors-xcode";
+          src = pkgs.fetchFromGitHub {
+            owner = "vismaybhargav"; # https://github.com/lunacookies/vim-colors-xcode/pull/36
+            repo = "vim-colors-xcode";
+            rev = "0f96f664c200eec54f311e7e0640aebaee6402df";
+            hash = "sha256-GV057QK32yBRPD883V8xtS2Lu1wlnADxzuKsU743nYg=";
+          };
+        })
+        pkgs.vimPlugins.bullets-vim
+        pkgs.vimPlugins.mattn-calendar-vim
+      ];
 
       opts = {
         mouse = "a";
@@ -69,7 +94,6 @@ in
         expandtab = true;
         ignorecase = true;
         smartcase = true;
-        conceallevel = 2;
       };
 
       extraConfigLua = (builtins.readFile ./theming.lua);

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -7,6 +7,14 @@
     ./karabiner
     ./zsh.nix
     ./system-defaults.nix
+  ];
+
+  nixpkgs.overlays = [ 
+    (final: prev: {
+      unstable = import inputs.nixpkgs-unstable {
+        system = prev.system;
+      };
+    })
   ];
 
   programs.zsh.enable = true;  # default shell on catalina

@@ -8,6 +8,10 @@
 
   programs.zsh.enable = true;
 
+  home.sessionPath = [
+    "/Library/TeX/texbin"
+  ];
+
   home.sessionVariables = {
     EDITOR = "nvim";
     # TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE = "/var/run/docker.sock";
