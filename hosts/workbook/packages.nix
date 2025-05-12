@@ -8,7 +8,7 @@
     docker-compose
     unstable.iterm2
     kubernetes-helm
-    k9s
+    unstable.k9s
     karabiner-elements
     goku
     spotify
