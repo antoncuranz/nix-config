@@ -75,8 +75,8 @@ in
           isDefault = true;
           search = {
             force = true;
-            default = "DuckDuckGo";
-            order = [ "DuckDuckGo" "Google" ];
+            default = "ddg";
+            order = [ "ddg" "google" ];
           };
           arkenfox = {
             enable = true;

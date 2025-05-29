@@ -19,7 +19,6 @@
 
   programs.zsh.enable = true;  # default shell on catalina
   nixpkgs.config.allowUnfree = true;
-  services.nix-daemon.enable = true;
   nix.settings.experimental-features = "nix-command flakes";
 
   # system.activationScripts.postUserActivation.text = ''

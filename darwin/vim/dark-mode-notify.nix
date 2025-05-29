@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  dark-mode-notify = pkgs.stdenv.mkDerivation {
+  dark-mode-notify = pkgs.swiftPackages.stdenv.mkDerivation {
     name = "dark-mode-notify";
 
     src = pkgs.fetchFromGitHub {
@@ -11,9 +11,10 @@ let
       sha256 = "LsAQ5v5jgJw7KsJnQ3Mh6+LNj1EMHICMoD5WzF3hRmU=";
     };
 
-    buildInputs = [
-      pkgs.swift pkgs.swiftpm
-      pkgs.darwin.apple_sdk.frameworks.Cocoa
+    nativeBuildInputs = [
+      pkgs.swift
+      pkgs.swiftpm
+      pkgs.swiftPackages.Foundation
     ];
 
     phases = [ "unpackPhase" "buildPhase" "installPhase" ];

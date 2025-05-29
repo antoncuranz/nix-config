@@ -20,7 +20,7 @@
 
   home.shellAliases = {
     vim = "nvim";
-    rebuild = "darwin-rebuild switch --flake '/Users/anton.curanz/Developer/nix-config#workbook'";
+    rebuild = "sudo darwin-rebuild switch --flake '/Users/anton.curanz/Developer/nix-config#workbook'";
   };
 
   programs.firefox = {

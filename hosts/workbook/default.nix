@@ -18,6 +18,7 @@
     inputs.nur.overlays.default
   ];
 
+  system.primaryUser = "anton.curanz";
   users.users."anton.curanz".home = "/Users/anton.curanz";
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;

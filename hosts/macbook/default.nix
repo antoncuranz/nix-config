@@ -16,6 +16,7 @@
     inputs.nur.overlays.default
   ];
 
+  system.primaryUser = "ant0n";
   users.users.ant0n.home = "/Users/ant0n";
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
