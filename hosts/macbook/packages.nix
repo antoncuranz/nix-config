@@ -2,15 +2,6 @@
 
 {
   environment.systemPackages = with pkgs; [
-    vim
-    colima
-    docker
-    docker-compose
-    iterm2
-    k9s
-    virt-manager
-    goku
-    spotify
     # _1password-gui
   ];
 

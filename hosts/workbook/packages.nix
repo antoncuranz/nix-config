@@ -2,17 +2,6 @@
 
 {
   environment.systemPackages = with pkgs; [
-    vim
-    colima
-    docker
-    docker-compose
-    unstable.iterm2
-    kubernetes-helm
-    unstable.k9s
-    karabiner-elements
-    goku
-    spotify
-    firefox-bin
   ];
 
   homebrew = {

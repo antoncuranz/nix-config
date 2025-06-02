@@ -7,6 +7,7 @@
     ./karabiner
     ./zsh.nix
     ./system-defaults.nix
+    ./packages.nix
   ];
 
   nixpkgs.overlays = [ 
