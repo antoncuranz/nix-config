@@ -14,5 +14,6 @@
     lazygit
     git-crypt
     kubernetes-helm
+    htop
   ];
 }
