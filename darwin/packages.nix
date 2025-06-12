@@ -16,6 +16,8 @@
     kubernetes-helm
     htop
     wget
-    postgresql
+    postgresql  # provides pg_dump
+    postgresql.pg_config  # required for psycopg2 python package
+    python312
   ];
 }
