@@ -15,5 +15,7 @@
     git-crypt
     kubernetes-helm
     htop
+    wget
+    postgresql
   ];
 }
