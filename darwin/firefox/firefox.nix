@@ -67,7 +67,10 @@ in
 
     home-manager.users."${cfg.user}".programs.firefox = {
       enable = true;
-      arkenfox.enable = true;
+      arkenfox = {
+        enable = true;
+        version = "135.0";
+      };
       package = null;
       profiles = {
         default = {
