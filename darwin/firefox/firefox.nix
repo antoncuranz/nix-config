@@ -124,6 +124,10 @@ in
             "signon.rememberSignons" = false;
             "signon.management.page.breach-alerts.enabled" = false;
             "browser.uiCustomization.state" = "{\"placements\":{\"widget-overflow-fixed-list\":[],\"unified-extensions-area\":[\"_testpilot-containers-browser-action\",\"sponsorblocker_ajay_app-browser-action\"],\"nav-bar\":[\"back-button\",\"forward-button\",\"stop-reload-button\",\"urlbar-container\",\"save-to-pocket-button\",\"downloads-button\",\"_d634138d-c276-4fc8-924b-40a0ea21d284_-browser-action\",\"ublock0_raymondhill_net-browser-action\",\"unified-extensions-button\"],\"TabsToolbar\":[\"tabbrowser-tabs\",\"new-tab-button\",\"alltabs-button\"],\"PersonalToolbar\":[\"personal-bookmarks\"]},\"seen\":[\"_testpilot-containers-browser-action\",\"ublock0_raymondhill_net-browser-action\",\"sponsorblocker_ajay_app-browser-action\",\"_d634138d-c276-4fc8-924b-40a0ea21d284_-browser-action\",\"developer-button\"],\"dirtyAreaCache\":[\"unified-extensions-area\",\"nav-bar\",\"TabsToolbar\",\"PersonalToolbar\"],\"currentVersion\":20,\"newElementCount\":4}";
+            "browser.theme.native-theme" = true;
+            "widget.macos.titlebar-blend-mode.behind-window" = true;
+            "sidebar.verticalTabs" = true;
+            "sidebar.revamp.round-content-area" = true;
           };
         };
       };
