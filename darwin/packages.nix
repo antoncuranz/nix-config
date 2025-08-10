@@ -14,6 +14,8 @@
     lazygit
     git-crypt
     kubernetes-helm
+    kubectl
+    kubectl-cnpg
     htop
     wget
     postgresql  # provides pg_dump

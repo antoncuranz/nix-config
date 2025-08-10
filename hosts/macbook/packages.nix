@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs; [
     # _1password-gui
     nodejs_22
+    go-critic
   ];
 
   homebrew = {
