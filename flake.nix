@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/release-25.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-unstable.url = "github:antoncuranz/nixpkgs/release-25.05";
 
     impermanence.url = "github:nix-community/impermanence";
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
