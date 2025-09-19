@@ -23,6 +23,9 @@
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users."anton.curanz" = import ./home.nix;
+  home-manager.sharedModules = [
+    inputs.mac-app-util.homeManagerModules.default
+  ];
 
   system.stateVersion = 4;
   nixpkgs.hostPlatform = "aarch64-darwin";

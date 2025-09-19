@@ -96,6 +96,7 @@
 
         home-manager.darwinModules.home-manager
         nixvim.nixDarwinModules.nixvim
+        mac-app-util.darwinModules.default
       ];
     };
   };
