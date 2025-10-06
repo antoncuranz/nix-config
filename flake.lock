@@ -42,11 +42,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1758160037,
-        "narHash": "sha256-fXelTdjdILspZ1IUU9aICB1+PXwSFiF8j+7ujwo1VpQ=",
+        "lastModified": 1758287904,
+        "narHash": "sha256-IGmaEf3Do8o5Cwp1kXBN1wQmZwQN3NLfq5t4nHtVtcU=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "4f554162fff88e77655073d352eec0cea71103a2",
+        "rev": "67ff9807dd148e704baadbd4fd783b54282ca627",
         "type": "github"
       },
       "original": {
@@ -213,11 +213,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1757808926,
-        "narHash": "sha256-K6PEI5PYY94TVMH0mX3MbZNYFme7oNRKml/85BpRRAo=",
+        "lastModified": 1758313341,
+        "narHash": "sha256-SsI6INUzWwPcRKRaxvi50RttnD9rcC4EjV+67TOEfrQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "f21d9167782c086a33ad53e2311854a8f13c281e",
+        "rev": "6f656618ebc71ca82d93d306a8aecb2c5f6f2ab2",
         "type": "github"
       },
       "original": {
@@ -336,11 +336,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1758243678,
-        "narHash": "sha256-gUNJMCxZnwwRDQZhStKfjVP9Nd9RuAccAsshDh14HYY=",
+        "lastModified": 1758329880,
+        "narHash": "sha256-3s+BuWOsKXiSrUeyQkn6Wswy318SMY+w/jU5bqNeQ54=",
         "owner": "bandithedoge",
         "repo": "nixpkgs-firefox-darwin",
-        "rev": "a44d5aae9b9b81d1654117921343a1d0abb1093e",
+        "rev": "4da6ae937a2d4252540cf6b94f46e17bd2afe0f1",
         "type": "github"
       },
       "original": {
@@ -349,18 +349,34 @@
         "type": "github"
       }
     },
-    "nixpkgs-unstable": {
+    "nixpkgs-fork": {
       "locked": {
-        "lastModified": 1758041351,
-        "narHash": "sha256-8hxy9amrj+IyWRRTcj5z/sqWeUqHkqtMsVOvfejJ37w=",
+        "lastModified": 1758041511,
+        "narHash": "sha256-QbfQbLStMbqBhUiV3b0huTekAOU+wddzrum7CpvjsbQ=",
         "owner": "antoncuranz",
         "repo": "nixpkgs",
-        "rev": "c81b142d9b7b839620da732d57f894d677f8c7b7",
+        "rev": "5f536e9b924987470e1d52dabb463cd1a7e43874",
         "type": "github"
       },
       "original": {
         "owner": "antoncuranz",
-        "ref": "release-25.05",
+        "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-unstable": {
+      "locked": {
+        "lastModified": 1758262103,
+        "narHash": "sha256-aBGl3XEOsjWw6W3AHiKibN7FeoG73dutQQEqnd/etR8=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "12bd230118a1901a4a5d393f9f56b6ad7e571d01",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -415,11 +431,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1758251931,
-        "narHash": "sha256-m2v94CWDmvezPO6xKB7M9IQbaY+SQMsACD8T5rspotE=",
+        "lastModified": 1758348568,
+        "narHash": "sha256-+eJKuavqOFe0tlXExn6+Y7E69pApEOGmfHYnLWxtsgc=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "5bb6983cc938bb40aa829d2ccf420ca7faacbd41",
+        "rev": "a5099953f455c65d230981d7a3dc790066a3c114",
         "type": "github"
       },
       "original": {
@@ -494,11 +510,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1758263370,
-        "narHash": "sha256-Nh7wGoyLqHIK1e9HOcmeuwu8wTmwm2tLh2hFqD+NqxU=",
+        "lastModified": 1758344267,
+        "narHash": "sha256-IDI/9/H9WW++sihlB7jyBetLUvqU0GBnZv0Od5D/nzA=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "f1ee8889e667e4c206fdfcf0de45ccb32fd4568c",
+        "rev": "9ea2a0faddc79c2bf04a4cdc480ff7237f266f82",
         "type": "github"
       },
       "original": {
@@ -560,6 +576,7 @@
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-firefox-darwin": "nixpkgs-firefox-darwin",
+        "nixpkgs-fork": "nixpkgs-fork",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim": "nixvim",
         "nixvirt": "nixvirt",

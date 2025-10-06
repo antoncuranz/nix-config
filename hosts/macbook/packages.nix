@@ -5,6 +5,8 @@
     # _1password-gui
     nodejs_22
     go-critic
+    unstable.talosctl
+    npm-check-updates
   ];
 
   homebrew = {

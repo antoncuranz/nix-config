@@ -12,6 +12,9 @@
 
   nixpkgs.overlays = [ 
     (final: prev: {
+      fork = import inputs.nixpkgs-fork {
+        system = prev.system;
+      };
       unstable = import inputs.nixpkgs-unstable {
         system = prev.system;
       };
