@@ -3,9 +3,10 @@
 {
   environment.systemPackages = with pkgs; [
     vim
-    colima
+    unstable.colima
     docker
     docker-compose
+    docker-credential-helpers
     fork.iterm2
     unstable.k9s
     goku
@@ -28,5 +29,6 @@
     python312
     restic
     tree
+    claude-code
   ];
 }
