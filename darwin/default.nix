@@ -14,9 +14,11 @@
     (final: prev: {
       fork = import inputs.nixpkgs-fork {
         system = prev.system;
+        config.allowUnfree = true;
       };
       unstable = import inputs.nixpkgs-unstable {
         system = prev.system;
+        config.allowUnfree = true;
       };
     })
   ];

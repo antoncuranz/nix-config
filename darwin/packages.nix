@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -18,6 +18,7 @@
     kubectl
     kubectl-cnpg
     kubectx
+    krew
     unstable.fluxcd
     _1password-cli
     just
@@ -29,6 +30,6 @@
     python312
     restic
     tree
-    claude-code
+    unstable.claude-code
   ];
 }
