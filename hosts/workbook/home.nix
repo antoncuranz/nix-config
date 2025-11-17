@@ -9,7 +9,7 @@
   programs.zsh.enable = true;
 
   home.sessionPath = [
-    "/Library/TeX/texbin"
+    "/$HOME/.npm-global"
   ];
 
   home.sessionVariables = {

@@ -30,6 +30,6 @@
     python312
     restic
     tree
-    unstable.claude-code
+    unixtools.watch
   ];
 }
