@@ -31,5 +31,7 @@
     restic
     tree
     unixtools.watch
+    unstable.vscodium
+    gh
   ];
 }
