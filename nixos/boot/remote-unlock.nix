@@ -1,4 +1,4 @@
-{ config, lib, secrets, ... }:
+{ config, lib, secrets, pkgs, ... }:
 
 let
   cfg = config.boot.remote-unlock;

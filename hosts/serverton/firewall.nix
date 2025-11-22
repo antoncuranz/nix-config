@@ -6,6 +6,7 @@
     51017 # Homebridge
     39645 # Shelly
     44500 # Tuya
+    636   # Samba AD DC
   ];
   networking.firewall.allowedUDPPorts = [
     5683 # Shelly CoIoT
