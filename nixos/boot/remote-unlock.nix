@@ -27,8 +27,11 @@ in
           ];
         };
         postCommands = ''
-          wget -qO- \
-            --post-data "token=${secrets.pushover.token}&user=${secrets.pushover.user}&message=System is booting: Please unlock zroot." \
+          ${pkgs.curl}/bin/curl -s \
+            --form-string "token=${secrets.pushover.token}" \
+            --form-string "user=${secrets.pushover.user}" \
+            --form-string "message=System is booting: Please unlock zroot." \
+            --form-string "device=iphone" \
             https://api.pushover.net/1/messages.json
         '';
       };

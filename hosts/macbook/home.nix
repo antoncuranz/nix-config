@@ -18,6 +18,10 @@
 
   programs.zsh.enable = true;
 
+  home.sessionPath = [
+    "$HOME/.npm-global/bin"
+  ];
+
   home.sessionVariables = {
     EDITOR = "nvim";
     TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE = "/var/run/docker.sock";
@@ -30,9 +34,6 @@
     rebuild = "sudo darwin-rebuild switch --flake '/Users/ant0n/Developer/nix-config#macbook'";
     update = "nix flake update --flake '/Users/ant0n/Developer/nix-config'";
     "virt-manager" = "GSETTINGS_BACKEND=keyfile virt-manager --no-fork -c qemu+ssh://192.168.1.2/system";
-    # ibrew = "arch -x86_64 /usr/local/bin/brew";
-    # izsh = "arch -x86_64 zsh";
-    # ipython = "arch -x86_64 /usr/local/bin/python3";
   };
 
   programs.git = {

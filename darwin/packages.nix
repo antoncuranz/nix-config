@@ -33,5 +33,7 @@
     unixtools.watch
     unstable.vscodium
     gh
+    unstable.ripgrep
+    bun
   ];
 }

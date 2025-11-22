@@ -9,7 +9,7 @@
   programs.zsh.enable = true;
 
   home.sessionPath = [
-    "/$HOME/.npm-global"
+    "$HOME/.npm-global/bin"
   ];
 
   home.sessionVariables = {

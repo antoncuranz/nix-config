@@ -30,11 +30,11 @@ in
       script = ''
         ${pkgs.curl}/bin/curl -s \
           --form-string "token=${secrets.pushover.token}" \
-	  --form-string "user=${secrets.pushover.user}" \
-	  --form-string "title=$1 failed (${hostname})" \
-	  --form-string "message=$(${pkgs.systemd}/bin/systemctl status --full "$1")" \
-	  --form-string "device=iphone" \
-	  https://api.pushover.net/1/messages.json
+          --form-string "user=${secrets.pushover.user}" \
+          --form-string "title=$1 failed (${hostname})" \
+          --form-string "message=$(${pkgs.systemd}/bin/systemctl status --full "$1")" \
+          --form-string "device=iphone" \
+          https://api.pushover.net/1/messages.json
       '';
       scriptArgs = "%i";
       serviceConfig = {
