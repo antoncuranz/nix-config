@@ -21,6 +21,7 @@
   };
 
   home.shellAliases = {
+    opencode = "opencode --agent plan";
     vim = "nvim";
     rebuild = "sudo darwin-rebuild switch --flake '/Users/anton.curanz/Developer/nix-config#workbook'";
   };

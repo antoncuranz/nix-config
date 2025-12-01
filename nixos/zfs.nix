@@ -7,4 +7,8 @@
   environment.systemPackages = with pkgs; [
     zfs-prune-snapshots
   ];
+
+  boot.kernelParams = [ 
+    "zfs.zfs_scrub_delay=0" 
+  ];
 }
