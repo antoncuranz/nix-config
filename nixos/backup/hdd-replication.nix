@@ -40,9 +40,10 @@ in
 
 
         # zroot -> HDD2
-        ${pkgs.sanoid}/bin/syncoid --sendoptions="w" --recvoptions="u" --compress=none -r --no-sync-snap --skip-parent --exclude=zroot/bitcoin --exclude=zroot/root --exclude=zroot/nix zroot HDD2/zroot
         # --exclude will be deprecated in favor of --exclude-datasets
         # Use --delete-target-snapshots if space requires it
+        ${pkgs.sanoid}/bin/syncoid --sendoptions="w" --recvoptions="u" --compress=none -r --no-sync-snap --skip-parent --exclude=zroot/bitcoin --exclude=zroot/root --exclude=zroot/nix --exclude=zroot/mediarr zroot HDD2/zroot
+        ${pkgs.sanoid}/bin/syncoid --sendoptions="w" --recvoptions="u" --compress=none -r --delete-target-snapshots zroot/mediarr HDD2/zroot/mediarr
 
         # nvme/Samba -> HDD1
         ${pkgs.sanoid}/bin/syncoid --sendoptions="w" --recvoptions="u" --compress=none -r --no-sync-snap nvme/Samba HDD1/Samba

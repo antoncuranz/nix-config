@@ -18,8 +18,8 @@
     sanoid.datasets = [
       "zroot/home"
       "zroot/persist"
-      "zroot/mediarr"
       "zroot/k8s"
+      # "zroot/mediarr"
       "nvme/Backup"
       "nvme/Samba"
     ];
