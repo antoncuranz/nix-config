@@ -12,9 +12,16 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = [
-      6443 # k3s API server
-    ];
+    networking.firewall = {
+      allowedTCPPorts = [
+        6443 # k3s API server
+        # 10250 # Kubelet Metrics
+        # 9100  # Node Exporter
+      ];
+
+      # trust kubernetes interfaces (required for metrics)
+      trustedInterfaces = [ "cni0" "flannel.1" ];
+    };
 
     environment.systemPackages = with pkgs; [
       k3s
