@@ -80,6 +80,11 @@
             options.mountpoint = "legacy";
             mountpoint = "/persist";
           };
+          cache = {
+            type = "zfs_fs";
+            options.mountpoint = "legacy";
+            mountpoint = "/cache";
+          };
         };
       };
     };

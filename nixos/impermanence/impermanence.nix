@@ -18,16 +18,10 @@ in
     environment.persistence."/persist" = {
       hideMounts = true;
       directories = [
-        "/var/log"
         "/var/lib/nixos"
-
-        "/var/lib/rancher/k3s"
         "/var/lib/samba"
-        "/var/cache/samba"
         "/var/lib/libvirt"
-
         "/root/.config/rclone"
-        "/root/.cache/restic"
       ];
       files = [
         "/etc/machine-id"
@@ -40,6 +34,17 @@ in
 
         "/root/.ssh/id_ed25519"
         "/root/.ssh/id_ed25519.pub"
+      ];
+    };
+
+    fileSystems."/cache".neededForBoot = true;
+    environment.persistence."/cache" = {
+      hideMounts = true;
+      directories = [
+        "/var/log"
+        "/var/lib/rancher/k3s"
+        "/var/cache/samba"
+        "/root/.cache/restic"
       ];
     };
   };
