@@ -5,7 +5,6 @@
     ./restic.nix
     ./sanoid.nix
     ./hdd-replication.nix
-    ./cloudton-backup.nix
     ./systemd-pushover.nix
   ];
 
