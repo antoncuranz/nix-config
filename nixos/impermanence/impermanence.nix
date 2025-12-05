@@ -9,7 +9,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    boot.initrd.postDeviceCommands = lib.mkAfter ''
+    boot.initrd.postResumeCommands = lib.mkAfter ''
+      echo "[impermanence] rolling back zroot@blank"
       zfs rollback -r zroot/root@blank
     '';
 

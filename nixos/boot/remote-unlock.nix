@@ -27,7 +27,8 @@ in
           ];
         };
         postCommands = ''
-          ${pkgs.curl}/bin/curl -s \
+          echo "[remote-unlock] sending pushover notification"
+          ${pkgs.curl}/bin/curl -k --retry 3 --retry-all-errors \
             --form-string "token=${secrets.pushover.token}" \
             --form-string "user=${secrets.pushover.user}" \
             --form-string "message=System is booting: Please unlock zroot." \
