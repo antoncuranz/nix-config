@@ -40,7 +40,7 @@
   programs.git = {
     enable = true;
     lfs.enable = true;
-    extraConfig = {
+    settings = {
       user.name = "Anton Curanz";
       user.email = "anton@curanz.de";
       init.defaultBranch = "main";

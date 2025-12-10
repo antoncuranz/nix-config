@@ -24,17 +24,26 @@ in
         illuminate.enable = true;
         web-devicons.enable = true;
         telescope.enable = true;
-        telekasten.enable = true;
-        telekasten.settings = {
-          home.__raw = "vim.fn.expand(\"~/zettelkasten\")";
-          templates.__raw = "vim.fn.expand(\"~/zettelkasten/templates\")";
-          template_new_note.__raw = "vim.fn.expand(\"~/zettelkasten/templates/basenote.md\")";
-          template_new_daily.__raw = "vim.fn.expand(\"~/zettelkasten/templates/daily.md\")";
-          template_new_weekly.__raw = "vim.fn.expand(\"~/zettelkasten/templates/weekly.md\")";
-          take_over_my_home = false;
-          auto_set_filetype = false;
-          auto_set_syntax = false;
-          journal_auto_open = true;
+        opencode.enable = true;
+        snacks = {
+          enable = true;
+          settings = {
+            input.enabled = true;
+          };
+        };
+        telekasten = {
+          enable = true;
+          settings = {
+            home.__raw = "vim.fn.expand(\"~/zettelkasten\")";
+            templates.__raw = "vim.fn.expand(\"~/zettelkasten/templates\")";
+            template_new_note.__raw = "vim.fn.expand(\"~/zettelkasten/templates/basenote.md\")";
+            template_new_daily.__raw = "vim.fn.expand(\"~/zettelkasten/templates/daily.md\")";
+            template_new_weekly.__raw = "vim.fn.expand(\"~/zettelkasten/templates/weekly.md\")";
+            take_over_my_home = false;
+            auto_set_filetype = false;
+            auto_set_syntax = false;
+            journal_auto_open = true;
+          };
         };
         alpha = {
           enable = true;

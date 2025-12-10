@@ -10,9 +10,10 @@
     fork.iterm2
     unstable.k9s
     goku
-    spotify
+    # spotify
     go
     lazygit
+    delta
     git-crypt
     kubernetes-helm
     kubectl
