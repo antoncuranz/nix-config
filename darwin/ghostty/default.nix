@@ -1,9 +1,27 @@
-{ lib,inputs, ... }:
+{ inputs, config, lib, pkgs, ... }:
 
+let
+  cfg = config.ghostty;
+in
 {
-  imports = [
-    ./ghostty.nix
-  ];
+  options.ghostty.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "enable ghostty";
+  };
 
-  ghostty.enable = lib.mkDefault false;
+  config = lib.mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      ghostty-bin
+    ];
+
+    home-manager.users."${config.system.primaryUser}".xdg.configFile = {
+      "ghostty/config" = {
+        source = ./config;
+      };
+      "ghostty/themes" = {
+        source = ./themes;
+      };
+    };
+  };
 }

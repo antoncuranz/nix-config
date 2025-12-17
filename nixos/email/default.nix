@@ -1,9 +1,28 @@
-{ lib,inputs, ... }:
+{ config, lib, secrets, ... }:
 
+let
+  cfg = config.email;
+in
 {
-  imports = [
-    ./msmtp.nix
-  ];
+  options.email.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "enable email";
+  };
 
-  email.enable = lib.mkDefault false;
+  config = lib.mkIf cfg.enable {
+    programs.msmtp = {
+      enable = true;
+      accounts = {
+        default = {
+          auth = true;
+          tls = true;
+          from = "${secrets.msmtp.email}";
+          host = "${secrets.msmtp.host}";
+          user = "${secrets.msmtp.email}";
+          password = "${secrets.msmtp.password}";
+        };
+      };
+    };
+  };
 }

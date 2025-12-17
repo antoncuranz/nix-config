@@ -1,9 +1,27 @@
-{ lib,inputs, ... }:
+{ config, lib, pkgs, ... }:
 
+let
+  cfg = config.auto-upgrade;
+in
 {
-  imports = [
-    ./autoUpgrade.nix
-  ];
+  options.auto-upgrade.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "enable autoUpgrade";
+  };
 
-  auto-upgrade.enable = lib.mkDefault false;
+  config = lib.mkIf cfg.enable {
+    system.autoUpgrade = {
+      enable = true;
+      flake = "/home/ant0n/nix-config";
+      flags = [
+        "--update-input"
+        "nixpkgs"
+        "-L" # print build logs
+        "--commit-lock-file"
+      ];
+      dates = "weekly";
+      randomizedDelaySec = "45min";
+    };
+  };
 }

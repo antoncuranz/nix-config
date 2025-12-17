@@ -1,9 +1,28 @@
-{ lib,inputs, ... }:
+{ inputs, config, lib, pkgs, ... }:
 
+let
+  cfg = config.dops;
+in
 {
-  imports = [
-    ./dops.nix
-  ];
+  options.dops.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "enable dops";
+  };
 
-  dops.enable = lib.mkDefault false;
+  config = lib.mkIf cfg.enable {
+    homebrew = {
+      taps = [
+        "mikescher/tap"
+      ];
+
+      brews = [
+        "dops"
+      ];
+    };
+
+    home-manager.users."${config.system.primaryUser}".home.file."Library/Application Support/dops.conf" = {
+      source = ./dops.conf;
+    };
+  };
 }
