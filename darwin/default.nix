@@ -4,6 +4,8 @@
   imports = [
     ./vim
     ./firefox
+    ./ghostty
+    ./dops
     ./karabiner
     ./zsh.nix
     ./system-defaults.nix
@@ -12,10 +14,6 @@
 
   nixpkgs.overlays = [ 
     (final: prev: {
-      fork = import inputs.nixpkgs-fork {
-        system = prev.stdenv.hostPlatform.system;
-        config.allowUnfree = true;
-      };
       unstable = import inputs.nixpkgs-unstable {
         system = prev.stdenv.hostPlatform.system;
         config.allowUnfree = true;

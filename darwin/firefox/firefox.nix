@@ -45,10 +45,6 @@ in
 {
   options.firefox = {
     enable = lib.mkEnableOption "enable firefox";
-    user = lib.mkOption {
-      type = lib.types.str;
-      default = "ant0n";
-    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -65,7 +61,7 @@ in
       }))
     ];
 
-    home-manager.users."${cfg.user}".programs.firefox = {
+    home-manager.users."${config.system.primaryUser}".programs.firefox = {
       enable = true;
       arkenfox = {
         enable = true;

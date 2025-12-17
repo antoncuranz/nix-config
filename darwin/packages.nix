@@ -7,10 +7,8 @@
     docker
     docker-compose
     docker-credential-helpers
-    fork.iterm2
     unstable.k9s
     goku
-    # spotify
     go
     lazygit
     delta

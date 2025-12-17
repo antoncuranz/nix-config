@@ -349,22 +349,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-fork": {
-      "locked": {
-        "lastModified": 1760701220,
-        "narHash": "sha256-8PE1e9LN6PBxTzO/01y6U3xmkVYH/2AYor/wcU0WRX4=",
-        "owner": "antoncuranz",
-        "repo": "nixpkgs",
-        "rev": "2f3c011e5f09d1304095736b733ce4cc70623537",
-        "type": "github"
-      },
-      "original": {
-        "owner": "antoncuranz",
-        "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1765270179,
@@ -576,7 +560,6 @@
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-firefox-darwin": "nixpkgs-firefox-darwin",
-        "nixpkgs-fork": "nixpkgs-fork",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim": "nixvim",
         "nixvirt": "nixvirt",

@@ -7,10 +7,9 @@
 
   # modules
   vim.enable = true;
-  karabiner = {
-    enable = true;
-    user = "anton.curanz";
-  };
+  ghostty.enable = true;
+  dops.enable = true;
+  karabiner.enable = true;
 
   # playground
   nixpkgs.overlays = [

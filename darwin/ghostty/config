@@ -1,0 +1,4 @@
+font-family = JetBrains Mono
+font-size = 15
+window-padding-x = 14
+theme = light:light,dark:dark

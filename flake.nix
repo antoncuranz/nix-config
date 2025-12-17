@@ -2,7 +2,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/release-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-fork.url = "github:antoncuranz/nixpkgs/master";
 
     impermanence.url = "github:nix-community/impermanence";
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";

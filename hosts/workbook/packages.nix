@@ -3,6 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     glab
+    jira-cli-go
   ];
 
   homebrew = {
@@ -13,9 +14,5 @@
       "openlens"
       "scroll-reverser"
     ];
-
-     masApps = {
-       "The Unarchiver" = 425424353;
-    };
   };
 }
