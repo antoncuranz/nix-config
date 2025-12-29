@@ -17,7 +17,6 @@
     #   "telegram"
     #   "signal"
     #   "timemachineeditor"
-    #   "openlens"
     #   "scroll-reverser"
     # ];
 

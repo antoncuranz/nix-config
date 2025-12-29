@@ -11,7 +11,6 @@
 
     casks = [
       "obsidian"
-      "openlens"
       "scroll-reverser"
     ];
   };

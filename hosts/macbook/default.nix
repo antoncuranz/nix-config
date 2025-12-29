@@ -9,6 +9,8 @@
   vim.enable = true;
   karabiner.enable = true;
   firefox.enable = true;
+  ghostty.enable = true;
+  dops.enable = true;
 
   # playground
   nixpkgs.overlays = [
