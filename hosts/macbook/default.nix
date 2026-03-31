@@ -26,6 +26,7 @@
   home-manager.backupFileExtension = "backup";
   home-manager.sharedModules = [
     inputs.mac-app-util.homeManagerModules.default
+    inputs.opencode-config.homeManagerModules.default
   ];
 
   system.stateVersion = 4;

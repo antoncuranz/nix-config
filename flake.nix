@@ -8,6 +8,8 @@
     nur.url = "github:nix-community/nur";
     mac-app-util.url = "github:hraban/mac-app-util";
 
+    opencode-config.url = "github:antoncuranz/opencode-config";
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";

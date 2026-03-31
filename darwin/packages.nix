@@ -33,6 +33,6 @@
     unstable.vscodium
     gh
     unstable.ripgrep
-    bun
+    unstable.bun
   ];
 }
