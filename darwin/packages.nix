@@ -36,5 +36,6 @@
     unstable.bun
     minikube
     unstable.opentofu
+    cilium-cli
   ];
 }

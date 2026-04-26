@@ -24,7 +24,7 @@ in
       ];
 
       # trust kubernetes interfaces (required for metrics)
-      trustedInterfaces = [ "cni0" "flannel.1" ];
+      trustedInterfaces = [ "cni0" "cilium_host" "cilium_net" "cilium_vxlan" ];
     };
 
     environment.systemPackages = with pkgs; [
