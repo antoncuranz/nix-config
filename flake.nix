@@ -79,7 +79,7 @@
     };
 
     darwinConfigurations.macbook = nix-darwin.lib.darwinSystem {
-      specialArgs = { inherit inputs; };
+      specialArgs = { inherit inputs secrets; };
       modules = [
         ./hosts/macbook
         ./darwin
@@ -91,7 +91,7 @@
     };
 
     darwinConfigurations.workbook = nix-darwin.lib.darwinSystem {
-      specialArgs = { inherit inputs; };
+      specialArgs = { inherit inputs secrets; };
       modules = [
         ./hosts/workbook
         ./darwin

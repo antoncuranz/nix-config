@@ -34,5 +34,7 @@
     gh
     unstable.ripgrep
     unstable.bun
+    minikube
+    unstable.opentofu
   ];
 }

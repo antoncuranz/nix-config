@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, secrets, ... }:
 
 {
   imports = [
@@ -22,6 +22,7 @@
   users.users.ant0n.home = "/Users/ant0n";
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
+  home-manager.extraSpecialArgs = { inherit inputs secrets; };
   home-manager.users.ant0n = import ./home.nix;
   home-manager.backupFileExtension = "backup";
   home-manager.sharedModules = [
