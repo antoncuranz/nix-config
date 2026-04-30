@@ -18,8 +18,20 @@
     inputs.nur.overlays.default
   ];
 
+  programs.fish.enable = true;
+
   system.primaryUser = "ant0n";
-  users.users.ant0n.home = "/Users/ant0n";
+
+  # User configuration - this will set the default shell
+  # Required for shell changes to take effect on macOS
+  # See: https://github.com/nix-darwin/nix-darwin/issues/1237
+  users.knownUsers = [ "ant0n" ];
+  users.users."ant0n" = {
+    home = "/Users/ant0n";
+    uid = 501;
+    shell = pkgs.fish;
+  };
+
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.extraSpecialArgs = { inherit inputs secrets; };

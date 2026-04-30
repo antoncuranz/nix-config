@@ -16,8 +16,6 @@
   home.username = "ant0n";
   home.homeDirectory = "/Users/ant0n";
 
-  programs.zsh.enable = true;
-
   home.sessionPath = [
     "$HOME/.npm-global/bin"
   ];
@@ -31,10 +29,15 @@
   };
 
   home.shellAliases = {
+    k = "kubectl";
     vim = "nvim";
     rebuild = "sudo darwin-rebuild switch --flake '/Users/ant0n/Developer/nix-config#macbook'";
     update = "nix flake update --flake '/Users/ant0n/Developer/nix-config'";
     "virt-manager" = "GSETTINGS_BACKEND=keyfile virt-manager --no-fork -c qemu+ssh://192.168.1.2/system";
+  };
+
+  programs.fish = {
+    enable = true;
   };
 
   programs.git = {
@@ -46,8 +49,6 @@
       init.defaultBranch = "main";
     };
   };
-
-  # TODO: eval "$(direnv hook zsh)"
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

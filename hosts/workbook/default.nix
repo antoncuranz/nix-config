@@ -17,8 +17,20 @@
     inputs.nur.overlays.default
   ];
 
+  programs.fish.enable = true;
+
   system.primaryUser = "anton.curanz";
-  users.users."anton.curanz".home = "/Users/anton.curanz";
+
+  # User configuration - this will set the default shell
+  # Required for shell changes to take effect on macOS
+  # See: https://github.com/nix-darwin/nix-darwin/issues/1237
+  users.knownUsers = [ "anton.curanz" ];
+  users.users."anton.curanz" = {
+    home = "/Users/anton.curanz";
+    uid = 501;
+    shell = pkgs.fish;
+  };
+
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users."anton.curanz" = import ./home.nix;

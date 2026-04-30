@@ -6,8 +6,6 @@
   home.username = "anton.curanz";
   home.homeDirectory = "/Users/anton.curanz";
 
-  programs.zsh.enable = true;
-
   home.sessionPath = [
     "$HOME/.npm-global/bin"
   ];
@@ -21,8 +19,16 @@
   };
 
   home.shellAliases = {
+    k = "kubectl";
     vim = "nvim";
     rebuild = "sudo darwin-rebuild switch --flake '/Users/anton.curanz/Developer/nix-config#workbook'";
+  };
+
+  programs.fish = {
+    enable = true;
+    completions.mcs = ''
+      mcs completion fish | source
+    '';
   };
 
   programs.firefox = {

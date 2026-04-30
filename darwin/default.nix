@@ -7,7 +7,6 @@
     ./ghostty
     ./dops
     ./karabiner
-    ./zsh.nix
     ./system-defaults.nix
     ./packages.nix
   ];
@@ -21,7 +20,6 @@
     })
   ];
 
-  programs.zsh.enable = true;  # default shell on catalina
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = "nix-command flakes";
 
