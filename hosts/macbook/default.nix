@@ -8,15 +8,8 @@
   # modules
   vim.enable = true;
   karabiner.enable = true;
-  firefox.enable = true;
   ghostty.enable = true;
   dops.enable = true;
-
-  # playground
-  nixpkgs.overlays = [
-    inputs.nixpkgs-firefox-darwin.overlay
-    inputs.nur.overlays.default
-  ];
 
   system.primaryUser = "ant0n";
 

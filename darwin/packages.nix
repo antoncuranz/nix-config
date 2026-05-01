@@ -20,6 +20,7 @@
     kubectl-cnpg
     kubectx
     unstable.k9s
+    unstable.freelens-bin
     unstable.fluxcd
     minikube
     unstable.opentofu

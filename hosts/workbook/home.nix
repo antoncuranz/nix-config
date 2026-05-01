@@ -32,25 +32,19 @@
     '';
 
     shellInit = ''
+      # fish & atuin
+      fish_vi_key_bindings
+      bind -M insert \cf forward-char
+      bind -M insert \cp _atuin_search
+
+      # ghostty ssh fix
+      if test "$TERM_PROGRAM" = "ghostty"
+        set -x TERM xterm-256color
+      end
+
+      # homebrew
       eval "$(/opt/homebrew/bin/brew shellenv)"
     '';
-  };
-
-  programs.firefox = {
-    enable = false; # TODO
-    package = pkgs.firefox-bin;
-    profiles = {
-      default = {
-        name = "nix-config";
-        isDefault = true;
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-          ublock-origin
-          multi-account-containers
-          onepassword-password-manager
-          sponsorblock
-        ];
-      };
-    };
   };
 
   # This value determines the Home Manager release that your

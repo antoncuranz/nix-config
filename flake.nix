@@ -5,7 +5,6 @@
 
     impermanence.url = "github:nix-community/impermanence";
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
-    nur.url = "github:nix-community/nur";
     mac-app-util.url = "github:hraban/mac-app-util";
 
     opencode-config.url = "github:antoncuranz/opencode-config";
@@ -27,11 +26,6 @@
 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nixpkgs-firefox-darwin = {
-      url = "github:bandithedoge/nixpkgs-firefox-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

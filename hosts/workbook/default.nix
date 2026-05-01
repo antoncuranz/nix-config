@@ -11,12 +11,6 @@
   dops.enable = true;
   karabiner.enable = true;
 
-  # playground
-  nixpkgs.overlays = [
-    inputs.nixpkgs-firefox-darwin.overlay
-    inputs.nur.overlays.default
-  ];
-
   system.primaryUser = "anton.curanz";
 
   # User configuration - this will set the default shell
