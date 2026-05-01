@@ -3,39 +3,43 @@
 {
   environment.systemPackages = with pkgs; [
     vim
+    lazygit
+    htop
+    wget
+    git-crypt
+    tree
+    tig
+
     unstable.colima
     docker
     docker-compose
     docker-credential-helpers
-    unstable.k9s
-    goku
-    go
-    lazygit
-    delta
-    git-crypt
+
     kubernetes-helm
     kubectl
     kubectl-cnpg
     kubectx
-    krew
+    unstable.k9s
     unstable.fluxcd
+    minikube
+    unstable.opentofu
+    cilium-cli
+
+    goku
+    go
+    delta
+    krew
     _1password-cli
     just
     minijinja
-    htop
-    wget
     postgresql  # provides pg_dump
     postgresql.pg_config  # required for psycopg2 python package
     python312
     restic
-    tree
     unixtools.watch
     unstable.vscodium
     gh
     unstable.ripgrep
     unstable.bun
-    minikube
-    unstable.opentofu
-    cilium-cli
   ];
 }

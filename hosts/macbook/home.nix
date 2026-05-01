@@ -1,15 +1,5 @@
 { secrets, config, pkgs, ... }:
 
-  let
-    lock-false = {
-      Value = false;
-      Status = "locked";
-    };
-    lock-true = {
-      Value = true;
-      Status = "locked";
-    };
-  in
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -38,6 +28,10 @@
   };
 
   programs.fish = {
+    enable = true;
+  };
+
+  programs.atuin = {
     enable = true;
   };
 
