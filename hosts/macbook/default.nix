@@ -18,8 +18,6 @@
     inputs.nur.overlays.default
   ];
 
-  programs.fish.enable = true;
-
   system.primaryUser = "ant0n";
 
   # User configuration - this will set the default shell

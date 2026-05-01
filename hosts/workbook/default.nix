@@ -17,8 +17,6 @@
     inputs.nur.overlays.default
   ];
 
-  programs.fish.enable = true;
-
   system.primaryUser = "anton.curanz";
 
   # User configuration - this will set the default shell

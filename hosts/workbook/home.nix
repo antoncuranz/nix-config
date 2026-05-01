@@ -20,6 +20,7 @@
 
   home.shellAliases = {
     k = "kubectl";
+    oc = "opencode";
     vim = "nvim";
     rebuild = "sudo darwin-rebuild switch --flake '/Users/anton.curanz/Developer/nix-config#workbook'";
   };

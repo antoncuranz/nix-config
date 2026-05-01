@@ -30,6 +30,7 @@
 
   home.shellAliases = {
     k = "kubectl";
+    oc = "opencode";
     vim = "nvim";
     rebuild = "sudo darwin-rebuild switch --flake '/Users/ant0n/Developer/nix-config#macbook'";
     update = "nix flake update --flake '/Users/ant0n/Developer/nix-config'";
