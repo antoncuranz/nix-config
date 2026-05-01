@@ -29,6 +29,10 @@
     completions.mcs = ''
       mcs completion fish | source
     '';
+
+    shellInit = ''
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+    '';
   };
 
   programs.firefox = {
