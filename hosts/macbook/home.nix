@@ -31,7 +31,6 @@
     enable = true;
     shellInit = ''
       # fish & atuin
-      fish_vi_key_bindings
       bind -M insert \cf forward-char
       bind -M insert \cp _atuin_search
 
