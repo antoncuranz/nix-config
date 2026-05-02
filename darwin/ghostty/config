@@ -2,3 +2,6 @@ font-family = JetBrains Mono
 font-size = 15
 window-padding-x = 14
 theme = light:github-light,dark:github-dark
+
+keybind = cmd+ü=goto_split:previous
+keybind = cmd++=goto_split:next
