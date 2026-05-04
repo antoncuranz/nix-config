@@ -33,8 +33,9 @@
 
     shellInit = ''
       # fish & atuin
-      bind -M insert \cf forward-char
-      bind -M insert \cp _atuin_search
+      set -gx ATUIN_NOBIND "true"
+      bind \cr _atuin_search
+      bind -M insert \cr _atuin_search
 
       # ghostty ssh fix
       if test "$TERM_PROGRAM" = "ghostty"
@@ -44,6 +45,10 @@
       # homebrew
       eval "$(/opt/homebrew/bin/brew shellenv)"
     '';
+  };
+
+  programs.atuin = {
+    enable = true;
   };
 
   # This value determines the Home Manager release that your
