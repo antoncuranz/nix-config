@@ -35,18 +35,15 @@ function changeColorscheme()
   else
     cmd("colorscheme xcodelight")
   end
+  cmd [[
+    hi! Normal guibg=none
+    hi! link LspReferenceText CursorColumn
+    hi! link LspReferenceRead CursorColumn
+    hi! link LspReferenceWrite CursorColumn
+  ]]
 end
 changeColorscheme()
-
-
-cmd [[
-  autocmd Signal * lua changeColorscheme()
-
-  hi! Normal guibg=none
-  hi! link LspReferenceText CursorColumn
-  hi! link LspReferenceRead CursorColumn
-  hi! link LspReferenceWrite CursorColumn
-]]
+cmd("autocmd Signal * lua changeColorscheme()")
 
 -- STATUSLINE
 cmd [[
