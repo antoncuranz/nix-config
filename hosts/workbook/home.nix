@@ -21,6 +21,7 @@
   home.shellAliases = {
     k = "kubectl";
     oc = "opencode";
+    cd = "z";
     vim = "nvim";
     rebuild = "sudo darwin-rebuild switch --flake '/Users/anton.curanz/Developer/nix-config#workbook'";
   };
@@ -47,9 +48,8 @@
     '';
   };
 
-  programs.atuin = {
-    enable = true;
-  };
+  programs.atuin.enable = true;
+  programs.zoxide.enable = true;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

@@ -21,6 +21,7 @@
   home.shellAliases = {
     k = "kubectl";
     oc = "opencode";
+    cd = "z";
     vim = "nvim";
     rebuild = "sudo darwin-rebuild switch --flake '/Users/ant0n/Developer/nix-config#macbook'";
     update = "nix flake update --flake '/Users/ant0n/Developer/nix-config'";
@@ -45,9 +46,8 @@
     '';
   };
 
-  programs.atuin = {
-    enable = true;
-  };
+  programs.atuin.enable = true;
+  programs.zoxide.enable = true;
 
   programs.git = {
     enable = true;

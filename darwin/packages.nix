@@ -42,5 +42,6 @@
     gh
     unstable.ripgrep
     unstable.bun
+    fzf
   ];
 }
