@@ -14,8 +14,6 @@
     EDITOR = "nvim";
     TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE = "/var/run/docker.sock";
     DOCKER_HOST = "unix://$HOME/.rd/docker.sock";
-    JAVA_HOME = "/opt/homebrew/Cellar/openjdk@17/17.0.16";
-    # DOCKER_HOST = "unix://$HOME/.colima/default/docker.sock";
   };
 
   home.shellAliases = {
