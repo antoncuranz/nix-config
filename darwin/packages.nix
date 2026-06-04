@@ -19,6 +19,7 @@
     kubectl
     kubectl-cnpg
     kubectx
+    kustomize
     unstable.k9s
     unstable.freelens-bin
     unstable.fluxcd
