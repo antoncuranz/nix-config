@@ -21,6 +21,7 @@
     oc = "opencode";
     cd = "z";
     vim = "nvim";
+    vzf = "vim $(fzf --preview 'bat -n --color=always --theme=ansi {}')";
     rebuild = "sudo darwin-rebuild switch --flake '/Users/anton.curanz/Developer/nix-config#workbook'";
   };
 
@@ -48,6 +49,16 @@
 
   programs.atuin.enable = true;
   programs.zoxide.enable = true;
+  programs.git.enable = true;
+
+  programs.hunk = {
+    enable = true;
+    enableGitIntegration = true;
+    settings = {
+      mode = "split";
+      theme = "auto";
+    };
+  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
