@@ -45,6 +45,10 @@ in
         kernelModules = [ "e1000e" ];
         systemd = {
           enable = true;
+          initrdBin = [
+            pkgs.psmisc
+            pkgs.curl
+          ];
           network = {
             enable = true;
             networks."10-${staticIPv4.interface}" = {
@@ -67,7 +71,6 @@ in
           };
         };
         network = {
-          enable = true;
           ssh = {
             enable = true;
             port = 2222;
