@@ -14,7 +14,7 @@
     ];
 
     # Or disable the firewall altogether.
-    # enable = false;
+    enable = false;
   };
 }
 
