@@ -45,6 +45,17 @@ in
   virtualization.network-bridge.enable = false;
   auto-upgrade.enable = true;
 
+  networking.useDHCP = lib.mkForce false;
+  networking.dhcpcd.enable = false;
+  networking.interfaces.${network.interface} = {
+    useDHCP = lib.mkForce false;
+    ipv4.addresses = [{
+      inherit (network) address prefixLength;
+    }];
+  };
+  networking.defaultGateway = network.gateway;
+  networking.nameservers = [ network.nameserver ];
+
   # hardware
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.kernelModules = [ "kvm-intel" ];
