@@ -10,6 +10,7 @@
   ghostty.enable = true;
   dops.enable = true;
   karabiner.enable = true;
+  pi.enable = true;
 
   system.primaryUser = "anton.curanz";
 
