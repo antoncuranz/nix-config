@@ -15,10 +15,23 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    boot.initrd.postResumeCommands = lib.mkAfter ''
+    boot.initrd.postResumeCommands = lib.mkIf (!config.boot.initrd.systemd.enable) (lib.mkAfter ''
       echo "[impermanence] rolling back zroot@blank"
       zfs rollback -r zroot/root@blank
-    '';
+    '');
+
+    boot.initrd.systemd.services.impermanence-rollback = lib.mkIf config.boot.initrd.systemd.enable {
+      description = "Rollback root dataset";
+      wantedBy = [ "initrd.target" ];
+      after = [ "zfs.target" ];
+      before = [ "sysroot.mount" ];
+      unitConfig.DefaultDependencies = false;
+      serviceConfig.Type = "oneshot";
+      script = ''
+        echo "[impermanence] rolling back zroot@blank"
+        ${pkgs.zfs}/bin/zfs rollback -r zroot/root@blank
+      '';
+    };
 
     fileSystems."/persist".neededForBoot = true;
     environment.persistence."/persist" = {

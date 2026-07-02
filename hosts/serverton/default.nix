@@ -1,5 +1,14 @@
 { config, lib, pkgs, inputs, secrets, ... }:
 
+let
+  network = {
+    address = "192.168.1.2";
+    prefixLength = 24;
+    gateway = "192.168.1.1";
+    nameserver = "192.168.1.1";
+    interface = "eno1";
+  };
+in
 {
   imports = [
     ./users.nix
@@ -28,12 +37,23 @@
   };
 
   boot.remote-unlock.enable = true;
+  boot.remote-unlock.staticIPv4 = network;
   samba.enable = true;
   email.enable = true;
   impermanence.enable = true;
   virtualization.enable = false;
   virtualization.network-bridge.enable = false;
   auto-upgrade.enable = true;
+
+  networking.useDHCP = lib.mkForce false;
+  networking.interfaces.${network.interface} = {
+    useDHCP = lib.mkForce false;
+    ipv4.addresses = [{
+      inherit (network) address prefixLength;
+    }];
+  };
+  networking.defaultGateway = network.gateway;
+  networking.nameservers = [ network.nameserver ];
 
   # hardware
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
