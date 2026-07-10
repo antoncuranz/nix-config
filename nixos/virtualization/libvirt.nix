@@ -19,7 +19,7 @@ in
     virtualisation.libvirt.connections = {
       "qemu:///system" = {
         domains = [
-          # { definition = ./domains/opnsense.xml; }
+          { definition = ./domains/opnsense.xml; }
           # { definition = ./domains/nixos.xml; }
           # { definition = ./domains/win11.xml; }
         ];

@@ -31,7 +31,7 @@
   };
   programs.zsh.shellAliases = {
     rebuild = "sudo nixos-rebuild switch --flake '/home/ant0n/nix-config'";
-    update = "nix flake update '/home/ant0n/nix-config'";
+    update = "nix flake update --flake '/home/ant0n/nix-config'";
   };
   users.defaultUserShell = pkgs.zsh;
 
