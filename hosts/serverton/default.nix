@@ -32,7 +32,7 @@
   samba.enable = true;
   email.enable = true;
   impermanence.enable = true;
-  virtualization.enable = false;
+  virtualization.enable = true;
   auto-upgrade.enable = true;
 
   # hardware
