@@ -32,11 +32,6 @@
     '';
 
     shellInit = ''
-      # fish & atuin
-      set -gx ATUIN_NOBIND "true"
-      bind \cr _atuin_search
-      bind -M insert \cr _atuin_search
-
       # ghostty ssh fix
       if test "$TERM_PROGRAM" = "ghostty"
         set -x TERM xterm-256color
@@ -47,7 +42,13 @@
     '';
   };
 
-  programs.atuin.enable = true;
+  programs.atuin = {
+    enable = true;
+    enableFishIntegration = true;
+    flags = [
+      "--disable-up-arrow"
+    ];
+  };
   programs.zoxide.enable = true;
   programs.git.enable = true;
 

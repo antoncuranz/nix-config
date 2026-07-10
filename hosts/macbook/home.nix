@@ -25,17 +25,12 @@
     vim = "nvim";
     rebuild = "sudo darwin-rebuild switch --flake '/Users/ant0n/Developer/nix-config#macbook'";
     update = "nix flake update --flake '/Users/ant0n/Developer/nix-config'";
-    "virt-manager" = "GSETTINGS_BACKEND=keyfile virt-manager --no-fork -c qemu+ssh://192.168.1.2/system";
+    "virt-manager-serverton" = "GSETTINGS_BACKEND=keyfile virt-manager --no-fork -c qemu+ssh://192.168.1.2/system";
   };
 
   programs.fish = {
     enable = true;
     shellInit = ''
-      # fish & atuin
-      set -gx ATUIN_NOBIND "true"
-      bind \cr _atuin_search
-      bind -M insert \cr _atuin_search
-
       # ghostty ssh fix
       if test "$TERM_PROGRAM" = "ghostty"
         set -x TERM xterm-256color
@@ -46,7 +41,13 @@
     '';
   };
 
-  programs.atuin.enable = true;
+  programs.atuin = {
+    enable = true;
+    enableFishIntegration = true;
+    flags = [
+      "--disable-up-arrow"
+    ];
+  };
   programs.zoxide.enable = true;
 
   programs.git = {

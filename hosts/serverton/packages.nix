@@ -4,5 +4,6 @@
   environment.systemPackages = with pkgs; [
     intel-media-driver
     intel-gpu-tools
+    virt-manager
   ];
 }

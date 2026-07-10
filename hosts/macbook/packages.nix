@@ -7,6 +7,7 @@
     go-critic
     unstable.talosctl
     npm-check-updates
+    virt-manager
   ];
 
   homebrew = {
