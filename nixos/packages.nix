@@ -25,7 +25,6 @@
     tree
     tmux
     iperf3
-    neofetch
     lazygit
     lsof
     pciutils
