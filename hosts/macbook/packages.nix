@@ -8,6 +8,7 @@
     unstable.talosctl
     npm-check-updates
     virt-manager
+    ansible
   ];
 
   homebrew = {

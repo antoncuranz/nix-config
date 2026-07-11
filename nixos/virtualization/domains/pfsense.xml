@@ -1,6 +1,6 @@
 <domain type="kvm">
-  <name>opnsense</name>
-  <uuid>fa403d4c-c178-4481-9cbe-e8a2fa5b6cf9</uuid>
+  <name>pfsense</name>
+  <uuid>4914e2d1-ea59-466b-9d3c-242c82d1cd77</uuid>
   <metadata>
     <libosinfo:libosinfo xmlns:libosinfo="http://libosinfo.org/xmlns/libvirt/domain/1.0">
       <libosinfo:os id="http://libosinfo.org/linux/2024"/>
@@ -130,31 +130,31 @@
       <address type="pci" domain="0x0000" bus="0x0b" slot="0x00" function="0x0"/>
     </controller>
     <interface type="ethernet">
-      <mac address="52:54:00:df:78:eb"/>
+      <mac address="52:54:00:d1:99:a1"/>
       <model type="virtio"/>
       <link state="down"/>
       <address type="pci" domain="0x0000" bus="0x01" slot="0x00" function="0x0"/>
     </interface>
     <interface type="ethernet">
-      <mac address="52:54:00:ed:6c:6a"/>
+      <mac address="52:54:00:d1:99:a2"/>
       <model type="virtio"/>
       <link state="down"/>
       <address type="pci" domain="0x0000" bus="0x07" slot="0x00" function="0x0"/>
     </interface>
     <interface type="ethernet">
-      <mac address="52:54:00:94:79:50"/>
+      <mac address="52:54:00:d1:99:a3"/>
       <model type="virtio"/>
       <link state="down"/>
       <address type="pci" domain="0x0000" bus="0x08" slot="0x00" function="0x0"/>
     </interface>
     <interface type="ethernet">
-      <mac address="52:54:00:a0:99:9e"/>
+      <mac address="52:54:00:d1:99:a4"/>
       <model type="virtio"/>
       <link state="down"/>
       <address type="pci" domain="0x0000" bus="0x09" slot="0x00" function="0x0"/>
     </interface>
     <interface type="direct">
-      <mac address="52:54:00:0d:70:7f"/>
+      <mac address="52:54:00:d1:99:a5"/>
       <source dev="eno1" mode="bridge"/>
       <model type="virtio"/>
       <address type="pci" domain="0x0000" bus="0x0a" slot="0x00" function="0x0"/>
