@@ -34,14 +34,14 @@
     <emulator>/run/libvirt/nix-emulators/qemu-system-x86_64</emulator>
     <disk type="file" device="disk">
       <driver name="qemu" type="qcow2"/>
-      <source file="/var/lib/libvirt/images/opnsense.qcow2"/>
+      <source file="/var/lib/libvirt/images/pfsense.qcow2"/>
       <target dev="vda" bus="virtio"/>
       <boot order="1"/>
       <address type="pci" domain="0x0000" bus="0x04" slot="0x00" function="0x0"/>
     </disk>
     <disk type="file" device="cdrom">
       <driver name="qemu" type="raw"/>
-      <source file="/var/lib/libvirt/images/OPNsense-26.1.6-dvd-amd64.iso"/>
+      <source file="/var/lib/libvirt/images/netgate-installer-v1.2-RELEASE-amd64.iso"/>
       <target dev="sda" bus="sata"/>
       <readonly/>
       <address type="drive" controller="0" bus="0" target="0" unit="0"/>
