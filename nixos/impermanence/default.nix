@@ -41,6 +41,7 @@ in
         "/var/lib/samba"
         "/var/lib/libvirt"
         "/root/.config/rclone"
+	"/var/lib/systemd"
       ];
       files = [
         "/etc/machine-id"
