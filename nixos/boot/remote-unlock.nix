@@ -54,8 +54,8 @@ in
               exit 0
             fi
 
-            log "pushover failed, retrying in 60s"
-            ${pkgs.coreutils}/bin/sleep 60
+            log "pushover failed, retrying in 5s"
+            ${pkgs.coreutils}/bin/sleep 5
           done
         '';
       };
