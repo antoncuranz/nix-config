@@ -37,7 +37,11 @@
 
   # hardware
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-intel" "r8125" ];
+  boot.blacklistedKernelModules = [ "r8169" ];
+  boot.extraModulePackages = [
+    config.boot.kernelPackages.r8125
+  ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
