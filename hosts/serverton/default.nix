@@ -46,6 +46,16 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
+  # enable AMT serial console
+  systemd.services."serial-getty@ttyS1" = {
+    wantedBy = [ "multi-user.target" ];
+
+    serviceConfig.ExecStart = [
+      ""
+      "${pkgs.util-linux}/bin/agetty 115200 ttyS1 vt100"
+    ];
+  };
+
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
   #
