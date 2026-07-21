@@ -4,15 +4,12 @@ let
   address = "192.168.1.2/24";
   gateway = "192.168.1.1";
   nameserver = "192.168.1.1";
-  trunkInterface = "eno1";
   lan = {
-    id = 10;
-    interface = "vlan-lan";
+    interface = "eno1";
     bridge = "br-lan";
   };
   dmz = {
-    id = 50;
-    interface = "vlan-dmz";
+    interface = "enp5s0";
     bridge = "br-dmz";
   };
 
@@ -27,47 +24,17 @@ let
     IPv6AcceptRA = false;
   };
 
-  networkd = {
-    netdevs = {
-      "20-${lan.interface}" = {
-        netdevConfig = {
-          Name = lan.interface;
-          Kind = "vlan";
-        };
-        vlanConfig.Id = lan.id;
-      };
-      "20-${dmz.interface}" = {
-        netdevConfig = {
-          Name = dmz.interface;
-          Kind = "vlan";
-        };
-        vlanConfig.Id = dmz.id;
-      };
-      "30-${lan.bridge}".netdevConfig = {
-        Name = lan.bridge;
-        Kind = "bridge";
-      };
-      "30-${dmz.bridge}".netdevConfig = {
-        Name = dmz.bridge;
-        Kind = "bridge";
-      };
+  lanNetworkd = {
+    netdevs."30-${lan.bridge}".netdevConfig = {
+      Name = lan.bridge;
+      Kind = "bridge";
     };
 
     networks = {
-      "10-${trunkInterface}" = {
-        matchConfig.Name = trunkInterface;
-        networkConfig = isolatedNetwork;
-        vlan = [ lan.interface dmz.interface ];
-      };
-      "20-${lan.interface}" = {
+      "10-${lan.interface}" = {
         matchConfig.Name = lan.interface;
         networkConfig = isolatedNetwork;
         bridge = [ lan.bridge ];
-      };
-      "20-${dmz.interface}" = {
-        matchConfig.Name = dmz.interface;
-        networkConfig = isolatedNetwork;
-        bridge = [ dmz.bridge ];
       };
       "30-${lan.bridge}" = {
         matchConfig.Name = lan.bridge;
@@ -75,6 +42,21 @@ let
         address = [ address ];
         dns = [ nameserver ];
         gateway = [ gateway ];
+      };
+    };
+  };
+
+  dmzNetworkd = {
+    netdevs."30-${dmz.bridge}".netdevConfig = {
+      Name = dmz.bridge;
+      Kind = "bridge";
+    };
+
+    networks = {
+      "10-${dmz.interface}" = {
+        matchConfig.Name = dmz.interface;
+        networkConfig = isolatedNetwork;
+        bridge = [ dmz.bridge ];
       };
       "30-${dmz.bridge}" = {
         matchConfig.Name = dmz.bridge;
@@ -89,10 +71,12 @@ in
     useNetworkd = true;
   };
 
-  systemd.network = networkd // {
+  systemd.network = {
+    netdevs = lanNetworkd.netdevs // dmzNetworkd.netdevs;
+    networks = lanNetworkd.networks // dmzNetworkd.networks;
     enable = true;
     wait-online.ignoredInterfaces = [ dmz.bridge ];
   };
 
-  boot.initrd.systemd.network = networkd;
+  boot.initrd.systemd.network = lanNetworkd;
 }

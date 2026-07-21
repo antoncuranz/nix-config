@@ -153,9 +153,9 @@
       <link state="down"/>
       <address type="pci" domain="0x0000" bus="0x09" slot="0x00" function="0x0"/>
     </interface>
-    <interface type="direct">
+    <interface type="bridge">
       <mac address="52:54:00:0d:70:7f"/>
-      <source dev="eno1" mode="bridge"/>
+      <source bridge="br-lan"/>
       <model type="virtio"/>
       <address type="pci" domain="0x0000" bus="0x0a" slot="0x00" function="0x0"/>
     </interface>
