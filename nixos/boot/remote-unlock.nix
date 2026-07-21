@@ -8,7 +8,7 @@ in
 
   config = lib.mkIf cfg.enable {
     boot.initrd = {
-      kernelModules = [ "e1000e" ];
+      kernelModules = [ "e1000e" "bridge" ];
       systemd = {
         enable = true;
         initrdBin = [
