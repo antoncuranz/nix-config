@@ -24,7 +24,6 @@
   # general stuff
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "de_DE.UTF-8";
-  networking.useDHCP = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   environment.sessionVariables = {
     EDITOR = "vim";
