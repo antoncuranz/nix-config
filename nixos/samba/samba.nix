@@ -23,6 +23,8 @@ in {
 
       requiredBy = [ "samba.target" ];
       partOf = [ "samba.target" ];
+      after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
 
       serviceConfig = {
         ExecStart = "${samba}/sbin/samba --foreground --no-process-group";
@@ -43,6 +45,8 @@ in {
       settings = {
         # Global parameters
         global = {
+            interfaces = "lo br-lan";
+            "bind interfaces only" = "yes";
             "netbios name" = "${adNetbiosName}";
             realm = "${toUpper adDomain}";
             "server role" = "active directory domain controller";
@@ -63,7 +67,7 @@ in {
             "fruit:nfs_aces" = "no";
             "vfs objects" = "catia fruit streams_xattr acl_xattr dfs_samba4";
             "access based share enum" = "yes";
-	};
+        };
             
         "Anton" = {
             path = "/mnt/nvme/Samba/Anton";
@@ -72,7 +76,7 @@ in {
             "valid users" = ["ant0n"];
             "read only" = "no";
             browseable = "yes";
-	};
+        };
             
         "Faye" = {
             path = "/mnt/nvme/Samba/Faye";
@@ -81,7 +85,7 @@ in {
             "valid users" = ["faye"];
             "read only" = "no";
             browseable = "yes";
-	};
+        };
             
         "Shared" = {
             path = "/mnt/nvme/Samba/Shared";
@@ -90,7 +94,7 @@ in {
             "valid users" = ["ant0n" "faye"];
             "read only" = "no";
             browseable = "yes";
-	};
+        };
             
         "TimeMachine" = {
             path = "/mnt/nvme/Backup/TimeMachine";
@@ -101,7 +105,7 @@ in {
             browseable = "yes";
             "fruit:time machine" = "yes";
             "fruit:time machine max size" = "1T";
-	};
+        };
             
         "Faye Backup" = {
             path = "/mnt/nvme/Backup/Faye";
@@ -110,7 +114,7 @@ in {
             "valid users" = ["faye"];
             "read only" = "no";
             browseable = "yes";
-	};
+        };
             
         "Backup" = {
             path = "/mnt/nvme/Backup/Anton";
@@ -119,7 +123,7 @@ in {
             "valid users" = ["ant0n"];
             "read only" = "no";
             browseable = "yes";
-	};
+        };
             
         "Mediarr" = {
             "path" = "/home/ant0n/mediarr";
@@ -128,18 +132,18 @@ in {
             browseable = "yes";
             "valid users" = ["ant0n" "faye"];
             "read only" = "yes";
-	};
+        };
 
         # Required for AD setup
         sysvol = {
             path = "/var/lib/samba/sysvol";
             "read only" = "no";
-	};
+        };
 
         netlogon = {
             path = "/var/lib/samba/sysvol/${adDomain}/scripts";
             "read only" = "no";
-	};
+        };
       };
     };
   };
