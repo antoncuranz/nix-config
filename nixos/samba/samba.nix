@@ -27,6 +27,8 @@ in {
       wants = [ "network-online.target" ];
 
       serviceConfig = {
+        Restart = "on-failure";
+        RestartSec = "2s";
         ExecStart = "${samba}/sbin/samba --foreground --no-process-group";
         ExecReload = "${pkgs.coreutils}/bin/kill -HUP $MAINPID";
         LimitNOFILE = 16384;
