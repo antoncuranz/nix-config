@@ -9,7 +9,7 @@ let
     bridge = "br-lan";
   };
   dmz = {
-    interface = "enp5s0";
+    interface = "enp6s0";
     bridge = "br-dmz";
   };
 
