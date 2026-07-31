@@ -42,7 +42,7 @@ in
 
     # NixOS libvirt/QEMU host configuration.
     virtualisation.libvirtd = {
-      # qemu.swtpm.enable = true;
+      qemu.swtpm.enable = true;
 
       firewallBackend = "nftables";
       allowedBridges = [ "br-dmz" ];
@@ -58,9 +58,7 @@ in
         runAsRoot = false;
 
         verbatimConfig = ''
-          # Give each VM a private mount namespace. QEMU then sees only
-          # the host devices that libvirt explicitly assigned to it.
-          namespaces = [ "mount" ]
+          namespaces = []
 
           # Restrict QEMU's available system calls.
           seccomp_sandbox = 1
