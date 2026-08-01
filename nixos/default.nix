@@ -19,6 +19,7 @@
     ./zfs.nix
     ./git.nix
     ./buildah.nix
+    ./i226-leds-off.nix
   ];
 
   # general stuff

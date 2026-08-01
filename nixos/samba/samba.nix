@@ -29,6 +29,7 @@ in {
       serviceConfig = {
         Restart = "on-failure";
         RestartSec = "2s";
+        RestartMode = "direct";
         ExecStart = "${samba}/sbin/samba --foreground --no-process-group";
         ExecReload = "${pkgs.coreutils}/bin/kill -HUP $MAINPID";
         LimitNOFILE = 16384;
