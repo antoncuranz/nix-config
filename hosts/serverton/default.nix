@@ -12,6 +12,7 @@
   # modules
   kubernetes.enable = true;
   kubernetes.nodeIp = "192.168.1.2";
+  kubernetes.iscsi.enable = true;
   power.enable = true;
 
   backup = {

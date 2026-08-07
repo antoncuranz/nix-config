@@ -1,72 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ lib, inputs, ... }:
 
-let
-  cfg = config.kubernetes;
-in
 {
-  options.kubernetes = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "enable kubernetes";
-    };
-    nodeIp = lib.mkOption {
-      type = lib.types.str;
-    };
-  };
+  imports = [
+    ./kubernetes.nix
+    ./iscsi.nix
+  ];
 
-  config = lib.mkIf cfg.enable {
-    networking.firewall = {
-      allowedTCPPorts = [
-        6443 # k3s API server
-        # 10250 # Kubelet Metrics
-        # 9100  # Node Exporter
-      ];
-
-      # trust kubernetes interfaces (required for metrics)
-      trustedInterfaces = [ "cni0" "cilium_host" "cilium_net" "cilium_vxlan" ];
-    };
-
-    environment.systemPackages = with pkgs; [
-      k3s
-      kubectx
-      k9s
-      kubernetes-helm
-    ];
-
-    environment.sessionVariables.KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
-
-    services.k3s.enable = true;
-    services.k3s.role = "server";
-    services.k3s.extraFlags = toString [
-      "--disable=traefik"
-      "--disable=local-storage"
-      "--disable=metrics-server"
-      "--disable=servicelb"
-      "--disable-cloud-controller"
-      "--disable-helm-controller"
-      "--disable-kube-proxy"
-      "--flannel-backend=none"
-      "--disable-network-policy"
-      "--node-ip=${cfg.nodeIp}"
-      "--write-kubeconfig-mode=644"
-      "--datastore-endpoint=etcd"
-    ];
-
-    # required for democratic csi
-    systemd.services."csi-symlink@" = {
-      description = "Create a symlink in /usr/bin";
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = "/run/current-system/sw/bin/ln -sf /run/current-system/sw/bin/%I /usr/bin/%I";
-      };
-    };
-    
-    systemd.services."k3s".wants = [
-      "csi-symlink@zfs.service"
-      "csi-symlink@zpool.service"
-      "csi-symlink@mount.service"
-      "csi-symlink@umount.service"
-    ];
-  };
+  kubernetes.enable = lib.mkDefault false;
+  kubernetes.iscsi.enable = lib.mkDefault false
 }
