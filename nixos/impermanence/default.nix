@@ -42,6 +42,7 @@ in
         "/var/lib/libvirt"
         "/root/.config/rclone"
 	"/var/lib/systemd"
+	"/etc/target"
       ];
       files = [
         "/etc/machine-id"

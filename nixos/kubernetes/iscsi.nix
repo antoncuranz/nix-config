@@ -8,7 +8,7 @@ in
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      targetcli
+      targetcli-fb
     ];
 
     users.groups.democratic-csi = {};
@@ -27,10 +27,17 @@ in
     security.sudo.extraRules = [
       {
         users = [ "democratic-csi" ];
-
         commands = [
           {
-            command = "${pkgs.targetcli}/bin/targetcli";
+            command = "/run/current-system/sw/bin/zfs";
+            options = [ "NOPASSWD" ];
+          }
+          {
+            command = "/run/current-system/sw/bin/zpool";
+            options = [ "NOPASSWD" ];
+          }
+          {
+            command = "/run/current-system/sw/bin/targetcli";
             options = [ "NOPASSWD" ];
           }
         ];

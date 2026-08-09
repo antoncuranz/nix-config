@@ -32,5 +32,6 @@
     inetutils
     dig
     usbutils
+    ripgrep
   ];
 }

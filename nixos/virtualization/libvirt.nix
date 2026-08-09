@@ -20,9 +20,10 @@ in
       connections = {
         "qemu:///system" = {
           domains = [
-            { definition = ./domains/talos-1.xml; }
-            { definition = ./domains/talos-2.xml; }
-            { definition = ./domains/talos-3.xml; }
+            { definition = ./domains/talos-dmz-1.xml; }
+            { definition = ./domains/talos-home-1.xml; }
+            { definition = ./domains/talos-home-2.xml; }
+            { definition = ./domains/talos-home-3.xml; }
             # { definition = ./domains/opnsense.xml; }
             # { definition = ./domains/pfsense.xml; }
             # { definition = ./domains/nixos.xml; }
@@ -31,9 +32,10 @@ in
           pools = [{
             definition = ./pool.xml;
             volumes = [
-              { definition = ./volumes/talos-1.xml; }
-              { definition = ./volumes/talos-2.xml; }
-              { definition = ./volumes/talos-3.xml; }
+              { definition = ./volumes/talos-dmz-1.xml; }
+              { definition = ./volumes/talos-home-1.xml; }
+              { definition = ./volumes/talos-home-2.xml; }
+              { definition = ./volumes/talos-home-3.xml; }
               # { definition = ./volumes/opnsense.xml; }
               # { definition = ./volumes/pfsense.xml; }
               # { definition = ./volumes/nixos.xml; }

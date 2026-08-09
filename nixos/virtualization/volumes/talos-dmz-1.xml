@@ -1,6 +1,6 @@
 <volume type='file'>
-  <name>talos-disk-2.qcow2</name>
-  <capacity>21474836480</capacity>
+  <name>talos-dmz-1.qcow2</name>
+  <capacity>68719476736</capacity>
   <allocation>0</allocation>
   <target>
     <format type="qcow2"/>

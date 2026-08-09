@@ -1,6 +1,6 @@
 <domain type="kvm">
-  <name>talos-3</name>
-  <uuid>5f8d3730-347c-4540-8ed2-527cb865f064</uuid>
+  <name>talos-home-2</name>
+  <uuid>3e279859-e949-4251-b86d-ad9b66d30797</uuid>
   <memory unit="MiB">8192</memory>
   <vcpu placement="static">2</vcpu>
   <memoryBacking>
@@ -22,7 +22,7 @@
   <devices>
     <disk type="file" device="disk">
       <driver name="qemu" type="qcow2" cache="none" io="native"/>
-      <source file="/var/lib/libvirt/images/talos-disk-3.qcow2"/>
+      <source file="/var/lib/libvirt/images/talos-home-2.qcow2"/>
       <target dev="vda" bus="virtio"/>
       <boot order="1"/>
     </disk>
@@ -36,7 +36,7 @@
     </disk>
     -->
     <interface type="bridge">
-      <source bridge="br-dmz"/>
+      <source bridge="br-lan"/>
       <model type="virtio"/>
       <rom bar="off"/>
     </interface>

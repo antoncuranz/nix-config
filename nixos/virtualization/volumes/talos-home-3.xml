@@ -1,5 +1,5 @@
 <volume type='file'>
-  <name>talos-disk-3.qcow2</name>
+  <name>talos-home-3.qcow2</name>
   <capacity>21474836480</capacity>
   <allocation>0</allocation>
   <target>

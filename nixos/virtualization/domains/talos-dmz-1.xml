@@ -1,0 +1,58 @@
+<domain type="kvm">
+  <name>talos-dmz-1</name>
+  <uuid>f2072446-050e-439f-9612-45e57837043e</uuid>
+  <memory unit="MiB">8192</memory>
+  <vcpu placement="static">2</vcpu>
+  <memoryBacking>
+    <nosharepages/>
+  </memoryBacking>
+  <os firmware="efi">
+    <type arch="x86_64" machine="q35">hvm</type>
+    <firmware>
+      <feature enabled="yes" name="secure-boot"/>
+      <feature enabled="no" name="enrolled-keys"/>
+    </firmware>
+  </os>
+  <features>
+    <acpi/>
+    <apic/>
+    <smm state="on"/>
+  </features>
+  <cpu mode="host-passthrough" check="none" migratable="off"/>
+  <devices>
+    <disk type="file" device="disk">
+      <driver name="qemu" type="qcow2" cache="none" io="native"/>
+      <source file="/var/lib/libvirt/images/talos-dmz-1.qcow2"/>
+      <target dev="vda" bus="virtio"/>
+      <boot order="1"/>
+    </disk>
+    <!--
+    <disk type="file" device="cdrom">
+      <driver name="qemu" type="raw"/>
+      <source file="/var/lib/libvirt/images/talos-secureboot.iso"/>
+      <target dev="sda" bus="sata"/>
+      <readonly/>
+      <boot order="2"/>
+    </disk>
+    -->
+    <interface type="bridge">
+      <source bridge="br-dmz"/>
+      <model type="virtio"/>
+      <rom bar="off"/>
+    </interface>
+    <serial type="pty">
+      <target type="isa-serial" port="0"/>
+    </serial>
+    <console type="pty">
+      <target type="serial" port="0"/>
+    </console>
+    <rng model="virtio">
+      <backend model="random">/dev/urandom</backend>
+    </rng>
+    <controller type="usb" model="none"/>
+    <video>
+      <model type="none"/>
+    </video>
+    <memballoon model="none"/>
+  </devices>
+</domain>
