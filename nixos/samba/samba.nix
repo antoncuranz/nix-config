@@ -48,7 +48,7 @@ in {
       settings = {
         # Global parameters
         global = {
-            interfaces = "lo br-lan";
+            # interfaces = "lo br-lan";
             "bind interfaces only" = "yes";
             "netbios name" = "${adNetbiosName}";
             realm = "${toUpper adDomain}";
