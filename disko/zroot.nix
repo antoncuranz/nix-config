@@ -60,11 +60,6 @@
             options.mountpoint = "legacy";
             mountpoint = "/home";
           };
-          bitcoin = {
-            type = "zfs_fs";
-            options.mountpoint = "legacy";
-            mountpoint = "/home/ant0n/bitcoin";
-          };
           mediarr = {
             type = "zfs_fs";
             options.mountpoint = "legacy";
