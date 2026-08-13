@@ -48,5 +48,6 @@
     unstable.kube-capacity
     inputs.hunk.packages.${pkgs.stdenv.hostPlatform.system}.hunk
     yq
+    httpie
   ];
 }
