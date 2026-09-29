@@ -3,8 +3,8 @@
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "anton.curanz";
-  home.homeDirectory = "/Users/anton.curanz";
+  home.username = "ant0n";
+  home.homeDirectory = "/Users/ant0n";
 
   home.sessionPath = [
     "$HOME/.npm-global/bin"
@@ -22,7 +22,7 @@
     cd = "z";
     vim = "nvim";
     vzf = "vim $(fzf --preview 'bat -n --color=always --theme=ansi {}')";
-    rebuild = "sudo darwin-rebuild switch --flake '/Users/anton.curanz/Developer/nix-config#workbook'";
+    rebuild = "sudo darwin-rebuild switch --flake '/Users/ant0n/Developer/nix-config#workbook'";
   };
 
   programs.fish = {
