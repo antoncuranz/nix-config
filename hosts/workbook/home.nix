@@ -51,7 +51,15 @@
     ];
   };
   programs.zoxide.enable = true;
-  programs.git.enable = true;
+
+  programs.git = {
+    enable = true;
+    settings = {
+      user.name = "Anton Curanz";
+      user.email = "anton.curanz@stackmeister.com";
+      init.defaultBranch = "main";
+    };
+  };
 
   programs.hunk = {
     enable = true;
