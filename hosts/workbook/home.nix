@@ -8,12 +8,13 @@
 
   home.sessionPath = [
     "$HOME/.npm-global/bin"
+    "$HOME/.local/bin"
   ];
 
   home.sessionVariables = {
     EDITOR = "nvim";
     TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE = "/var/run/docker.sock";
-    DOCKER_HOST = "unix://$HOME/.rd/docker.sock";
+    DOCKER_HOST = "unix://$HOME/.colima/default/docker.sock";
   };
 
   home.shellAliases = {

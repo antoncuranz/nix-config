@@ -7,7 +7,6 @@
     ./ghostty
     ./dops
     ./karabiner
-    ./pi
     ./system-defaults.nix
     ./packages.nix
   ];

@@ -6,7 +6,6 @@
     impermanence.url = "github:nix-community/impermanence";
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     mac-app-util.url = "github:hraban/mac-app-util";
-    pi.url = "github:lukasl-dev/pi.nix";
 
     opencode-config.url = "github:antoncuranz/opencode-config";
 
