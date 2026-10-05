@@ -1,6 +1,14 @@
 { config, lib, pkgs, ... }:
 
 {
+  # Apple's libffi-40 crashes when allocating GTK callbacks on macOS 27.
+  # https://github.com/NixOS/nixpkgs/issues/541367
+  nixpkgs.overlays = [
+    (final: prev: {
+      libffi = final.libffiReal;
+    })
+  ];
+
   environment.systemPackages = with pkgs; [
     # _1password-gui
     nodejs_22
