@@ -1,8 +1,8 @@
 <domain type="kvm">
   <name>ubuntu</name>
   <uuid>1fddf409-4ab3-4d0d-b83a-4c4ae95ed8f6</uuid>
-  <memory unit="MiB">8192</memory>
-  <vcpu placement="static">2</vcpu>
+  <memory unit="MiB">10240</memory>
+  <vcpu placement="static">4</vcpu>
   <memoryBacking>
     <nosharepages/>
   </memoryBacking>
