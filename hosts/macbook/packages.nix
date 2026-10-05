@@ -17,6 +17,8 @@
     npm-check-updates
     virt-manager
     ansible
+    android-tools
+    scrcpy
   ];
 
   homebrew = {
