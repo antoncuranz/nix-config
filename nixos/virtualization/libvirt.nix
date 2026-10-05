@@ -20,6 +20,7 @@ in
       connections = {
         "qemu:///system" = {
           domains = [
+            { definition = ./domains/ubuntu.xml; }
             { definition = ./domains/talos-dmz-1.xml; }
             { definition = ./domains/talos-home-1.xml; }
             { definition = ./domains/talos-home-2.xml; }
@@ -32,6 +33,7 @@ in
           pools = [{
             definition = ./pool.xml;
             volumes = [
+              { definition = ./volumes/ubuntu.xml; }
               { definition = ./volumes/talos-dmz-1.xml; }
               { definition = ./volumes/talos-home-1.xml; }
               { definition = ./volumes/talos-home-2.xml; }
