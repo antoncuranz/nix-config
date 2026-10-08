@@ -21,7 +21,6 @@
     kubectx
     kustomize
     unstable.k9s
-    unstable.freelens-bin
     unstable.fluxcd
     minikube
     unstable.opentofu
@@ -39,7 +38,6 @@
     python312
     restic
     unixtools.watch
-    unstable.vscodium
     gh
     unstable.ripgrep
     unstable.bun
