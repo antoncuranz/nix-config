@@ -6,12 +6,18 @@
 
         {:des "UTM: Post Esc if Caps is tapped, Command if held"
          :rules [[:##caps_lock :left_command [:utm] {:alone :escape}]]}
-        
+
         {:des "Control + Backspace = Delete"
          :rules [[:!Tdelete_or_backspace :delete_forward]]}
 
         {:des "Ctrl HJKL Arrow keys"
          :rules [[:!Th :left_arrow] [:!Tj :down_arrow] [:!Tk :up_arrow] [:!Tl :right_arrow]]}
+
+        {:des "Physical Option-L to Command-Option-L for AeroSpace"
+         :rules [[:!Ol :!COl [:!utm]]
+                 [:!El :!CEl [:!utm]]
+                 [:!SOl :!CSOl [:!utm]]
+                 [:!SEl :!CSEl [:!utm]]]}
 
         {:des "German PC-Style Shortcuts"
          :rules [[:!O##hyphen :!SO7 [:!utm]] ;; \

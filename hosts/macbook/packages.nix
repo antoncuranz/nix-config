@@ -11,9 +11,8 @@
     ansible
     android-tools
     scrcpy
-    unstable.freelens-bin
-    unstable.vscodium
-    karabiner-elements
+    unstable.aerospace
+    jankyborders
   ];
 
   homebrew = {

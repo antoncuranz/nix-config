@@ -5,8 +5,6 @@
 
     impermanence.url = "github:nix-community/impermanence";
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
-    mac-app-util.url = "github:hraban/mac-app-util";
-
     opencode-config.url = "github:antoncuranz/opencode-config";
 
     disko = {
@@ -40,7 +38,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nix-darwin, disko, home-manager, nixvim, arkenfox, mac-app-util, ... }@inputs:
+  outputs = { self, nixpkgs, nix-darwin, disko, home-manager, nixvim, arkenfox, ... }@inputs:
   let
     secrets = builtins.fromJSON (builtins.readFile "${self}/secrets.json");
   in {
@@ -85,7 +83,6 @@
 
         home-manager.darwinModules.home-manager
         nixvim.nixDarwinModules.nixvim
-        mac-app-util.darwinModules.default
       ];
     };
 

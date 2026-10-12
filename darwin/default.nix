@@ -6,6 +6,7 @@
     ./firefox
     ./ghostty
     ./dops
+    ./aerospace
     ./karabiner
     ./system-defaults.nix
     ./packages.nix

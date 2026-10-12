@@ -8,6 +8,7 @@
   # modules
   vim.enable = true;
   karabiner.enable = true;
+  aerospace.enable = true;
   ghostty.enable = true;
   dops.enable = true;
 
@@ -29,7 +30,6 @@
   home-manager.users.ant0n = import ./home.nix;
   home-manager.backupFileExtension = "backup";
   home-manager.sharedModules = [
-    inputs.mac-app-util.homeManagerModules.default
     inputs.opencode-config.homeManagerModules.default
     inputs.hunk.homeManagerModules.default
   ];
