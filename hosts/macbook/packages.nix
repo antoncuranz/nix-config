@@ -11,8 +11,6 @@
     ansible
     android-tools
     scrcpy
-    unstable.aerospace
-    jankyborders
   ];
 
   homebrew = {

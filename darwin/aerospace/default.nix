@@ -12,5 +12,10 @@ in
 
   config = lib.mkIf cfg.enable {
     home-manager.users."${config.system.primaryUser}".xdg.configFile."aerospace/aerospace.toml".source = ./aerospace.toml;
+
+    environment.systemPackages = with pkgs; [
+      unstable.aerospace
+      jankyborders
+    ];
   };
 }

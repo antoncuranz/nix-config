@@ -10,6 +10,7 @@
   ghostty.enable = true;
   dops.enable = true;
   karabiner.enable = true;
+  aerospace.enable = true;
 
   system.primaryUser = "ant0n";
 

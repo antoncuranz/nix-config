@@ -7,4 +7,4 @@ theme = light:github-light,dark:github-dark
 keybind = cmd+ü=goto_split:previous
 keybind = cmd++=goto_split:next
 
-macos-titlebar-style = hidden
+# macos-titlebar-style = hidden

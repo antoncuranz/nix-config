@@ -13,6 +13,7 @@
     ansible
     ansible-lint
     sshuttle
+    unstable.k6
   ];
 
   homebrew = {
