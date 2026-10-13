@@ -12,6 +12,7 @@
     hadolint
     ansible
     ansible-lint
+    sshuttle
   ];
 
   homebrew = {
