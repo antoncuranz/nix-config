@@ -26,7 +26,6 @@ in
         illuminate.enable = true;
         web-devicons.enable = true;
         telescope.enable = true;
-        opencode.enable = true;
         snacks = {
           enable = true;
           settings = {
@@ -112,42 +111,6 @@ in
       };
 
       keymaps = [
-        {
-          mode = [ "n" "x" ];
-          key = "<C-a>";
-          action.__raw = ''function() require("opencode").ask("@this: ", { submit = true }) end'';
-          options.desc = "Ask opencode";
-        }
-        {
-          mode = [ "n" "x" ];
-          key = "<C-x>";
-          action.__raw = ''function() require("opencode").select() end'';
-          options.desc = "Execute opencode action…";
-        }
-        {
-          mode = [ "n" "x" ];
-          key = "ga";
-          action.__raw = ''function() require("opencode").prompt("@this") end'';
-          options.desc = "Add to opencode";
-        }
-        {
-          mode = [ "n" "t" ];
-          key = "<C-.>";
-          action.__raw = ''function() require("opencode").toggle() end'';
-          options.desc = "Toggle opencode";
-        }
-        {
-          mode = "n";
-          key = "<S-C-u>";
-          action.__raw = ''function() require("opencode").command("session.half.page.up") end'';
-          options.desc = "opencode half page up";
-        }
-        {
-          mode = "n";
-          key = "<S-C-d>";
-          action.__raw = ''function() require("opencode").command("session.half.page.down") end'';
-          options.desc = "opencode half page down";
-        }
       ];
 
       extraConfigLua = (builtins.readFile ./theming.lua);

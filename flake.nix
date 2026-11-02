@@ -5,7 +5,6 @@
 
     impermanence.url = "github:nix-community/impermanence";
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
-    opencode-config.url = "github:antoncuranz/opencode-config";
 
     disko = {
       url = "github:nix-community/disko";

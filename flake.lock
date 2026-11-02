@@ -413,25 +413,6 @@
         "url": "https://flakehub.com/f/AshleyYakeley/NixVirt/%2A.tar.gz"
       }
     },
-    "opencode-config": {
-      "inputs": {
-        "homeManager": "homeManager",
-        "nixpkgs": "nixpkgs_5"
-      },
-      "locked": {
-        "lastModified": 1775211293,
-        "narHash": "sha256-cSIUOC99E/56VtvFRbrStBMDs2GFFF12zfi0rt9PreU=",
-        "owner": "antoncuranz",
-        "repo": "opencode-config",
-        "rev": "ad23ca2fd723bb92cc859727bb769b472c0411bb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "antoncuranz",
-        "repo": "opencode-config",
-        "type": "github"
-      }
-    },
     "pre-commit": {
       "inputs": {
         "flake-compat": [
@@ -468,8 +449,7 @@
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim": "nixvim",
-        "nixvirt": "nixvirt",
-        "opencode-config": "opencode-config"
+        "nixvirt": "nixvirt"
       }
     },
     "systems": {

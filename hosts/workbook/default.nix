@@ -28,7 +28,6 @@
   home-manager.useUserPackages = true;
   home-manager.users."ant0n" = import ./home.nix;
   home-manager.sharedModules = [
-    inputs.opencode-config.homeManagerModules.default
     inputs.hunk.homeManagerModules.default
   ];
 
