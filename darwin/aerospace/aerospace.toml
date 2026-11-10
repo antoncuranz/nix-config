@@ -97,11 +97,26 @@ automatically-unhide-macos-hidden-apps = false
     # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
     # You can uncomment the following lines to open up terminal with alt + enter shortcut
     # (like in i3)
-    alt-enter = '''exec-and-forget osascript -e '
-    tell application "Ghostty"
-        new window
-    end tell'
+    # Open a new Ghostty window on the focused workspace.
+    # macOS can show the new window on the other monitor when the focused
+    # workspace is empty. The script moves the new window back.
+    alt-enter = '''exec-and-forget as=/run/current-system/sw/bin/aerospace
+    ws=$($as list-workspaces --focused)
+    ids() { $as list-windows --monitor all --app-bundle-id com.mitchellh.ghostty --format "%{window-id}"; }
+    before=$(ids)
+    open -n -a Ghostty
+    for _ in $(seq 50); do
+        sleep 0.1
+        new=$(ids | grep -vxF "$before" | head -n1)
+        if [ -n "$new" ]; then
+            $as move-node-to-workspace --focus-follows-window --window-id "$new" "$ws"
+            break
+        fi
+    done
     '''
+
+    alt-space = 'fullscreen'
+    alt-shift-f = 'layout floating tiling'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#layout
     alt-period = 'layout tiles horizontal vertical'
@@ -176,3 +191,21 @@ automatically-unhide-macos-hidden-apps = false
     down = 'volume down'
     up = 'volume up'
     shift-down = ['volume set 0', 'mode main']
+
+# Assign apps to workspaces on launch.
+# See: https://nikitabobko.github.io/AeroSpace/guide#on-window-detected-callback
+[[on-window-detected]]
+    if.app-id = 'com.microsoft.Outlook'
+    run = ['move-node-to-workspace 4', 'layout --workspace 4 --root h_accordion']
+
+[[on-window-detected]]
+    if.app-id = 'com.microsoft.teams2'
+    run = ['move-node-to-workspace 4', 'layout --workspace 4 --root h_accordion']
+
+[[on-window-detected]]
+    if.app-id = 'app.zen-browser.zen'
+    run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+    if.app-id = 'com.mitchellh.ghostty'
+    run = 'layout tiling'

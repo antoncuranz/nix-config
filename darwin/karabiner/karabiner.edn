@@ -1,6 +1,6 @@
 {:profiles {:Default {:default true :alone 500}}
  :devices {:keychron [{:vendor_id 13364 :product_id 1553}]}
- :applications {:utm ["^com\\.utmapp\\.UTM$"]}
+ :applications {:utm ["^com\\.utmapp\\.UTM$", "^com\\.microsoft\\.rdc\\.macos$"]}
  :main [{:des "Post Esc if Caps is tapped, Control if held"
          :rules [[:##caps_lock :left_control [:!utm] {:alone :escape}]]}
 
