@@ -3,6 +3,7 @@
 {
   imports = [
     ./samba.nix
+    ./cert-sync.nix
     ./avahi.nix
   ];
 

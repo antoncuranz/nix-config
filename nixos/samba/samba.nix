@@ -56,8 +56,8 @@ in {
             "server services" = "-dns, -dnsupdate";
             workgroup = "${adWorkgroup}";
             "idmap_ldb:use rfc2307" = "yes";
-            "tls certfile" = "/home/ant0n/certs/ad.crt";
-            "tls keyfile" = "/home/ant0n/certs/ad.key";
+            "tls certfile" = "/var/lib/samba/tls-managed/ad.crt";
+            "tls keyfile" = "/var/lib/samba/tls-managed/ad.key";
             "tls cafile" = "";
 
             # File Sharing
