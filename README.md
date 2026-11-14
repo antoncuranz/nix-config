@@ -24,20 +24,6 @@ nix --extra-experimental-features nix-command --extra-experimental-features flak
 rebuild
 ```
 
-## Low memory VPS Installation
-
-```bash
-# verify disk and image size
-vim disko/cloudton.nix
-
-# build disk image
-nix build .#nixosConfigurations.cloudton.config.system.build.diskoImagesScript
-sudo ./result
-
-# transfer image to VPS (boot live system, e.g. nix minimal)
-cat main.raw | ssh root@<VPS_IP> "dd of=/dev/xyz"
-```
-
 ## Test VM Installation
 
 ```bash
