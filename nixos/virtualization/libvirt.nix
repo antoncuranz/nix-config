@@ -53,7 +53,7 @@ in
       qemu.swtpm.enable = true;
 
       firewallBackend = "nftables";
-      allowedBridges = [ "br-dmz" ];
+      allowedBridges = [ "br-infra" "br-dmz" ];
       sshProxy = false;
 
       onBoot = "ignore";

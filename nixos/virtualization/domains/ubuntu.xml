@@ -35,8 +35,8 @@
       <boot order="2"/>
     </disk>
     -->
-    <interface type="direct">
-      <source dev="eno1" mode="bridge"/>
+    <interface type="bridge">
+      <source bridge="br-infra"/>
       <model type="virtio"/>
       <rom bar="off"/>
     </interface>

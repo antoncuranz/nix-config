@@ -1,88 +1,23 @@
 { ... }:
 
 let
-  address = "192.168.1.2/24";
-  gateway = "192.168.1.1";
-  nameserver = "192.168.1.1";
-  lan = {
-    interface = "eno1";
-    bridge = "br-lan";
-    useBridge = false;
-  };
-  dmz = {
-    interface = "enp6s0";
-    bridge = "br-dmz";
-    useBridge = false;
+  lanNetworkd.networks."10-eno1" = {
+    matchConfig.Name = "eno1";
+    networkConfig = {
+      DHCP = "no";
+      LinkLocalAddressing = "ipv6";
+      IPv6AcceptRA = true;
+    };
+    address = [ "192.168.1.2/24" ];
+    dns = [ "192.168.1.1" ];
+    gateway = [ "192.168.1.1" ];
   };
 
-  lanNetwork = {
-    DHCP = "no";
-    LinkLocalAddressing = "ipv6";
-    IPv6AcceptRA = true;
-  };
   isolatedNetwork = {
     DHCP = "no";
     LinkLocalAddressing = "no";
     IPv6AcceptRA = false;
   };
-
-  lanNetworkd =
-    if lan.useBridge then {
-      netdevs."30-${lan.bridge}".netdevConfig = {
-        Name = lan.bridge;
-        Kind = "bridge";
-      };
-
-      networks = {
-        "10-${lan.interface}" = {
-          matchConfig.Name = lan.interface;
-          networkConfig = isolatedNetwork;
-          bridge = [ lan.bridge ];
-        };
-        "30-${lan.bridge}" = {
-          matchConfig.Name = lan.bridge;
-          networkConfig = lanNetwork;
-          address = [ address ];
-          dns = [ nameserver ];
-          gateway = [ gateway ];
-        };
-      };
-    } else {
-      netdevs = { };
-      networks."10-${lan.interface}" = {
-        matchConfig.Name = lan.interface;
-        networkConfig = lanNetwork;
-        address = [ address ];
-        dns = [ nameserver ];
-        gateway = [ gateway ];
-      };
-    };
-
-  dmzNetworkd =
-    if dmz.useBridge then {
-      netdevs."30-${dmz.bridge}".netdevConfig = {
-        Name = dmz.bridge;
-        Kind = "bridge";
-      };
-
-      networks = {
-        "10-${dmz.interface}" = {
-          matchConfig.Name = dmz.interface;
-          networkConfig = isolatedNetwork;
-          bridge = [ dmz.bridge ];
-        };
-        "30-${dmz.bridge}" = {
-          matchConfig.Name = dmz.bridge;
-          networkConfig = isolatedNetwork;
-        };
-      };
-    } else {
-      netdevs = { };
-      networks."10-${dmz.interface}" = {
-        matchConfig.Name = dmz.interface;
-        networkConfig = isolatedNetwork;
-      };
-    };
 in
 {
   networking = {
@@ -91,10 +26,45 @@ in
   };
 
   systemd.network = {
-    netdevs = lanNetworkd.netdevs // dmzNetworkd.netdevs;
-    networks = lanNetworkd.networks // dmzNetworkd.networks;
     enable = true;
-    wait-online.ignoredInterfaces = [ dmz.bridge dmz.interface ];
+    netdevs = {
+      "20-vlan-lan" = {
+        netdevConfig = { Name = "vlan-lan"; Kind = "vlan"; };
+        vlanConfig.Id = 10;
+      };
+      "20-vlan-dmz" = {
+        netdevConfig = { Name = "vlan-dmz"; Kind = "vlan"; };
+        vlanConfig.Id = 50;
+      };
+      "30-br-infra".netdevConfig = { Name = "br-infra"; Kind = "bridge"; };
+      "30-br-dmz".netdevConfig = { Name = "br-dmz"; Kind = "bridge"; };
+    };
+    networks = lanNetworkd.networks // {
+      "10-enp6s0" = {
+        matchConfig.Name = "enp6s0";
+        networkConfig = isolatedNetwork;
+        vlan = [ "vlan-lan" "vlan-dmz" ];
+      };
+      "20-vlan-lan" = {
+        matchConfig.Name = "vlan-lan";
+        networkConfig = isolatedNetwork;
+        bridge = [ "br-infra" ];
+      };
+      "20-vlan-dmz" = {
+        matchConfig.Name = "vlan-dmz";
+        networkConfig = isolatedNetwork;
+        bridge = [ "br-dmz" ];
+      };
+      "30-br-infra" = {
+        matchConfig.Name = "br-infra";
+        networkConfig = isolatedNetwork;
+      };
+      "30-br-dmz" = {
+        matchConfig.Name = "br-dmz";
+        networkConfig = isolatedNetwork;
+      };
+    };
+    wait-online.ignoredInterfaces = [ "enp6s0" "vlan-lan" "vlan-dmz" "br-infra" "br-dmz" ];
   };
 
   boot.initrd.systemd.network = lanNetworkd;
