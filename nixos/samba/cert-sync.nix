@@ -5,7 +5,7 @@ lib.mkIf config.samba.enable {
     description = "Synchronize Samba TLS certificate from Kubernetes";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
-    path = [ pkgs.coreutils pkgs.jq pkgs.kubectl pkgs.openssl config.services.samba.package ];
+    path = [ pkgs.coreutils pkgs.diffutils pkgs.jq pkgs.kubectl pkgs.openssl config.services.samba.package ];
     environment.KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
     unitConfig.StartLimitIntervalSec = 0;
     serviceConfig = {
