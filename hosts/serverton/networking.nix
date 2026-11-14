@@ -28,8 +28,8 @@ in
   systemd.network = {
     enable = true;
     netdevs = {
-      "20-vlan-lan" = {
-        netdevConfig = { Name = "vlan-lan"; Kind = "vlan"; };
+      "20-vlan-infra" = {
+        netdevConfig = { Name = "vlan-infra"; Kind = "vlan"; };
         vlanConfig.Id = 10;
       };
       "20-vlan-dmz" = {
@@ -43,10 +43,10 @@ in
       "10-enp6s0" = {
         matchConfig.Name = "enp6s0";
         networkConfig = isolatedNetwork;
-        vlan = [ "vlan-lan" "vlan-dmz" ];
+        vlan = [ "vlan-infra" "vlan-dmz" ];
       };
-      "20-vlan-lan" = {
-        matchConfig.Name = "vlan-lan";
+      "20-vlan-infra" = {
+        matchConfig.Name = "vlan-infra";
         networkConfig = isolatedNetwork;
         bridge = [ "br-infra" ];
       };
@@ -64,7 +64,7 @@ in
         networkConfig = isolatedNetwork;
       };
     };
-    wait-online.ignoredInterfaces = [ "enp6s0" "vlan-lan" "vlan-dmz" "br-infra" "br-dmz" ];
+    wait-online.ignoredInterfaces = [ "enp6s0" "vlan-infra" "vlan-dmz" "br-infra" "br-dmz" ];
   };
 
   boot.initrd.systemd.network = lanNetworkd;
