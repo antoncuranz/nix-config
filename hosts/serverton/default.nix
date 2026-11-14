@@ -35,6 +35,7 @@
   impermanence.enable = true;
   virtualization.enable = true;
   auto-upgrade.enable = true;
+  agentAccess.enable = true;
 
   # hardware
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];

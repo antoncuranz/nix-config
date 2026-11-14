@@ -34,7 +34,14 @@ in
       kubernetes-helm
     ];
 
-    environment.sessionVariables.KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
+    # admin kubeconfig is root-only; `sudo kubectl/k9s/helm` picks it up via /root/.kube/config.
+    # KUBECONFIG must be set explicitly: the k3s kubectl wrapper otherwise prefers
+    # /etc/rancher/k3s/k3s.yaml over ~/.kube/config whenever it exists.
+    environment.sessionVariables.KUBECONFIG = "$HOME/.kube/config";
+    systemd.tmpfiles.rules = [
+      "d /root/.kube 0700 root root -"
+      "L+ /root/.kube/config - - - - /etc/rancher/k3s/k3s.yaml"
+    ];
 
     services.k3s.enable = true;
     services.k3s.role = "server";
@@ -49,7 +56,7 @@ in
       "--flannel-backend=none"
       "--disable-network-policy"
       "--node-ip=${cfg.nodeIp}"
-      "--write-kubeconfig-mode=644"
+      "--write-kubeconfig-mode=600"
       "--datastore-endpoint=etcd"
     ];
 

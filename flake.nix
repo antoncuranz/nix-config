@@ -52,17 +52,6 @@
       ];
     };
 
-    nixosConfigurations.cloudton = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs secrets; };
-      modules = [
-        ./hosts/cloudton
-        ./disko/cloudton.nix
-        ./nixos
-
-        disko.nixosModules.disko
-      ];
-    };
-
     nixosConfigurations.testvm = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
