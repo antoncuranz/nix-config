@@ -20,7 +20,7 @@ in
       connections = {
         "qemu:///system" = {
           domains = [
-            { definition = ./domains/ubuntu.xml; }
+            { definition = ./domains/ubuntu.xml; active = true; }
             { definition = ./domains/talos-dmz-1.xml; }
             { definition = ./domains/talos-home-1.xml; }
             { definition = ./domains/talos-home-2.xml; }
