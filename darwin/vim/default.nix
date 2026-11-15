@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, inputs, lib, pkgs, ... }:
 
 let
   cfg = config.vim;
@@ -17,6 +17,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.nixvim = {
       enable = true;
+      nixpkgs.source = inputs.nixpkgs.outPath;
       plugins = {
         commentary.enable = true;
         vim-surround.enable = true;
