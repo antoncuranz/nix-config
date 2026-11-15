@@ -17,7 +17,6 @@
     lshw
     git-crypt
     powertop
-    cockpit
     lm_sensors
     htop
     unzip
