@@ -1,4 +1,4 @@
-{ config, lib, pkgs, secrets, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   cfg = config.backup.hdd-replication;
@@ -26,7 +26,7 @@ in
     systemd.services."hdd-replication" = {
       script = ''
         function handle_error() {
-          ${pkgs.curl}/bin/curl -s "${secrets.healthchecks.hdd-replication}/fail" > /dev/null
+          ${pkgs.curl}/bin/curl -s "$(cat ${config.sops.secrets."healthchecks/hdd-replication".path})/fail" > /dev/null
           ${pkgs.zfs}/bin/zpool export HDD1 || true
           ${pkgs.zfs}/bin/zpool export HDD2 || true
           exit 1
@@ -60,7 +60,7 @@ in
         ${pkgs.zfs}/bin/zpool export HDD2
 
         # Ping healthcheck
-        ${pkgs.curl}/bin/curl -s "${secrets.healthchecks.hdd-replication}" > /dev/null
+        ${pkgs.curl}/bin/curl -s "$(cat ${config.sops.secrets."healthchecks/hdd-replication".path})" > /dev/null
       '';
       serviceConfig = {
         Type = "simple";

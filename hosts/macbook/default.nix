@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, secrets, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -13,6 +13,10 @@
   dops.enable = true;
 
   system.primaryUser = "ant0n";
+  sops.defaultSopsFile = ../../secrets/secrets.enc.json;
+  sops.defaultSopsFormat = "json";
+  sops.age.keyFile = "/Users/ant0n/.config/sops/age/keys.txt";
+  sops.secrets.opAccount.owner = "ant0n";
 
   # User configuration - this will set the default shell
   # Required for shell changes to take effect on macOS
@@ -26,7 +30,7 @@
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  home-manager.extraSpecialArgs = { inherit inputs secrets; };
+  home-manager.extraSpecialArgs = { inherit inputs; opAccountPath = config.sops.secrets.opAccount.path; };
   home-manager.users.ant0n = import ./home.nix;
   home-manager.backupFileExtension = "backup";
   home-manager.sharedModules = [

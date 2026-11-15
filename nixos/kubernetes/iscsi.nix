@@ -1,4 +1,4 @@
-{ config, lib, secrets, pkgs, ... }:
+{ config, lib, sshKeys, pkgs, ... }:
 
 let
   cfg = config.kubernetes.iscsi;
@@ -20,7 +20,7 @@ in
       shell = pkgs.bashInteractive;
 
       openssh.authorizedKeys.keys = [
-        "${secrets.sshKeys.dcsi}"
+        "${sshKeys.dcsi}"
       ];
     };
 

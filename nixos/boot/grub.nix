@@ -1,4 +1,4 @@
-{ config, lib, secrets, ... }:
+{ config, lib, ... }:
 
 {
   boot = {

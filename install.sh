@@ -10,22 +10,17 @@ zfs snapshot zroot/root@blank
 
 mkdir -p /mnt/etc/nixos /mnt/persist/secrets/initrd /mnt/persist/var/lib/libvirt/images
 
-# install git and git-crypt
+# install git
 nix-env -f '<nixpkgs>' -iA git
-nix-env -f '<nixpkgs>' -iA git-crypt
 
-# clone and unlock configuration
+# clone configuration
 git clone https://github.com/ant0ncuranz/nix-config.git /mnt/etc/nixos
-
-echo "Paste base64 encoded git-crypt key: "
-read -r base64key
-echo $base64key | base64 --decode > /tmp/git-crypt-key
-
-(cd /mnt/etc/nixos && git-crypt unlock /tmp/git-crypt-key)
 
 cp /tmp/disko.nix /mnt/etc/nixos/disko/zroot.nix
 
 ssh-keygen -t ed25519 -N "" -f /mnt/persist/secrets/initrd/ssh_host_ed25519_key
 ssh-keygen -t rsa -N "" -f /mnt/persist/secrets/initrd/ssh_host_rsa_key
 
-nixos-install --flake "/mnt/etc/nixos#default"
+echo "Restore Serverton's persistent SSH host key and provision initrd notification"
+echo "credentials as described in README.md before running nixos-install."
+echo 'Then run: nixos-install --flake /mnt/etc/nixos#serverton'

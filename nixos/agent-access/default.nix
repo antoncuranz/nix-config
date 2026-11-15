@@ -1,4 +1,4 @@
-{ config, lib, pkgs, secrets, ... }:
+{ config, lib, pkgs, sshKeys, ... }:
 
 # Read-only shell access for AI agents (debugging / analysis).
 #
@@ -66,8 +66,8 @@ in
         inherit uid home;
         group = user;
         extraGroups = [ "systemd-journal" ];
-        openssh.authorizedKeys.keys = lib.optional (secrets.sshKeys ? agent)
-          ''restrict,command="${agentShell}" ${secrets.sshKeys.agent}'';
+        openssh.authorizedKeys.keys = lib.optional (sshKeys ? agent)
+          ''restrict,command="${agentShell}" ${sshKeys.agent}'';
       };
 
       services.openssh.settings.AllowUsers = [ user ];

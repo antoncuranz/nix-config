@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, secrets, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -7,6 +7,7 @@
     ./packages.nix
     ./misc.nix
     ./networking.nix
+    ./secrets.nix
   ];
 
   # modules
@@ -31,11 +32,15 @@
 
   boot.remote-unlock.enable = true;
   samba.enable = true;
-  email.enable = true;
   impermanence.enable = true;
   virtualization.enable = true;
   auto-upgrade.enable = true;
   agentAccess.enable = true;
+
+  nix.settings = {
+    extra-substituters = [ "https://antoncuranz.cachix.org" ];
+    extra-trusted-public-keys = [ "antoncuranz.cachix.org-1:x5CEEQw2qfTLTKzuyvmW8D5DAd5RHtQ1EJvm1uDUTK4=" ];
+  };
 
   # hardware
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];

@@ -4,6 +4,10 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     impermanence.url = "github:nix-community/impermanence";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
 
     disko = {
@@ -39,43 +43,34 @@
 
   outputs = { self, nixpkgs, nix-darwin, disko, home-manager, nixvim, arkenfox, ... }@inputs:
   let
-    secrets = builtins.fromJSON (builtins.readFile "${self}/secrets.json");
+    sshKeys = import ./public-keys.nix;
   in {
     nixosConfigurations.serverton = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs secrets; };
+      specialArgs = { inherit inputs sshKeys; };
       modules = [
         ./hosts/serverton
         ./disko/zroot.nix
         ./nixos
 
         disko.nixosModules.disko
-      ];
-    };
-
-    nixosConfigurations.testvm = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
-      modules = [
-        ./hosts/testvm
-        ./disko/zroot.nix
-        ./nixos
-
-        disko.nixosModules.disko
+        inputs.sops-nix.nixosModules.sops
       ];
     };
 
     darwinConfigurations.macbook = nix-darwin.lib.darwinSystem {
-      specialArgs = { inherit inputs secrets; };
+      specialArgs = { inherit inputs; };
       modules = [
         ./hosts/macbook
         ./darwin
 
         home-manager.darwinModules.home-manager
         nixvim.nixDarwinModules.nixvim
+        inputs.sops-nix.darwinModules.sops
       ];
     };
 
     darwinConfigurations.workbook = nix-darwin.lib.darwinSystem {
-      specialArgs = { inherit inputs secrets; };
+      specialArgs = { inherit inputs; };
       modules = [
         ./hosts/workbook
         ./darwin

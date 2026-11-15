@@ -30,11 +30,10 @@ in
     environment.systemPackages = with pkgs; [
       k3s
       kubectx
-      k9s
       kubernetes-helm
     ];
 
-    # admin kubeconfig is root-only; `sudo kubectl/k9s/helm` picks it up via /root/.kube/config.
+    # admin kubeconfig is root-only; `sudo kubectl/helm` picks it up via /root/.kube/config.
     # KUBECONFIG must be set explicitly: the k3s kubectl wrapper otherwise prefers
     # /etc/rancher/k3s/k3s.yaml over ~/.kube/config whenever it exists.
     environment.sessionVariables.KUBECONFIG = "$HOME/.kube/config";

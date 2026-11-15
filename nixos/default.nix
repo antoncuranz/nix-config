@@ -5,7 +5,6 @@
     ./boot
     ./virtualization
     ./kubernetes
-    ./email
     ./samba
     ./impermanence
     ./backup
