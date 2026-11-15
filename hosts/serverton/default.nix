@@ -34,7 +34,6 @@
   samba.enable = true;
   impermanence.enable = true;
   virtualization.enable = true;
-  auto-upgrade.enable = true;
   agentAccess.enable = true;
 
   nix.settings = {

@@ -10,10 +10,24 @@ permissions:
   contents: read
 
 jobs:
+  workflow-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: cachix/install-nix-action@d698718aa798980d17dd749f03beae0b51183399 # v31
+      - name: Lint GitHub Actions workflows
+        run: nix shell --inputs-from . nixpkgs#actionlint -c actionlint .github/workflows/*.yml
+      - name: Audit GitHub Actions workflows
+        run: nix shell --inputs-from . nixpkgs#zizmor -c zizmor --offline .github/workflows
+
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
       - uses: cachix/install-nix-action@d698718aa798980d17dd749f03beae0b51183399 # v31
       - uses: cachix/cachix-action@97e5ff84d02b3b4f9936339f767e17f03c9252ed # v16
         with:
@@ -30,3 +44,8 @@ jobs:
         run: |
           test -n "$CACHIX_AUTH_TOKEN" || { echo 'CACHIX_AUTH_TOKEN is not configured' >&2; exit 1; }
           cachix push antoncuranz < <(readlink -f result)
+      - name: Report Nix closure vulnerabilities
+        run: |
+          vulnix_exit_code=0
+          nix shell --inputs-from . nixpkgs#vulnix -c vulnix --closure --json "$(readlink -f result)" > "$RUNNER_TEMP/vulnix.json" || vulnix_exit_code=$?
+          python3 scripts/vulnix-summary.py "$RUNNER_TEMP/vulnix.json" "$vulnix_exit_code" >> "$GITHUB_STEP_SUMMARY"

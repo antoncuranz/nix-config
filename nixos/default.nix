@@ -9,7 +9,6 @@
     ./impermanence
     ./backup
     ./power
-    ./auto-upgrade
     ./agent-access
 
     ./packages.nix

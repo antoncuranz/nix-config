@@ -60,6 +60,12 @@ Serverton is configured to use this cache once the new configuration has
 been activated. Review Nix store contents for secrets before publishing; a
 binary cache is not a secret store.
 
+CI runs actionlint and zizmor on the workflows. It also runs vulnix against the
+Serverton runtime closure and lists potential CVEs in the run summary. The
+vulnerability report is informational: matching is heuristic and may miss
+paths without available derivations or report false positives. Scanner errors
+fail the job; reported CVEs do not.
+
 ## Installation
 
 ```bash
