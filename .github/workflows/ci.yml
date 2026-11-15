@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  serverton:
+    uses: ./.github/workflows/serverton.yml
+    secrets: inherit
+  macos:
+    uses: ./.github/workflows/macos.yml
+    secrets: inherit
+  auto-merge:
+    needs: [serverton, macos]
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.head_ref == 'update-flake-lock' &&
+      vars.FLAKE_UPDATE_ACTOR != '' &&
+      github.event.pull_request.user.login == vars.FLAKE_UPDATE_ACTOR
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Enable auto-merge
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: gh pr merge --auto --squash --match-head-commit "$PR_HEAD" "$PR_URL"

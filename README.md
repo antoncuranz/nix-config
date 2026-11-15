@@ -67,7 +67,7 @@ merging changes to the Pushover credentials, as described above.
 
 The public `antoncuranz` Cachix cache uses a write token stored as the
 repository Actions secret `CACHIX_AUTH_TOKEN`. Pull requests from this
-repository and pushes to `main` upload the final Serverton runtime closure.
+repository and pushes to `main` upload the Serverton, macbook, and workbook runtime closures.
 Forked pull requests build using the public cache without an upload token.
 Serverton is configured to use this cache once the new configuration has
 been activated. Review Nix store contents for secrets before publishing; a
@@ -102,3 +102,21 @@ nix --extra-experimental-features nix-command --extra-experimental-features flak
 # update
 rebuild
 ```
+
+
+### Flake updates
+
+The daily update workflow opens a pull request when inputs change. Configure
+`GH_TOKEN_FOR_UPDATES` as an Actions secret with a fine-grained token that has
+repository Contents and Pull requests read/write access. Its identity triggers
+CI for the update PR. Set the Actions variable `FLAKE_UPDATE_ACTOR` to that
+account's GitHub login to enable automatic squash merging after all three
+builds and cache uploads pass. Enable auto-merge in repository settings and
+require the build checks on `main` through branch protection or a ruleset;
+any additional required checks or reviews also need to pass. Without the
+variable, updates remain open for manual review. Merging deploys Serverton
+through Comin, as described above.
+
+The Serverton vulnerability summary sorts individual CVEs by CVSS v3 base
+score, with missing scores listed last. These scores are informational and do
+not block an update.
