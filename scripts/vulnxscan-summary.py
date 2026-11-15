@@ -20,7 +20,7 @@ if not report.exists():
 
 with report.open(newline="") as file:
     reader = csv.DictReader(file)
-    required = {"vuln_id", "package", "version", "severity", "grype", "osv", "vulnix"}
+    required = {"vuln_id", "package", "version_local", "severity", "grype", "osv", "vulnix"}
     if not required.issubset(reader.fieldnames or []):
         sys.exit("vulnxscan CSV is missing expected columns")
     rows = list(reader)
@@ -33,5 +33,5 @@ for row in rows:
     def cell(key):
         return (row.get(key) or "").replace("|", "\\|").replace("\n", " ")
     print("| " + " | ".join(cell(key) for key in (
-        "vuln_id", "package", "version", "severity", "grype", "osv", "vulnix"
+        "vuln_id", "package", "version_local", "severity", "grype", "osv", "vulnix"
     )) + " |")
