@@ -109,12 +109,11 @@ rebuild
 The daily update workflow opens a pull request when inputs change. Configure
 `GH_TOKEN_FOR_UPDATES` as an Actions secret with a fine-grained token that has
 repository Contents and Pull requests read/write access. Its identity triggers
-CI for the update PR. Set the Actions variable `FLAKE_UPDATE_ACTOR` to that
-account's GitHub login to enable automatic squash merging after all three
-builds and cache uploads pass. Enable auto-merge in repository settings and
+CI for the update PR. Pull requests from the `update-flake-lock` branch are
+automatically squash merged after all three builds and cache uploads pass.
+Enable auto-merge in repository settings and
 require the build checks on `main` through branch protection or a ruleset;
-any additional required checks or reviews also need to pass. Without the
-variable, updates remain open for manual review. Merging deploys Serverton
+any additional required checks or reviews also need to pass. Merging deploys Serverton
 through Comin, as described above.
 
 The Serverton vulnerability summary sorts individual CVEs by CVSS v3 base
