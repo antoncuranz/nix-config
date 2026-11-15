@@ -1,0 +1,39 @@
+name: Serverton
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: cachix/install-nix-action@3dc140bfc76c49fbd4dd958429132e3746bcb086 # v31.11.5
+      - uses: cachix/cachix-action@38b082610b782e7e93e209c35fd730d399dee866 # v17
+        with:
+          name: antoncuranz
+          skipPush: true
+      - name: Build Serverton
+        run: nix build .#nixosConfigurations.serverton.config.system.build.toplevel --print-build-logs
+      - name: Push runtime closure
+        if: >-
+          (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+          (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository)
+        env:
+          CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
+        run: |
+          test -n "$CACHIX_AUTH_TOKEN" || { echo 'CACHIX_AUTH_TOKEN is not configured' >&2; exit 1; }
+          cachix push antoncuranz < <(readlink -f result)
+      - name: Report Nix closure vulnerabilities
+        run: |
+          vulnix_exit_code=0
+          nix shell --inputs-from . nixpkgs#vulnix -c vulnix --closure --json "$(readlink -f result)" > "$RUNNER_TEMP/vulnix.json" || vulnix_exit_code=$?
+          python3 scripts/vulnix-summary.py "$RUNNER_TEMP/vulnix.json" "$vulnix_exit_code" >> "$GITHUB_STEP_SUMMARY"

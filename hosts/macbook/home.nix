@@ -1,4 +1,4 @@
-{ secrets, config, pkgs, ... }:
+{ config, pkgs, opAccountPath, ... }:
 
 {
   # Home Manager needs a bit of information about you and the
@@ -14,7 +14,6 @@
     EDITOR = "nvim";
     TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE = "/var/run/docker.sock";
     DOCKER_HOST = "unix://$HOME/.colima/default/docker.sock";
-    OP_ACCOUNT = "${secrets.opAccount}";
     #DISPLAY = ":0"
   };
 
@@ -31,6 +30,9 @@
   programs.fish = {
     enable = true;
     shellInit = ''
+      if test -r ${opAccountPath}
+        set -gx OP_ACCOUNT (cat ${opAccountPath})
+      end
       # ghostty ssh fix
       if test "$TERM_PROGRAM" = "ghostty"
         set -x TERM xterm-256color

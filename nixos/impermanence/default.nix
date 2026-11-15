@@ -38,6 +38,7 @@ in
       hideMounts = true;
       directories = [
         "/var/lib/nixos"
+        "/var/lib/comin"
         "/var/lib/samba"
         "/var/lib/libvirt"
         "/root/.config/rclone"

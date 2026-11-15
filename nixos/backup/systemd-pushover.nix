@@ -1,4 +1,4 @@
-{ pkgs, config, lib, secrets, ... }:
+{ pkgs, config, lib, ... }:
 
 let
   cfg = config.backup.systemd-pushover;
@@ -29,8 +29,8 @@ in
       onFailure = lib.mkForce [ ];
       script = ''
         ${pkgs.curl}/bin/curl -s \
-          --form-string "token=${secrets.pushover.token}" \
-          --form-string "user=${secrets.pushover.user}" \
+          --form-string "token=$(<${config.sops.secrets."pushover/token".path})" \
+          --form-string "user=$(<${config.sops.secrets."pushover/user".path})" \
           --form-string "title=$1 failed (${hostname})" \
           --form-string "message=$(${pkgs.systemd}/bin/systemctl status --full "$1")" \
           --form-string "device=iphone" \

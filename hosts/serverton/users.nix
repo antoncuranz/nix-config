@@ -1,4 +1,4 @@
-{ secrets, lib, pkgs, ... }:
+{ config, sshKeys, lib, pkgs, ... }:
 
 {
   users.users.ant0n = {
@@ -10,11 +10,11 @@
       "libvirtd"
       "serverton_users"
     ];
-    hashedPassword = "${secrets.hashedPassword}";
+    hashedPasswordFile = config.sops.secrets.hashedPassword.path;
     openssh.authorizedKeys.keys = [
-      "${secrets.sshKeys.am}"
-      "${secrets.sshKeys.at}"
-      "${secrets.sshKeys.aw}"
+      "${sshKeys.am}"
+      "${sshKeys.at}"
+      "${sshKeys.aw}"
     ];
   };
 

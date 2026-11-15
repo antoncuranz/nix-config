@@ -1,2 +1,4 @@
 .idea/
 .worktrees/
+/secrets.json
+/scripts/init-samba.sh
