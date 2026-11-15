@@ -53,8 +53,9 @@ the file first. Never put a private key in the repository or Nix store.
 ### Cachix
 
 The public `antoncuranz` Cachix cache uses a write token stored as the
-repository Actions secret `CACHIX_AUTH_TOKEN`. Pull requests build without
-the token; pushes to `main` upload the final Serverton runtime closure.
+repository Actions secret `CACHIX_AUTH_TOKEN`. Pull requests from this
+repository and pushes to `main` upload the final Serverton runtime closure.
+Forked pull requests build using the public cache without an upload token.
 Serverton is configured to use this cache once the new configuration has
 been activated. Review Nix store contents for secrets before publishing; a
 binary cache is not a secret store.
