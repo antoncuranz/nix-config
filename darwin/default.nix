@@ -3,7 +3,6 @@
 {
   imports = [
     ./vim
-    ./firefox
     ./ghostty
     ./dops
     ./aerospace
