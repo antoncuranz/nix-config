@@ -25,11 +25,19 @@ print()
 if not findings:
     print("No matches reported.")
 else:
-    print("| Package | Potential CVEs |")
-    print("| --- | --- |")
+    print("| Severity (CVSS v3) | CVE | Package |")
+    print("| --- | --- | --- |")
+    rows = []
     for finding in findings:
-        cves = ", ".join(
-            f"[{cve}](https://nvd.nist.gov/vuln/detail/{cve})"
-            for cve in finding["affected_by"]
-        )
-        print(f"| {finding['name']} | {cves} |")
+        scores = finding.get("cvssv3_basescore") or {}
+        for cve in finding["affected_by"]:
+            score = scores.get(cve)
+            if not isinstance(score, (int, float)) or not 0 <= score <= 10:
+                score = None
+            rows.append((score, cve, finding["name"]))
+    for score, cve, package in sorted(rows, key=lambda row: (-(row[0] if row[0] is not None else -1), row[1], row[2])):
+        severity = ("Unknown" if score is None else
+                    "Critical" if score >= 9 else "High" if score >= 7 else
+                    "Medium" if score >= 4 else "Low" if score > 0 else "None")
+        display = severity if score is None else f"{severity} ({score:.1f})"
+        print(f"| {display} | [{cve}](https://nvd.nist.gov/vuln/detail/{cve}) | {package} |")
