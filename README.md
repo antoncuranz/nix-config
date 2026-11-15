@@ -73,11 +73,12 @@ Serverton is configured to use this cache once the new configuration has
 been activated. Review Nix store contents for secrets before publishing; a
 binary cache is not a secret store.
 
-CI runs vulnix against the
-Serverton runtime closure and lists potential CVEs in the run summary. The
-vulnerability report is informational: matching is heuristic and may miss
-paths without available derivations or report false positives. Scanner errors
-fail the job; reported CVEs do not.
+CI runs sbomnix's vulnxscan against the Serverton runtime closure and lists
+potential vulnerabilities in the run summary. The `serverton-vulnxscan`
+artifact contains the full CSV, patch evidence, and scanner log. The report is
+informational: results can include false positives and miss vulnerabilities.
+Vulnxscan combines Grype, OSV, and vulnix; a finding reported only by vulnix
+may still be a name-matching false positive. Findings do not fail the job.
 
 ## Installation
 
