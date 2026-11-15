@@ -3,7 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     # _1password-gui
-    nodejs_22
+    nodejs
     go-critic
     unstable.talosctl
     npm-check-updates
