@@ -20,7 +20,7 @@
     };
 
     nixvirt = {
-      url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
+      url = "github:AshleyYakeley/NixVirt/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

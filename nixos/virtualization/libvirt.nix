@@ -2,36 +2,10 @@
 
 let
   cfg = config.virtualization;
-
-  # NixVirt 0.6.0 hard-codes Python 3.11 in its flake. Reuse its pinned
-  # module and helper with the same Python as the rest of this system.
-  python = pkgs.python313;
-  nixvirtPythonModule = pkgs.runCommand "nixvirt-python-module" { } ''
-    mkdir -p $out/${python.sitePackages}
-    ln -s ${inputs.nixvirt}/tool/nixvirt.py $out/${python.sitePackages}/nixvirt.py
-  '' // { pythonModule = python; };
-  moduleHelperFile = libvirt:
-    let
-      interpreter = python.withPackages (ps: [
-        (ps.libvirt.override { inherit libvirt; })
-        ps.lxml
-        ps.xmldiff
-        nixvirtPythonModule
-      ]);
-    in
-    pkgs.runCommand "nixvirt-module-helper" { } ''
-      sed -e '1s|.*|#!${interpreter}/bin/python3|' ${inputs.nixvirt}/tool/nixvirt-module-helper > $out
-      chmod 755 $out
-      "$out" --help > /dev/null
-    '';
-  nixvirtModules = import "${inputs.nixvirt}/modules.nix" {
-    packages = pkgs;
-    inherit moduleHelperFile;
-  };
 in
 {
   imports = [
-    nixvirtModules.nixosModule
+    inputs.nixvirt.nixosModules.default
   ];
 
   options.virtualization = {
