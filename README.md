@@ -75,8 +75,11 @@ binary cache is not a secret store.
 
 CI runs sbomnix's vulnxscan against the Serverton runtime closure and lists
 potential vulnerabilities in the run summary. The `serverton-vulnxscan`
-artifact contains the full CSV, patch evidence, and scanner log. The report is
-informational: results can include false positives and miss vulnerabilities.
+artifact contains the full CSV, runtime dependency graph, patch evidence, and
+scanner log. The summary highlights critical findings with a scanner-reported
+fix version; this does not establish that a fix is available in Nixpkgs or that
+the reported package is affected. Other findings remain in the artifact. The
+report is informational: results can include false positives and miss vulnerabilities.
 Vulnxscan combines Grype, OSV, and vulnix; a finding reported only by vulnix
 may still be a name-matching false positive. Findings do not fail the job.
 

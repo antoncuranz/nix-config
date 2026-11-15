@@ -37,7 +37,12 @@ jobs:
             --out "$RUNNER_TEMP/vulnxscan/findings.csv" \
             --evidence-out "$RUNNER_TEMP/vulnxscan/evidence.json" \
             2>&1 | tee "$RUNNER_TEMP/vulnxscan/scan.log"
-          python3 scripts/vulnxscan-summary.py "$RUNNER_TEMP/vulnxscan/findings.csv" >> "$GITHUB_STEP_SUMMARY"
+          nix run github:tiiuae/sbomnix/47ebba571175087426b6bc7967b8d80b979ea605#nixgraph -- \
+            "$(readlink -f result)" --depth 100 \
+            --out "$RUNNER_TEMP/vulnxscan/dependencies.csv"
+          python3 scripts/vulnxscan-summary.py "$RUNNER_TEMP/vulnxscan/findings.csv" \
+            "$RUNNER_TEMP/vulnxscan/evidence.json" \
+            "$RUNNER_TEMP/vulnxscan/dependencies.csv" >> "$GITHUB_STEP_SUMMARY"
       - name: Upload vulnerability scan results
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
