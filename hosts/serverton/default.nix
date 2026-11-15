@@ -37,6 +37,16 @@
   auto-upgrade.enable = true;
   agentAccess.enable = true;
 
+  # Allow noninteractive SSH rebuilds using the existing `rebuild` alias.
+  # Activating ant0n-owned configuration grants root-equivalent access.
+  security.sudo.extraRules = [{
+    users = [ "ant0n" ];
+    commands = [{
+      command = "/run/current-system/sw/bin/nixos-rebuild switch --flake /home/ant0n/nix-config";
+      options = [ "NOPASSWD" ];
+    }];
+  }];
+
   # hardware
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.kernelModules = [ "kvm-intel" "r8125" ];
