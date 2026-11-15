@@ -50,6 +50,19 @@ under the target's `/persist` before installing the boot entry. Alternatively,
 add the new host key as a sops recipient using the recovery key and re-encrypt
 the file first. Never put a private key in the repository or Nix store.
 
+### Automatic deployment
+
+After the first manual deployment, Comin polls this repository's `main`
+branch every 10 minutes and switches Serverton to new commits. Its state is
+persisted in `/persist/var/lib/comin`; no testing branch is enabled. GitHub CI
+and Comin run independently: Comin does not wait for checks or for Cachix to
+finish uploading. Require successful checks before merging changes.
+
+Merge this configuration into `main` before the first switch. If Comin is
+started from an unmerged branch, it will instead deploy the current `main`
+branch. Provision the initrd credentials before that first switch and before
+merging changes to the Pushover credentials, as described above.
+
 ### Cachix
 
 The public `antoncuranz` Cachix cache uses a write token stored as the

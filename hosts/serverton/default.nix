@@ -36,6 +36,19 @@
   virtualization.enable = true;
   agentAccess.enable = true;
 
+  services.comin = {
+    enable = true;
+    exporter.listen_address = "127.0.0.1";
+    remotes = [{
+      name = "origin";
+      url = "https://github.com/antoncuranz/nix-config.git";
+      branches.main.name = "main";
+      branches.testing.name = "";
+      poller.period = 600;
+    }];
+  };
+  systemd.services.comin.unitConfig.RequiresMountsFor = "/var/lib/comin";
+
   nix.settings = {
     extra-substituters = [ "https://antoncuranz.cachix.org" ];
     extra-trusted-public-keys = [ "antoncuranz.cachix.org-1:x5CEEQw2qfTLTKzuyvmW8D5DAd5RHtQ1EJvm1uDUTK4=" ];

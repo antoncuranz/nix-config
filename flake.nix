@@ -4,6 +4,10 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     impermanence.url = "github:nix-community/impermanence";
+    comin = {
+      url = "github:nlewo/comin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,6 +57,7 @@
         ./nixos
 
         disko.nixosModules.disko
+        inputs.comin.nixosModules.comin
         inputs.sops-nix.nixosModules.sops
       ];
     };
