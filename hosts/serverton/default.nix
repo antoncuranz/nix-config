@@ -55,6 +55,7 @@
   };
 
   # hardware
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.kernelModules = [ "kvm-intel" "r8125" ];
   boot.blacklistedKernelModules = [ "r8169" ];
