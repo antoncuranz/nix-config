@@ -33,8 +33,7 @@
     _1password-cli
     just
     minijinja
-    postgresql  # provides pg_dump
-    postgresql.pg_config  # required for psycopg2 python package
+    postgresql  # provides pg_dump, psql, and pg_isready for DollarBridge
     python312
     restic
     unixtools.watch
@@ -44,7 +43,6 @@
     fzf
     bat
     unstable.kube-capacity
-    inputs.hunk.packages.${pkgs.stdenv.hostPlatform.system}.hunk
     yq
     httpie
   ];

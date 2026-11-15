@@ -33,9 +33,6 @@
   home-manager.extraSpecialArgs = { inherit inputs; opAccountPath = config.sops.secrets.opAccount.path; };
   home-manager.users.ant0n = import ./home.nix;
   home-manager.backupFileExtension = "backup";
-  home-manager.sharedModules = [
-    inputs.hunk.homeManagerModules.default
-  ];
 
   system.stateVersion = 4;
   nixpkgs.hostPlatform = "aarch64-darwin";

@@ -12,7 +12,6 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
 
     disko = {
       url = "github:nix-community/disko";
@@ -38,14 +37,9 @@
       url = "github:nix-community/nixvim/nixos-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    hunk = {
-      url = "github:modem-dev/hunk";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { self, nixpkgs, nix-darwin, disko, home-manager, nixvim, arkenfox, ... }@inputs:
+  outputs = { self, nixpkgs, nix-darwin, disko, home-manager, nixvim, ... }@inputs:
   let
     sshKeys = import ./public-keys.nix;
   in {

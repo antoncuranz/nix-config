@@ -27,9 +27,6 @@
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users."ant0n" = import ./home.nix;
-  home-manager.sharedModules = [
-    inputs.hunk.homeManagerModules.default
-  ];
 
   system.stateVersion = 4;
   nixpkgs.hostPlatform = "aarch64-darwin";
