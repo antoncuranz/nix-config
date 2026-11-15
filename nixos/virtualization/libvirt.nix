@@ -22,6 +22,7 @@ let
     pkgs.runCommand "nixvirt-module-helper" { } ''
       sed -e '1s|.*|#!${interpreter}/bin/python3|' ${inputs.nixvirt}/tool/nixvirt-module-helper > $out
       chmod 755 $out
+      "$out" --help > /dev/null
     '';
   nixvirtModules = import "${inputs.nixvirt}/modules.nix" {
     packages = pkgs;
