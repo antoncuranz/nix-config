@@ -8,5 +8,7 @@
       X11Forwarding = true;
       PasswordAuthentication = false;
     };
+    # Only accept keys managed through users.users.<name>.openssh.authorizedKeys.
+    authorizedKeysInHomedir = false;
   };
 }
