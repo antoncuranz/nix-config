@@ -27,6 +27,8 @@ in {
       wants = [ "network-online.target" ];
 
       serviceConfig = {
+        # Samba exits 127 when systemd stops it with SIGTERM.
+        SuccessExitStatus = [ 127 ];
         Restart = "on-failure";
         RestartSec = "2s";
         RestartMode = "direct";
