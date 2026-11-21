@@ -38,6 +38,7 @@
     restic
     unixtools.watch
     gh
+    forgejo-cli
     unstable.ripgrep
     unstable.bun
     fzf
