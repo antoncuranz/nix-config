@@ -2,7 +2,8 @@
 # (fieldwork-ai/homebrew-tap) and scripts/install.sh: unpack the notarized
 # release archive as-is. The binaries carry a Developer ID signature with the
 # hypervisor (and VM networking) entitlements, so nothing in the payload may be
-# modified -- hence no fixup phase (no strip, no patching, no wrapping).
+# modified -- hence no fixup phase (no strip, no patching). The payload lives
+# untouched under libexec/lighter; bin/lighter is a small wrapper (wrapper.sh).
 { lib, stdenvNoCC, fetchurl }:
 
 stdenvNoCC.mkDerivation (finalAttrs: {
@@ -23,17 +24,22 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
     # Same layout as the release archive / Homebrew keg: bin/lighter finds its
     # guest image and app bundle at ../share/lighter.
-    mkdir -p $out/share/doc/lighter
-    cp -R bin share $out/
+    mkdir -p $out/libexec/lighter $out/bin $out/share/doc/lighter
+    cp -R bin share $out/libexec/lighter/
     cp LICENSE-MIT LICENSE-APACHE NOTICE THIRD-PARTY-NOTICES README.md $out/share/doc/lighter/
+
+    substitute ${./wrapper.sh} $out/bin/lighter \
+      --subst-var-by real $out/libexec/lighter/bin/lighter
+    chmod +x $out/bin/lighter
 
     runHook postInstall
   '';
 
   doInstallCheck = true;
   installCheckPhase = ''
-    /usr/bin/codesign --verify --strict $out/bin/lighter
-    /usr/bin/codesign --verify --strict --deep $out/share/lighter/lighter.app
+    /usr/bin/codesign --verify --strict $out/libexec/lighter/bin/lighter
+    /usr/bin/codesign --verify --strict --deep $out/libexec/lighter/share/lighter/lighter.app
+    $out/bin/lighter --version
   '';
 
   meta = {
