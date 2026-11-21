@@ -10,7 +10,7 @@
     tree
     tig
 
-    unstable.colima
+    lighter
     docker
     docker-compose
     docker-credential-helpers

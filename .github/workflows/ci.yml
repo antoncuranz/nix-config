@@ -21,7 +21,7 @@ jobs:
     if: >-
       github.event_name == 'pull_request' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
-      github.head_ref == 'update-flake-lock'
+      (github.head_ref == 'update-flake-lock' || github.head_ref == 'update-lighter')
     runs-on: ubuntu-latest
     permissions:
       contents: write
