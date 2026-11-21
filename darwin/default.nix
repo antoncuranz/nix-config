@@ -17,6 +17,8 @@
         system = prev.stdenv.hostPlatform.system;
         config.allowUnfree = true;
       };
+      # Not in nixpkgs yet; drop this once it is.
+      lighter = final.callPackage ./lighter/package.nix { };
     })
   ];
 
