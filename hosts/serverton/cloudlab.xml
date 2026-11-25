@@ -1,5 +1,6 @@
 <domain type="kvm">
   <name>cloudlab</name>
+  <uuid>@domainUuid@</uuid>
   <memory unit="MiB">2048</memory>
   <vcpu>2</vcpu>
   <os>

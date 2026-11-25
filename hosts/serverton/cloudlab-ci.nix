@@ -1,16 +1,10 @@
 { pkgs, ... }:
 
 let
-  python = pkgs.python3.withPackages (ps: [ ps.libvirt ]);
-  startVm = pkgs.writeTextFile {
-    name = "cloudlab-start-vm";
-    destination = "/bin/cloudlab-start-vm";
-    executable = true;
-    text = ''
-      #!${python}/bin/python3 -I
-      ${builtins.replaceStrings [ "@domain_xml@" ] [ "${./cloudlab.xml}" ] (builtins.readFile ./cloudlab-start-vm.py)}
-    '';
-  };
+  domainUuid = "5ff3e8db-0fe6-48a3-99be-2e5a02771a4d";
+  domainDefinition = pkgs.writeText "cloudlab.xml" (
+    builtins.replaceStrings [ "@domainUuid@" ] [ domainUuid ] (builtins.readFile ./cloudlab.xml)
+  );
 in
 {
   users.users.cloudlab-ci = {
@@ -21,14 +15,15 @@ in
   users.groups.cloudlab-ci = { };
   services.openssh.settings.AllowUsers = [ "cloudlab-ci" ];
 
-  environment.systemPackages = [ startVm ];
-
-  security.sudo.extraRules = [{
-    users = [ "cloudlab-ci" ];
-    runAs = "root";
-    commands = [{
-      command = "/run/current-system/sw/bin/cloudlab-start-vm \"\"";
-      options = [ "NOPASSWD" "NOSETENV" ];
-    }];
+  virtualisation.libvirt.connections."qemu:///system".domains = [{
+    definition = domainDefinition;
+    restart = false;
   }];
+
+  virtualisation.libvirtd.extraConfig = ''
+    access_drivers = [ "polkit" ]
+  '';
+
+  security.polkit.extraConfig =
+    builtins.replaceStrings [ "@domainUuid@" ] [ domainUuid ] (builtins.readFile ./cloudlab-libvirt.rules);
 }

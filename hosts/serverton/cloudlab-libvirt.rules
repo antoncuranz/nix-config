@@ -1,0 +1,36 @@
+polkit.addRule(function (action, subject) {
+    var isLibvirtApi = action.id.indexOf("org.libvirt.api.") === 0;
+
+    if (subject.user === "cloudlab-ci") {
+        // Opening the socket grants access only through the API rules below.
+        if (action.id === "org.libvirt.unix.manage") {
+            return polkit.Result.YES;
+        }
+        if (!isLibvirtApi) {
+            return;
+        }
+        if (action.lookup("connect_driver") !== "QEMU") {
+            return polkit.Result.NO;
+        }
+
+        switch (action.id) {
+        case "org.libvirt.api.connect.getattr":
+        case "org.libvirt.api.connect.search-domains":
+            return polkit.Result.YES;
+        case "org.libvirt.api.domain.getattr":
+        case "org.libvirt.api.domain.read":
+        case "org.libvirt.api.domain.start":
+            return action.lookup("domain_name") === "cloudlab" &&
+                action.lookup("domain_uuid") === "@domainUuid@"
+                ? polkit.Result.YES
+                : polkit.Result.NO;
+        default:
+            return polkit.Result.NO;
+        }
+    }
+
+    // Preserve system-wide libvirt access for the host's existing administrators.
+    if (isLibvirtApi && (subject.user === "root" || subject.isInGroup("libvirtd"))) {
+        return polkit.Result.YES;
+    }
+});
