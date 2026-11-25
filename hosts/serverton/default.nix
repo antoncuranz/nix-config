@@ -3,7 +3,6 @@
 {
   imports = [
     ./users.nix
-    ./cloudlab-ci.nix
     ./firewall.nix
     ./packages.nix
     ./misc.nix
