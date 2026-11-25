@@ -27,6 +27,21 @@
     ];
   };
 
+  users.users.cloudlab-ci = {
+    isNormalUser = true;
+    group = "cloudlab-ci";
+    openssh.authorizedKeys.keys = [ "restrict ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBVxfzbnhpgKgHn5KVC3gv4dCcSIB5ib0Wnsreg4Viei cloudlab-forgejo-serverton" ];
+  };
+  users.groups.cloudlab-ci = { };
+  services.openssh.settings.AllowUsers = [ "cloudlab-ci" ];
+
+  # Cloudlab's libvirt playbook uses Ansible become to run modules as root.
+  security.sudo.extraRules = [{
+    users = [ "cloudlab-ci" ];
+    runAs = "root";
+    commands = [{ command = "ALL"; options = [ "NOPASSWD" ]; }];
+  }];
+
   users.groups.ant0n.gid = 1000;
   users.groups.faye.gid = 1001;
   users.groups.serverton_users.gid = 1010;
