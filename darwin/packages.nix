@@ -20,10 +20,11 @@
     kubectl
     kubectl-cnpg
     kubectx
+    kubeconform
+    kube-linter
     kustomize
     unstable.k9s
     unstable.fluxcd
-    minikube
     unstable.opentofu
     cilium-cli
 
@@ -44,8 +45,7 @@
     unstable.bun
     fzf
     bat
-    unstable.kube-capacity
     yq
-    httpie
+    devcontainer
   ];
 }
