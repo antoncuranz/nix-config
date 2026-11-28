@@ -113,7 +113,9 @@ rebuild
 The daily update workflow opens a pull request when inputs change. Configure
 `GH_TOKEN_FOR_UPDATES` as an Actions secret with a fine-grained token that has
 repository Contents and Pull requests read/write access. Its identity triggers
-CI for the update PR. Pull requests from the `update-flake-lock` branch are
+CI for the update PR. A second daily workflow does the same for the locally
+packaged `lighter` and `orca` (my Orca fork) on `update-lighter` and
+`update-orca`. Pull requests from these branches and `update-flake-lock` are
 automatically squash merged after all three builds and cache uploads pass.
 Enable auto-merge in repository settings and
 require the build checks on `main` through branch protection or a ruleset;

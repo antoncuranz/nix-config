@@ -44,9 +44,11 @@
     sshKeys = import ./public-keys.nix;
   in {
     # Local packages not (yet) in nixpkgs. Exposed so they can be built on their
-    # own and bumped by nix-update (see .github/workflows/update-lighter.yml).
-    packages.aarch64-darwin.lighter =
-      nixpkgs.legacyPackages.aarch64-darwin.callPackage ./darwin/lighter/package.nix { };
+    # own and bumped by nix-update (see .github/workflows/update-packages.yml).
+    packages.aarch64-darwin = {
+      lighter = nixpkgs.legacyPackages.aarch64-darwin.callPackage ./darwin/lighter/package.nix { };
+      orca = nixpkgs.legacyPackages.aarch64-darwin.callPackage ./darwin/orca/package.nix { };
+    };
 
     nixosConfigurations.serverton = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs sshKeys; };

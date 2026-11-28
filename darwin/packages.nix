@@ -11,6 +11,7 @@
     tig
 
     lighter
+    orca
     docker
     docker-compose
     docker-credential-helpers
