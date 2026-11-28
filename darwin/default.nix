@@ -19,6 +19,8 @@
       };
       # Not in nixpkgs yet; drop this once it is.
       lighter = final.callPackage ./lighter/package.nix { };
+      # My fork of Orca; drop this once its changes are in an Orca release.
+      orca = final.callPackage ./orca/package.nix { };
     })
   ];
 
